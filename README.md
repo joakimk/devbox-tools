@@ -24,7 +24,7 @@ If it works as intended, you can now push your devbox repo somewhere so you can 
 
 ## Running the VM on other computers
 
-    git clone git@github.com:YOUR\_ORG/devbox.git && cd devbox && ./start.sh
+    git clone git@github.com:YOUR\_ORG/devbox.git && cd devbox && ./start
 
 ## Daily workflow inside the VM
 
