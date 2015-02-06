@@ -1,24 +1,35 @@
 #!/bin/sh
 
-set -e
+# This script installs mruby which is used to run the devbox tools. It
+# assumes some basic tools (gcc, git, etc) are installed already.
 
 MRUBY_INSTALL_PATH=/vagrant/devbox_tools/bin/devbox_tools_ruby
+MRUBY_BUILD_CONFIG_PATH=/vagrant/devbox_tools/support/mruby_build_config.rb
+MRUBY_VERSION=1.1.0
+MRUBY_INSTALLED_CHECKSUM_PATH=/home/vagrant/.mruby_checksum
 
-if [ ! -e "$MRUBY_INSTALL_PATH" ]
+# Only install if the version or the build config changes.
+CURRENT_CHECKUM="$(echo $MRUBY_VERSION)-$(md5sum $MRUBY_BUILD_CONFIG_PATH|awk '{ print $1 }')"
+INSTALLED_CHECKSUM=$(cat $MRUBY_INSTALLED_CHECKSUM_PATH 2> /dev/null)
+
+if [ "$INSTALLED_CHECKSUM" != "$CURRENT_CHECKUM" ]
 then
+  set -e
+
   cd /tmp
 
-  wget https://github.com/mruby/mruby/archive/1.1.0.zip
-  unzip 1.1.0.zip
-  rm 1.1.0.zip
+  wget https://github.com/mruby/mruby/archive/$MRUBY_VERSION.zip
+  unzip $MRUBY_VERSION.zip
+  rm $MRUBY_VERSION.zip
 
-  cd mruby-1.1.0
-  cp /vagrant/devbox_tools/support/mruby_build_config.rb build_config.rb
+  cd mruby-$MRUBY_VERSION
+  cp $MRUBY_BUILD_CONFIG_PATH build_config.rb
 
   make
 
   cp bin/mruby $MRUBY_INSTALL_PATH
+  echo $CURRENT_CHECKUM > $MRUBY_INSTALLED_CHECKSUM_PATH
 
   cd ..
-  rm -rf mruby-1.1.0
+  rm -rf mruby-$MRUBY_VERSION
 fi
