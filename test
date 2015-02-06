@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Bootstrap and run test project full integration, etc.
+cd tmp/test && vagrant destroy -f; cd ../.. 2> /dev/null
 rm -rf tmp/test 2> /dev/null
 
 mkdir -p tmp/test
@@ -26,7 +27,7 @@ cat .gitignore | grep devbox_tools > /dev/null ||
 git status | grep "working directory clean" > /dev/null ||
   { echo "TEST FAIL: Expected bootstrap to setup git"; exit 1; }
 
-./start
-#vagrant up
-#vagrant ssh -c 'ls'
-#vagrant destroy
+./start && vagrant ssh -c 'ls /' | grep 'vmlinuz' > /dev/null ||
+  { echo "TEST FAIL: Setting up VM"; exit 1; }
+
+vagrant destroy -f
