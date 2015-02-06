@@ -2,26 +2,27 @@
 
 Vagrant based development environment that allows you to develop multiple projects in one VM.
 
-It autodetects dependencies a bit like heroku, uses docker for services like postgres and can cache
+It autodetects dependencies a bit like heroku, uses docker for services (like postgres) and can cache
 both code and data for quicker installs.
-
-It was created to be able to have easy and reproducable development environments for many
-projects and libraries without having to run multiple VMs.
 
 ## Setting up your organizations devbox repo
 
-This oneliner will setup a devbox repo to host the vagrant VM and your customizations.
+This oneliner will setup a devbox repo to host the Vagrant VM and your customizations.
 
     mkdir devbox && cd devbox && git clone git@github.com:joakimk/devbox_tools.git && devbox_tools/bootstrap
-    # Customize "Vagrantfile" if needed (change box image, etc). The base box must have docker support. See http://www.vagrantbox.es/.
-    # Customize TOOLS_VERSION in "start" (if you want to lock down the devbox_tools version)
+    
+* Customize "Vagrantfile" if needed (change box image, etc). The base box must have docker support. See http://www.vagrantbox.es/.
+* Customize TOOLS_VERSION in "start" (if you want to lock down the devbox_tools version)
+
+Then start:
+
     ./start
 
 If it works as intended, you can now push your devbox repo somewhere so you can install it on other computers.
 
 ## Running the VM on other computers
 
-   git clone git@github.com:YOUR\_ORG/devbox.git && cd devbox && ./start.sh
+    git clone git@github.com:YOUR\_ORG/devbox.git && cd devbox && ./start.sh
 
 ## Daily workflow inside the VM
 
@@ -32,7 +33,6 @@ When you enter a project devbox\_tools will attempt to setup correct environment
     # go develop
 
 If a project is setup, cd-ing into it will scope you to that projects dependencies. Things should just work.
-
 
     cd /path/to/project
     # go develop
