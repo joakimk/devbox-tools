@@ -5,7 +5,7 @@ Vagrant based development environment that allows you to develop multiple projec
 It autodetects dependencies a bit like heroku, uses docker for services (like postgres) and can cache
 both code and data for quicker installs.
 
-## Setting up your organizations devbox repo
+### Setting up your organizations devbox repo
 
 Set up your devbox repo.
 
@@ -22,11 +22,11 @@ And finally:
 
 If it works as intended, you can now push your devbox repo somewhere so you can install it on other computers.
 
-## Running the VM on other computers
+### Running the VM on other computers
 
     git clone git@github.com:YOUR\_ORG/devbox.git && cd devbox && ./start
 
-## Daily workflow inside the VM
+### Daily workflow inside the VM
 
 When you enter a project devbox\_tools will attempt to setup correct environment variables.
 
@@ -39,13 +39,13 @@ If a project is setup, cd-ing into it will scope you to that projects dependenci
     cd /path/to/project
     # go develop
 
-## Developing devbox\_tools
+### Developing devbox\_tools
 
 Change things, run tests, send pull request.
 
     ./test
 
-## Credits and license
+### Credits and license
 
 By [Joakim Kolsjö](https://github.com/joakimk) under the MIT license:
 
