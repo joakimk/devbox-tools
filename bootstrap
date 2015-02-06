@@ -9,9 +9,7 @@ cp devbox_tools/support/start .
 chmod +x start
 
 echo "devbox_tools" >> .gitignore # >> to be nice and not overwrite any previous file
+echo ".vagrant" >> .gitignore
 git init . > /dev/null
 git add .
 git commit -m "Initial commit" > /dev/null
-
-# TODOs:
-# - mount home directory for project access

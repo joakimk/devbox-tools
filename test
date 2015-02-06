@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# Bootstrap and run test project full integration, etc.
 cd tmp/test && vagrant destroy -f; cd ../.. 2> /dev/null
 rm -rf tmp/test 2> /dev/null
 
