@@ -2,6 +2,7 @@
 
 # You can use this to lock down the devbox_tools version
 DEVBOX_TOOLS_VERSION=master
+DEVBOX_TOOLS_REPO=git@github.com:joakimk/devbox_tools.git
 
 set -e
 
@@ -10,7 +11,7 @@ then
   printf "\e[00;34mUpdating devbox_tools\e[00m... "
 else
   printf "\e[00;34mInstalling devbox_tools\e[00m... "
-  git clone git@github.com:joakimk/devbox_tools.git 1> /dev/null || exit 1
+  git clone $DEVBOX_TOOLS_REPO 1> /dev/null || exit 1
 fi
 
 # Ensure we don't overwrite local changes
