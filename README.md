@@ -13,8 +13,8 @@ Set up your devbox repo.
     
 Then:
 
-* Customize "Vagrantfile" if needed (change box image, etc). The base box must have docker support. See http://www.vagrantbox.es/.
-* Customize TOOLS\_VERSION in "start" (if you want to lock down the devbox_tools version)
+* Customize "Vagrantfile" as needed.
+* Customize "start" as needed
 
 And finally:
 
