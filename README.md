@@ -7,16 +7,16 @@ both code and data for quicker installs.
 
 ## Setting up your organizations devbox repo
 
-This oneliner will setup a devbox repo to host the Vagrant VM and your customizations.
+Set up your devbox repo.
 
     mkdir devbox && cd devbox && git clone git@github.com:joakimk/devbox_tools.git && devbox_tools/bootstrap
     
-Now you can:
+Then:
 
 * Customize "Vagrantfile" if needed (change box image, etc). The base box must have docker support. See http://www.vagrantbox.es/.
 * Customize TOOLS\_VERSION in "start" (if you want to lock down the devbox_tools version)
 
-Then start:
+And finally:
 
     ./start
 
