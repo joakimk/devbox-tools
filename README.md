@@ -11,16 +11,9 @@ Set up your devbox repo.
 
     mkdir devbox && cd devbox && git clone git@github.com:joakimk/devbox_tools.git && devbox_tools/bootstrap
     
-Then:
-
-* Customize "Vagrantfile" as needed.
-* Customize "start" as needed
-
-And finally:
+Then customize `Vagrantfile` and `start` and run:
 
     ./start
-
-If it works as intended, you can now push your devbox repo somewhere so you can install it on other computers.
 
 ### Running the VM on other computers
 
