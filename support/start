@@ -34,3 +34,8 @@ vagrant up
 printf "\e[00;34mEnsuring devbox_tools dependencies are up to date\e[00m... "
 vagrant ssh -c '/vagrant/devbox_tools/support/install_dependencies'
 printf "done\n"
+
+if [ ! $RUNNING_TEST ]
+then
+  vagrant ssh
+fi
