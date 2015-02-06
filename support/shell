@@ -1,0 +1,1 @@
+export PATH=/vagrant/devbox_tools/bin:$PATH
