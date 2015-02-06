@@ -7,7 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu-12.04-amd64-vbox"
 
-  # The url from where the 'config.vm.box' box will be fetched if it doesn't already exist on the user's system.
+  # The box must have docker support. For more boxes see http://www.vagrantbox.es/.
   config.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-12.04-amd64-vbox.box"
 
   # Install some basic tools that devbox_tools needs to bootstrap itself (adapt for your box type).
