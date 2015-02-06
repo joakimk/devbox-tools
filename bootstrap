@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Ensure we're in a repo where "devbox_tools" are available in the current path
+[ -d devbox_tools ] || { echo "Expected devbox_tools to be available in the current directory"; exit 1; }
+
+set -e
+cp devbox_tools/support/Vagrantfile .
+cp devbox_tools/support/start .
+chmod +x start
+
+echo "devbox_tools" >> .gitignore # >> to be nice and not overwrite any previous file
+git init . > /dev/null
+git add .
+git commit -m "Initial commit" > /dev/null
+
+# TODOs:
+# - mount home directory for project access

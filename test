@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# Bootstrap and run test project full integration, etc.
+rm -rf tmp/test 2> /dev/null
+
+mkdir -p tmp/test
+cd tmp/test
+
+# Test that we check for devbox_tools
+../../bootstrap | grep "Expected devbox_tools to be available" > /dev/null ||
+  { echo "TEST FAIL: Check for devbox_tools failed"; exit 1; }
+
+# Test integration
+rsync -a --exclude="tmp" ../.. devbox_tools
+devbox_tools/bootstrap
+
+ls Vagrantfile 1> /dev/null ||
+  { echo "TEST FAIL: Expected bootstrap to setup Vagrantfile"; exit 1; }
+
+ls start 1> /dev/null ||
+  { echo "TEST FAIL: Expected bootstrap to setup start script"; exit 1; }
+
+cat .gitignore | grep devbox_tools > /dev/null ||
+  { echo "TEST FAIL: Expected bootstrap to setup .gitignore"; exit 1; }
+
+git status | grep "working directory clean" > /dev/null ||
+  { echo "TEST FAIL: Expected bootstrap to setup git"; exit 1; }
+
+./start
+#vagrant up
+#vagrant ssh -c 'ls'
+#vagrant destroy

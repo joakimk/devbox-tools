@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# You can use this to lock down the devbox_tools version
+DEVBOX_TOOLS_VERSION=master
+
+set -e
+
+if [ -d devbox_tools ]
+then
+  cd devbox_tools && git pull
+else
+  git clone git://github.com/joakimk/devbox_tools
+fi
+
+if [ -e devbox_tools ]
+then
+  printf "\e[00;34mUpdating devbox_tools\e[00m... "
+else
+  printf "\e[00;34mInstalling devbox_tools\e[00m... "
+  git clone git@github.com:joakimk/devbox_tools.git 1> /dev/null || exit 1
+fi
+
+# Ensure we don't overwrite local changes
+cd devbox_tools
+(git status|grep 'nothing to commit' 1> /dev/null)
+
+if [ ! $? -eq 0 ]
+then
+  printf "\e[00;33mskipped\e[00m (there are uncommitted changes)\n"
+else
+  git pull > /dev/null || exit 1
+  git reset --hard $DEVBOX_TOOLS_VERSION 1> /dev/null || exit 1
+  printf "done\n"
+fi
+
+vagrant up
