@@ -5,14 +5,16 @@ Vagrant based development environment that allows you to develop multiple projec
 It autodetects dependencies a bit like heroku, uses docker for services (like postgres) and can cache
 both code and data for quicker installs.
 
-## Setting up your devbox repo
+## Setting up your organizations devbox repo
 
-Setup a new devbox repo.
+This oneliner will setup a devbox repo to host the Vagrant VM and your customizations.
 
     mkdir devbox && cd devbox && git clone git@github.com:joakimk/devbox_tools.git && devbox_tools/bootstrap
     
+Now you can:
+
 * Customize "Vagrantfile" if needed (change box image, etc). The base box must have docker support. See http://www.vagrantbox.es/.
-* Customize TOOLS_VERSION in "start" (if you want to lock down the devbox_tools version)
+* Customize TOOLS\_VERSION in "start" (if you want to lock down the devbox_tools version)
 
 Then start:
 
