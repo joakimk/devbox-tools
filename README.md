@@ -6,7 +6,7 @@ The main idea is a tool will autodetect and install the right things letting you
 
 As an added benefit you can run multiple projects within the same VM, even if they depend on different versions of services like postgres. It's all scoped to each project (as far as possible).
 
-### Setting up your organizations devbox repo
+### Setting up your devbox repo
 
 Set up your devbox repo.
 
