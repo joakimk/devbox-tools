@@ -9,8 +9,8 @@ both code and data for quicker installs.
 
 Set up your devbox repo.
 
-    mkdir devbox && cd devbox && git clone git@github.com:joakimk/devbox_tools.git && devbox_tools/bootstrap
-    
+    mkdir devbox && cd devbox && git clone git@github.com:joakimk/devbox-tools.git && devbox-tools/bootstrap
+
 Then customize `Vagrantfile` and `start` and run:
 
     ./start
@@ -21,7 +21,7 @@ Then customize `Vagrantfile` and `start` and run:
 
 ### Daily workflow inside the VM
 
-When you enter a project devbox\_tools will attempt to setup correct environment variables.
+When you enter a project devbox-tools will attempt to setup correct environment variables.
 
     cd /path/to/project
     dev # install dependencies
@@ -32,7 +32,7 @@ If a project is setup, cd-ing into it will scope you to that projects dependenci
     cd /path/to/project
     # go develop
 
-### Developing devbox\_tools
+### Developing devbox-tools
 
 Change things, run tests, send pull request.
 
@@ -44,7 +44,7 @@ Change things, run tests, send pull request.
 
 ### Why mruby?
 
-devbox\_tools uses [mruby](http://www.mruby.org/):
+devbox-tools uses [mruby](http://www.mruby.org/):
 
 * Since it compiles to a stand alone binary, which avoids environment collisions with other ruby installs.
 * Because it's fun to try out new things.

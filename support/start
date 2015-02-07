@@ -1,21 +1,21 @@
 #!/bin/bash
 
-# You can use this to lock down the devbox_tools version
+# You can use this to lock down the devbox-tools version
 DEVBOX_TOOLS_VERSION=master
-DEVBOX_TOOLS_REPO=git@github.com:joakimk/devbox_tools.git
+DEVBOX_TOOLS_REPO=git@github.com:joakimk/devbox-tools.git
 
 set -e
 
-if [ -e devbox_tools ]
+if [ -e devbox-tools ]
 then
-  printf "\e[00;34mUpdating devbox_tools\e[00m... "
+  printf "\e[00;34mUpdating devbox-tools\e[00m... "
 else
-  printf "\e[00;34mInstalling devbox_tools\e[00m... "
+  printf "\e[00;34mInstalling devbox-tools\e[00m... "
   git clone $DEVBOX_TOOLS_REPO 1> /dev/null || exit 1
 fi
 
 # Ensure we don't overwrite local changes
-cd devbox_tools
+cd devbox-tools
 (git status|grep 'nothing to commit' 1> /dev/null)
 
 if [ ! $? -eq 0 ]
@@ -31,8 +31,8 @@ cd ..
 
 vagrant up
 
-printf "\e[00;34mEnsuring devbox_tools dependencies are up to date\e[00m... "
-vagrant ssh -c '/vagrant/devbox_tools/support/install_dependencies'
+printf "\e[00;34mEnsuring devbox-tools dependencies are up to date\e[00m... "
+vagrant ssh -c '/vagrant/devbox-tools/support/install_dependencies'
 printf "done\n"
 
 if [ ! $RUNNING_TEST ]

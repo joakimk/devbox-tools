@@ -10,17 +10,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # The box must have docker support. For more boxes see http://www.vagrantbox.es/.
   config.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-12.04-amd64-vbox.box"
 
-  # Install some basic tools that devbox_tools needs to bootstrap itself (adapt for your box type).
-  config.vm.provision :shell, inline: "apt-get update && apt-get install build-essential unzip git bison -y && echo 'source /vagrant/devbox_tools/support/shell' >> /home/vagrant/.bashrc"
+  # Install some basic tools that devbox-tools needs to bootstrap itself (adapt for your box type).
+  config.vm.provision :shell, inline: "apt-get update && apt-get install build-essential unzip git bison -y && echo 'source /vagrant/devbox-tools/support/shell' >> /home/vagrant/.bashrc"
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize [ "modifyvm", :id, "--memory", "1024" ]
   end
 
-  # This can be removed, used for devbox_tools's integration tests
+  # This can be removed, used for devbox-tools's integration tests
   # TODO: Use templating
   if ENV["RUNNING_TEST"]
-    config.vm.synced_folder "../..", "/devbox_tools"
+    config.vm.synced_folder "../..", "/devbox-tools"
   end
 
   # Kept the original vagrant docs below:

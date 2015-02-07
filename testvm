@@ -2,19 +2,19 @@
 
 if [ "$1" = "up" ]
 then
-  cd tmp/test && vagrant destroy -f; cd ../.. 2> /dev/null
-  rm -rf tmp/test 2> /dev/null
+  mkdir -p tmp/test && cd tmp/test && vagrant destroy -f; cd ../.. 2> /dev/null
+  rm -rf tmp/test
 
   mkdir -p tmp/test
   cd tmp/test
 
-  # Test that we check for devbox_tools
-  ../../bootstrap | grep "Expected devbox_tools to be available" > /dev/null ||
-    { echo "TEST FAIL: Check for devbox_tools failed"; exit 1; }
+  # Test that we check for devbox-tools
+  ../../bootstrap | grep "Expected devbox-tools to be available" > /dev/null ||
+    { echo "TEST FAIL: Check for devbox-tools failed"; exit 1; }
 
   # Test integration
-  rsync -a --exclude="tmp" ../.. devbox_tools
-  devbox_tools/bootstrap
+  rsync -a --exclude="tmp" ../.. devbox-tools
+  devbox-tools/bootstrap
 
   ls Vagrantfile 1> /dev/null ||
     { echo "TEST FAIL: Expected bootstrap to setup Vagrantfile"; exit 1; }
@@ -22,19 +22,19 @@ then
   ls start 1> /dev/null ||
     { echo "TEST FAIL: Expected bootstrap to setup start script"; exit 1; }
 
-  cat .gitignore | grep devbox_tools > /dev/null ||
+  cat .gitignore | grep devbox-tools > /dev/null ||
     { echo "TEST FAIL: Expected bootstrap to setup .gitignore"; exit 1; }
 
   git status | grep "working directory clean" > /dev/null ||
     { echo "TEST FAIL: Expected bootstrap to setup git"; exit 1; }
 
   export RUNNING_TEST=true
-  ./start && vagrant ssh -c '/vagrant/devbox_tools/bin/devbox_tools_ruby -e "puts 20/2"' | grep "10" > /dev/null ||
+  ./start && vagrant ssh -c '/vagrant/devbox-tools/bin/devbox-tools-ruby -e "puts 20/2"' | grep "10" > /dev/null ||
     { echo "TEST FAIL: Expected working ruby after VM is setup"; exit 1; }
 
   # Symlink in the main tools directory so that we can edit tests
   # and re-run them inside an existing VM during development
-  vagrant ssh -c "cp /vagrant/devbox_tools/bin/devbox_tools_ruby /devbox_tools/bin && rm -rf /vagrant/devbox_tools && ln -s /devbox_tools /vagrant/devbox_tools"
+  vagrant ssh -c "cp /vagrant/devbox-tools/bin/devbox-tools-ruby /devbox-tools/bin && rm -rf /vagrant/devbox-tools && ln -s /devbox-tools /vagrant/devbox-tools"
   cd ../..
   ./testvm test
   exit
@@ -42,7 +42,7 @@ fi
 
 if [ "$1" = "update" ]
 then
-  cd tmp/test && vagrant ssh -c '/devbox_tools/support/install_dependencies'
+  cd tmp/test && vagrant ssh -c '/devbox-tools/support/install_dependencies'
   exit
 fi
 
@@ -60,20 +60,20 @@ fi
 
 if [ "$1" = "test" ]
 then
-  cd tmp/test && vagrant ssh -c "find /devbox_tools/test/*tests.rb -exec /devbox_tools/bin/devbox_tools_ruby {} \;"
+  cd tmp/test && vagrant ssh -c "find /devbox-tools/test/*tests.rb -exec /devbox-tools/bin/devbox-tools-ruby {} \;"
   exit
 fi
 
 
 if [ "$1" = "integration" ]
 then
-  cd tmp/test && vagrant ssh -c "/devbox_tools/bin/devbox_tools_ruby /devbox_tools/test/integration_tests.rb"
+  cd tmp/test && vagrant ssh -c "/devbox-tools/bin/devbox-tools-ruby /devbox-tools/test/integration_tests.rb"
   exit
 fi
 
 if [ "$1" = "unit" ]
 then
-  cd tmp/test && vagrant ssh -c "/devbox_tools/bin/devbox_tools_ruby /devbox_tools/test/unit_tests.rb"
+  cd tmp/test && vagrant ssh -c "/devbox-tools/bin/devbox-tools-ruby /devbox-tools/test/unit_tests.rb"
   exit
 fi
 
