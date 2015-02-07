@@ -131,9 +131,8 @@ Creating a plugin:
 Change things, run tests, send pull request.
 
     ./test up
-    ./test integration
-    ./test unit
-    ./test ssh # optional, to debug
+    ./test test
+    ./test ssh # optional, to debug or run tests quicker with 'dev test'
     ./test destroy
 
 ### What is mruby and...
