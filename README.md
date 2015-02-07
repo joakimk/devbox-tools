@@ -63,15 +63,15 @@ Change things, run tests, send pull request.
 
 TODO
 
-### Why mruby?
+### What is mruby and...
 
-devbox-tools uses [mruby](http://www.mruby.org/):
+[mruby](http://www.mruby.org/) is a lightweight implementation of the Ruby language and it's the runtime for devbox-tools. devbox-tools uses [mruby](http://www.mruby.org/) because:
 
-* Since it compiles to a stand alone binary, which avoids environment collisions with other ruby installs.
-* Because it's fun to try out new things.
-* To keep this tool simple (you can always shell out to more complex tools).
+* It compiles to a stand alone binary. This avoids environment collisions with other ruby installs.
+* It's fun to try out new things.
+* Keeps this tool simple (you can always shell out to more complex tools).
 
-It's build configuration (and the "mrbgems" we build into it) is listed in [support/mruby\_build\_config.rb](support/mruby_build_config.rb) and the version is set by [support/install\_dependencies](support/install_dependencies).
+The mruby build configuration (and the "mrbgems" we build into it) is listed in [support/mruby\_build\_config.rb](support/mruby_build_config.rb) and the version is set by [support/install\_dependencies](support/install_dependencies).
 
 ### Credits and license
 
