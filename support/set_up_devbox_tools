@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Script to fetch the devbox-tools when you start vagrant.
+# More info: https://github.com/joakimk/devbox-tools
+
 # This script expects DEVBOX_TOOLS_VERSION and DEVBOX_TOOLS_REPO to be set.
 
 set -e
