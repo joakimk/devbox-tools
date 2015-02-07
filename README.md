@@ -53,8 +53,8 @@ Example for a ruby project.
 
 Stopping services
 
-   cd /path/to/project
-   dev stop
+    cd /path/to/project
+    dev stop
 
 Caching to make installs quicker:
 
