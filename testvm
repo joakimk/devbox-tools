@@ -37,12 +37,13 @@ then
   vagrant ssh -c "cp /vagrant/devbox-tools/bin/devbox-tools-ruby /devbox-tools/bin && rm -rf /vagrant/devbox-tools && ln -s /devbox-tools /vagrant/devbox-tools"
   cd ../..
   ./testvm test
+  echo "Success!"
   exit
 fi
 
 if [ "$1" = "update" ]
 then
-  cd tmp/test && vagrant ssh -c '/devbox-tools/support/install_dependencies'
+  cd tmp/test && vagrant ssh -c '/vagrant/devbox-tools/support/install_dependencies'
   exit
 fi
 
@@ -60,20 +61,20 @@ fi
 
 if [ "$1" = "test" ]
 then
-  cd tmp/test && vagrant ssh -c "find /devbox-tools/test/*tests.rb -exec /devbox-tools/bin/devbox-tools-ruby {} \;"
+  cd tmp/test && vagrant ssh -c "find /vagrant/devbox-tools/test/*tests.rb -exec /vagrant/devbox-tools/bin/devbox-tools-ruby {} \;"
   exit
 fi
 
 
 if [ "$1" = "integration" ]
 then
-  cd tmp/test && vagrant ssh -c "/devbox-tools/bin/devbox-tools-ruby /devbox-tools/test/integration_tests.rb"
+  cd tmp/test && vagrant ssh -c "/vagrant/devbox-tools/bin/devbox-tools-ruby /vagrant/devbox-tools/test/integration_tests.rb"
   exit
 fi
 
 if [ "$1" = "unit" ]
 then
-  cd tmp/test && vagrant ssh -c "/devbox-tools/bin/devbox-tools-ruby /devbox-tools/test/unit_tests.rb"
+  cd tmp/test && vagrant ssh -c "/vagrant/devbox-tools/bin/devbox-tools-ruby /vagrant/devbox-tools/test/unit_tests.rb"
   exit
 fi
 

@@ -4,8 +4,8 @@ module TestHelpers
   end
 end
 
-Dir.entries("/devbox-tools/test/integration").reject { |e| e.start_with?(".") }.each do |file|
-  require "/devbox-tools/test/integration/#{file}"
+Dir.entries("/vagrant/devbox-tools/test/integration").reject { |e| e.start_with?(".") }.each do |file|
+  require "/vagrant/devbox-tools/test/integration/#{file}"
 end
 
 class MTest::Unit::TestCase
