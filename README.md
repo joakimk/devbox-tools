@@ -2,9 +2,7 @@
 
 A tool for vagrant boxes that simplify management of development dependencies.
 
-The main idea is a tool will autodetect and install the right things letting you get right to work instead of messing around with installations.
-
-**It's meant to make development box setup as easy as pushing to heroku** and it's not bound to any specific programming language or platform.
+The main idea is a tool will autodetect and install the right things letting you get right to work instead of messing around with installations. **It's meant to make development box setup as easy as pushing to heroku** and it's not bound to any specific programming language or platform.
 
 As an added benefit you can run multiple projects within the same VM, even if they depend on different versions of services like postgres. It's all scoped to each project.
 
