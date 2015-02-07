@@ -1,9 +1,10 @@
 # WIP: This is readme driven development in progress. They tool may not yet do what the readme says.
 
-Vagrant based development environment that allows you to develop multiple projects in one VM.
+A tool for vagrant boxes that simplify management of development dependencies.
 
-It autodetects dependencies a bit like heroku, uses docker for services (like postgres) and can cache
-both code and data for quicker installs.
+The main idea is a tool will autodetect and install the right things letting you get right to work instead of messing around with installations. **It's meant to make development box setup as easy as pushing to heroku**. It's not bound to any specific programming language or platform.
+
+As an added benefit you can run multiple projects within the same VM, even if they depend on different versions of services like postgres. It's all scoped to each project.
 
 ### Setting up your organizations devbox repo
 
@@ -11,26 +12,42 @@ Set up your devbox repo.
 
     mkdir devbox && cd devbox && git clone git@github.com:joakimk/devbox-tools.git && devbox-tools/bootstrap
 
-Then customize `Vagrantfile` and `start` and run:
+Then customize `Vagrantfile` and run:
 
-    ./start
+    vagrant up
+
+When inside the VM, add the plugins you need.
+
+    dev plugins:list
+    dev plugins:add git@github.com:joakimk/devbox-tools-ruby.git
+    dev plugins:add git@github.com:joakimk/devbox-tools-postgres.git
+    dev plugins:add git@github.com:joakimk/devbox-tools-redis.git
+
+Plugins are added as git submodules in `plugins/plugin-name`. You can add your own local plugins there as well.
 
 ### Running the VM on other computers
 
-    git clone git@github.com:YOUR\_ORG/devbox.git && cd devbox && ./start
+    git clone git@github.com:YOUR\_ORG/devbox.git && cd devbox && vagrant up
 
-### Daily workflow inside the VM
+### Daily workflow
 
-When you enter a project devbox-tools will attempt to setup correct environment variables.
+Example for a ruby project.
 
+    vagrant up
+    vagrant ssh
+
+    # Inside the VM
     cd /path/to/project
-    dev # install dependencies
-    # go develop
 
-If a project is setup, cd-ing into it will scope you to that projects dependencies. Things should just work.
+    dev
+    >> Checking dependency ruby: 2.2.0 installed (autodetected).
+    >> Checking dependency bundler: 1.7.12 installed (devbox-tools default).
+    >> Checking dependency postgres: postgres:9.2 (configured in project).
+    >> Starting services.... done
+    >> Development environment ready.
 
-    cd /path/to/project
-    # go develop
+    rake spec
+    ...
 
 ### Developing devbox-tools
 
@@ -41,6 +58,10 @@ Change things, run tests, send pull request.
     ./test unit
     ./test ssh # optional, to debug
     ./test destroy
+
+### Developing plugins
+
+TODO
 
 ### Why mruby?
 
