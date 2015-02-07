@@ -22,6 +22,7 @@ When inside the VM, add the plugins you need.
     dev plugins:add git@github.com:joakimk/devbox-tools-ruby.git
     dev plugins:add git@github.com:joakimk/devbox-tools-postgres.git
     dev plugins:add git@github.com:joakimk/devbox-tools-redis.git
+    dev plugins:add git@github.com:joakimk/devbox-tools-procfile.git
 
 Plugins are added as git submodules in `plugins/`. You can add your own local plugins there as well.
 
