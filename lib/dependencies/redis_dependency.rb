@@ -13,7 +13,7 @@ class RedisDependency < Dependency
   end
 
   def install
-    # todo
+    system("sudo docker pull #{image}")
   end
 
   def environment_variables(envs)
@@ -23,12 +23,12 @@ class RedisDependency < Dependency
   end
 
   def used_by_project?(directory)
-    version
+    image
   end
 
   private
 
-  def version
+  def image
     return nil if Dir.pwd == "/"
     DEFAULT_REDIS_IMAGE
 
