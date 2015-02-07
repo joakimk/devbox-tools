@@ -84,7 +84,7 @@ Restoring caches:
     >> Restoring bundler... done
     >> Restoring complete.
 
-### Offline or slow connection support
+### Offline and/or slow connection support
 
 Setting OFFLINE=true will make devbox-tools attempt to not use an internet connection,
 trying to use local files and exiting early if that isn't possible.
