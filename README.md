@@ -90,7 +90,7 @@ Setting OFFLINE=true will make devbox-tools attempt to not use an internet conne
 trying to use local files and exiting early if that isn't possible.
 
     # The ruby version has been updated in the project, but you don't have it locally
-    # and you're on a train with a bad connection, so you opt for OFFLINE=true.
+    # and you're on a train with a bad connection, so you opt for using OFFLINE=true...
 
     OFFLINE=true dev
     >> Checking dependency ruby: 2.2.0 unavailable (autodetected).
