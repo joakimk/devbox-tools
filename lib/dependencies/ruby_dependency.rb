@@ -1,5 +1,5 @@
 # NOTE: This is only here until the dependency API is finished, then it's
-#       supposed to be moved to a plugin.
+#       supposed to be moved to a plugin. Represents regular software.
 
 class RubyDependency < Dependency
   def name
