@@ -13,7 +13,7 @@ class RedisDependency < Dependency
   end
 
   def install
-    system("sudo docker pull #{image}")
+    #system("sudo docker pull #{image}")
   end
 
   def environment_variables(envs)
