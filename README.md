@@ -42,7 +42,15 @@ Change things, run tests, send pull request.
     ./test ssh # optional, to debug
     ./test destroy
 
-devbox\_tools uses mruby since it can compile to a stand alone binary (and because it's fun to try new things). It's configuration is in support/mruby\_build\_config.rb
+### mruby
+
+devbox\_tools uses [mruby](http://www.mruby.org/):
+
+* Since it can compile to a stand alone binary, which helps when you want to host other ruby environments.
+* Because it's fun to try out new things.
+* To keep this tool simple (you can always shell out to more complex tools).
+
+It's build configuration (and the "mrbgems" we build into it) is listed in support/mruby\_build\_config.rb.
 
 ### Credits and license
 
