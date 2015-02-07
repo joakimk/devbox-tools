@@ -21,6 +21,9 @@ MRuby::Build.new do |conf|
   # Add "exit"
   conf.gem "mrbgems/mruby-exit"
 
+  # Add ENV
+  conf.gem :github => "iij/mruby-env", :checksum_hash => "0b9af96e7286eb4ad2300ceace9c11ac39c8d684"
+
   # Adds default gems, seems like a good idea.
   conf.gembox 'default'
 end

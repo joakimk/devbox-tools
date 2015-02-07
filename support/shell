@@ -1,1 +1,7 @@
-export PATH=/vagrant/devbox-tools/bin:$PATH
+export DEVBOX_TOOLS_ROOT=/vagrant/devbox-tools
+export PATH=$DEVBOX_TOOLS_ROOT/bin:$PATH
+
+function dev()
+{
+  devbox-tools-ruby $DEVBOX_TOOLS_ROOT/lib/cli.rb $@
+}

@@ -61,28 +61,17 @@ fi
 
 if [ "$1" = "test" ]
 then
-  cd tmp/test && vagrant ssh -c "find /vagrant/devbox-tools/test/*tests.rb -exec /vagrant/devbox-tools/bin/devbox-tools-ruby {} \;"
-  exit
-fi
-
-
-if [ "$1" = "integration" ]
-then
-  cd tmp/test && vagrant ssh -c "/vagrant/devbox-tools/bin/devbox-tools-ruby /vagrant/devbox-tools/test/integration_tests.rb"
-  exit
-fi
-
-if [ "$1" = "unit" ]
-then
-  cd tmp/test && vagrant ssh -c "/vagrant/devbox-tools/bin/devbox-tools-ruby /vagrant/devbox-tools/test/unit_tests.rb"
+  cd tmp/test && vagrant ssh -c "source /vagrant/devbox-tools/support/shell && dev test"
   exit
 fi
 
 echo "Usage:"
 echo "./testvm up           # Start VM and run all tests"
-echo "./testvm test         # Run all tests inside VM"
-echo "./testvm integration  # Run integration tests inside VM"
-echo "./testvm unit         # Run unit tests inside VM"
+echo "./testvm test         # Run tests inside VM"
+echo "                      #"
+echo "                      # NOTE: './testvm ssh' and 'dev test' is faster"
+echo "                      # when running the tests multiple times."
+echo "                      #"
 echo "./testvm ssh          # Log in to the test VM"
 echo "./testvm update       # Update dependencies"
 echo "./testvm destroy      # Destroy VM"
