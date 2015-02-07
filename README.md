@@ -56,6 +56,11 @@ Stopping services
     cd /path/to/project
     dev stop
 
+Listing running services:
+
+    cd /path/to/project
+    dev ps
+
 Caching to make installs quicker:
 
     cd /path/to/project
