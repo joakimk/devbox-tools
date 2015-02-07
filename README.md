@@ -84,6 +84,28 @@ Restoring caches:
     >> Restoring bundler... done
     >> Restoring complete.
 
+### Offline or slow connection support
+
+Setting OFFLINE=true will make devbox-tools attempt to not use an internet connection,
+trying ot use local files and exiting early if that isn't possible.
+
+    # The ruby version has been updated in the project, but you don't have it locally
+    # and you're on a train with a bad connection, so you opt for OFFLINE=true.
+
+    OFFLINE=true dev
+    >> Checking dependency ruby: 2.2.0 unavailable (autodetected).
+    >> Development environment could not be setup.
+
+    # You revert to older ruby in your repo...
+
+    OFFLINE=true dev
+    >> Checking dependency ruby: 2.1.0 installed (autodetected).
+    >> Checking dependency postgres: postgres:9.2 (configured in project).
+    >> Starting services.... done
+    >> Development environment ready.
+
+    # You're ready to go
+
 ### Developing plugins
 
 Plugins are structured like this:
