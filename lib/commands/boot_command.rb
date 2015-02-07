@@ -8,6 +8,8 @@ class BootCommand < Command
   end
 
   def run(_)
+    prepare_directories
+
     dependencies.each do |dependency|
       log "Checking dependency #{dependency.name}" do
         dependency.install
@@ -21,6 +23,18 @@ class BootCommand < Command
     end
 
     log "Development environment ready"
+  end
+
+  private
+
+  def prepare_directories
+    prepare_directory(Devbox.code_root)
+  end
+
+  def prepare_directory(path)
+    return if File.exists?(path)
+    user = ENV["USER"]
+    system("sudo mkdir -p #{path} && sudo chown #{user} -R #{path}")
   end
 
   def dependencies
