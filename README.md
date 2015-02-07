@@ -96,7 +96,7 @@ trying to use local files and exiting early if that isn't possible.
     >> Checking dependency ruby: 2.2.0 unavailable (autodetected).
     >> Development environment could not be setup.
 
-    # You revert to older ruby in your repo...
+    # You revert to an older ruby version in your repo (e.g. in Gemfile or .rvmrc)...
 
     OFFLINE=true dev
     >> Checking dependency ruby: 2.1.0 installed (autodetected).
