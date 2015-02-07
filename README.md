@@ -84,6 +84,20 @@ Restoring caches:
     >> Restoring bundler... done
     >> Restoring complete.
 
+### Gotchas to be aware of...
+
+In other to ensure that the environment variables don't leak between projects when you change directory, devbox-tools removes any environment variables that was not set at login (when you sourced support/shell) before it sets any new project specific environment variables.
+
+This means that if you do:
+
+    cd somewhere
+    export FOO=5
+    cd ..
+
+Then FOO won't be set anymore.
+
+If you know something just as reliable that allows some custom envs, then please contribute. Until it becomes a problem, devbox-tools will continue to work this way.
+
 ### Offline and/or slow connection support
 
 Setting OFFLINE=true will make devbox-tools attempt to not use an internet connection by trying to use local files and exiting early if that isn't possible.
