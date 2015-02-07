@@ -42,11 +42,11 @@ Change things, run tests, send pull request.
     ./test ssh # optional, to debug
     ./test destroy
 
-### mruby
+### Why mruby?
 
 devbox\_tools uses [mruby](http://www.mruby.org/):
 
-* Since it can compile to a stand alone binary, which helps when you want to host other ruby environments.
+* Since it compiles to a stand alone binary, which allows you to not set ENVs used by hosted project's ruby environments.
 * Because it's fun to try out new things.
 * To keep this tool simple (you can always shell out to more complex tools).
 
