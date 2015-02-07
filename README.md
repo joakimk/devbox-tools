@@ -49,6 +49,35 @@ Example for a ruby project.
     rake spec
     ...
 
+### Less frequently used commands
+
+Stopping services
+
+   cd /path/to/project
+   dev stop
+
+Caching to make installs quicker:
+
+   cd /path/to/project
+   dev cache
+   >> Checking cache for ruby... none
+   >> Checking cache for bundler... 60 mb on disk
+   >> Checking cache for postgres... 1500 mb on disk
+   >> Do you want to cache postgres? (it's 1500mb) y/n: n
+   >> Caching bundler... done
+   >> Caching complete.
+
+Restoring caches:
+
+   cd /path/to/project
+   dev restore
+   >> Checking cache for ruby... none
+   >> Checking cache for bundler... 45mb compressed
+   >> Checking cache for postgres... 1000mb compressed
+   >> Do you want to download cache for postgres? (it's 1000mb) y/n: n
+   >> Restoring bundler... done
+   >> Restoring complete.
+
 ### Developing devbox-tools
 
 Change things, run tests, send pull request.
@@ -61,7 +90,9 @@ Change things, run tests, send pull request.
 
 ### Developing plugins
 
-TODO
+    dev plugin:create plugins/devbox-tools-foo
+    # add things to the plugin and run dev commands
+    # publish somewhere and send me a link
 
 ### What is mruby and...
 
