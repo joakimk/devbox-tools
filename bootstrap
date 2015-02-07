@@ -5,8 +5,8 @@
 
 set -e
 cp devbox-tools/support/Vagrantfile .
-cp devbox-tools/support/start .
-chmod +x start
+cp devbox-tools/support/set_up_devbox_tools .
+chmod +x set_up_devbox_tools
 
 echo "devbox-tools" >> .gitignore # >> to be nice and not overwrite any previous file
 echo ".vagrant" >> .gitignore

@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# You can use this to lock down the devbox-tools version
-DEVBOX_TOOLS_VERSION=master
-DEVBOX_TOOLS_REPO=git@github.com:joakimk/devbox-tools.git
+# This script expects DEVBOX_TOOLS_VERSION and DEVBOX_TOOLS_REPO to be set.
 
 set -e
 
@@ -25,17 +23,4 @@ else
   git pull > /dev/null || exit 1
   git reset --hard $DEVBOX_TOOLS_VERSION 1> /dev/null || exit 1
   printf "done\n"
-fi
-
-cd ..
-
-vagrant up
-
-printf "\e[00;34mEnsuring devbox-tools dependencies are up to date\e[00m... "
-vagrant ssh -c '/vagrant/devbox-tools/support/install_dependencies'
-printf "done\n"
-
-if [ ! $RUNNING_TEST ]
-then
-  vagrant ssh
 fi

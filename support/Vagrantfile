@@ -4,6 +4,17 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
+# There are probably better ways to hook into "vagrant up", haven't had
+# any problems with this yet, but please do contribute if you do.
+if ARGV.first == "up"
+  system(%{
+    # You can use this to lock down the devbox-tools version
+    export DEVBOX_TOOLS_VERSION=master
+    export DEVBOX_TOOLS_REPO=git@github.com:joakimk/devbox-tools.git
+    ./set_up_devbox_tools
+  }) || exit(1)
+end
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu-12.04-amd64-vbox"
 
@@ -11,7 +22,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-12.04-amd64-vbox.box"
 
   # Install some basic tools that devbox-tools needs to bootstrap itself (adapt for your box type).
-  config.vm.provision :shell, inline: "apt-get update && apt-get install build-essential unzip git bison -y && echo 'source /vagrant/devbox-tools/support/shell' >> /home/vagrant/.bashrc"
+  config.vm.provision :shell, inline: %{
+    set -e
+    apt-get update && apt-get install build-essential unzip git bison -y
+    cat /home/vagrant/.bashrc | grep devbox || echo 'source /vagrant/devbox-tools/support/shell' >> /home/vagrant/.bashrc
+    /vagrant/devbox-tools/support/install_dependencies
+}
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize [ "modifyvm", :id, "--memory", "1024" ]

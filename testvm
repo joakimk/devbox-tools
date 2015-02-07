@@ -19,8 +19,8 @@ then
   ls Vagrantfile 1> /dev/null ||
     { echo "TEST FAIL: Expected bootstrap to setup Vagrantfile"; exit 1; }
 
-  ls start 1> /dev/null ||
-    { echo "TEST FAIL: Expected bootstrap to setup start script"; exit 1; }
+  ls set_up_devbox_tools 1> /dev/null ||
+    { echo "TEST FAIL: Expected bootstrap to setup set_up_devbox_tools script"; exit 1; }
 
   cat .gitignore | grep devbox-tools > /dev/null ||
     { echo "TEST FAIL: Expected bootstrap to setup .gitignore"; exit 1; }
@@ -28,8 +28,8 @@ then
   git status | grep "working directory clean" > /dev/null ||
     { echo "TEST FAIL: Expected bootstrap to setup git"; exit 1; }
 
-  export RUNNING_TEST=true
-  ./start && vagrant ssh -c '/vagrant/devbox-tools/bin/devbox-tools-ruby -e "puts 20/2"' | grep "10" > /dev/null ||
+  RUNNING_TEST=true vagrant up
+  vagrant ssh -c '/vagrant/devbox-tools/bin/devbox-tools-ruby -e "puts 20/2"' | grep "10" > /dev/null ||
     { echo "TEST FAIL: Expected working ruby after VM is setup"; exit 1; }
 
   # Symlink in the main tools directory so that we can edit tests
