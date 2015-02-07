@@ -11,7 +11,9 @@ dependency_paths = DevboxTools.files("plugins", DevboxTools.devbox_root).flat_ma
   DevboxTools.files("dependencies", dependency_path)
 }.compact
 
-# NOTE: When we/if get default dependencies, these will probably override those if they have the same name.
+dependency_paths += DevboxTools.files("lib/dependencies", DevboxTools.root)
+
+# NOTE: We don't support overriding default dependencies yet
 dependency_paths.each do |dependency_path|
   require dependency_path
 end

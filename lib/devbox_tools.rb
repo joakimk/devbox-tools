@@ -7,6 +7,14 @@ class DevboxTools
     ENV["DEVBOX_ROOT"] || raise("Missing DEVBOX_ROOT")
   end
 
+  def self.code_root
+    "/var/devbox/#{project_name}"
+  end
+
+  def self.project_name
+    File.basename(Dir.pwd)
+  end
+
   def self.project_root
     Dir.pwd
   end

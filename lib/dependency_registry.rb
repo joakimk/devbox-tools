@@ -1,3 +1,5 @@
+require "dependency"
+
 class DependencyRegistry
   def self.register(dependency)
     list.push(dependency)
