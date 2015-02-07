@@ -46,7 +46,7 @@ Change things, run tests, send pull request.
 
 devbox\_tools uses [mruby](http://www.mruby.org/):
 
-* Since it compiles to a stand alone binary, which allows you to not set ENVs used by hosted project's ruby environments.
+* Since it compiles to a stand alone binary, which allows you to not set ENVs used by project's ruby environments.
 * Because it's fun to try out new things.
 * To keep this tool simple (you can always shell out to more complex tools).
 
