@@ -9,7 +9,7 @@ class RedisDependency < Dependency
   end
 
   def status
-    "no status yet (#{version})"
+    "no status yet (#{image})"
   end
 
   def install
