@@ -1,12 +1,31 @@
 class DevboxTools
   def self.root
-    ENV["DEVBOX_TOOLS_ROOT"] || raise("Missing DEVBOX_TOOLS_ROOT")
+    "#{devbox_root}/devbox-tools"
   end
 
-  def self.ruby_files(relative_path)
-    directory = "#{DevboxTools.root}/#{relative_path}"
-    Dir.entries(directory).
-      select { |e| e.end_with?(".rb") }.
+  def self.devbox_root
+    ENV["DEVBOX_ROOT"] || raise("Missing DEVBOX_ROOT")
+  end
+
+  def self.project_root
+    Dir.pwd
+  end
+
+  # TODO: These should probably be moved somewhere better
+  def self.ruby_files(relative_path, root = DevboxTools.root)
+    files(relative_path, root).select { |path| path.include?(".rb") }
+  end
+
+  def self.files(relative_path, root = DevboxTools.root)
+    directory = "#{root}/#{relative_path}"
+    found = Dir.entries(directory).
+      reject { |name| name == "." || name == ".." }.
       map { |name| "#{directory}/#{name}" }
+  rescue Exception => ex
+    if ex.message == directory
+      []
+    else
+      raise
+    end
   end
 end

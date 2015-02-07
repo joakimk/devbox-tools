@@ -1,5 +1,27 @@
-export DEVBOX_TOOLS_ROOT=/vagrant/devbox-tools
-export PATH=$DEVBOX_TOOLS_ROOT/bin:$PATH
+if [ $HOME = `pwd` ]
+then
+  export DEVBOX_ROOT=/vagrant
+  export DEVBOX_TOOLS_ROOT=$DEVBOX_ROOT/devbox-tools
+  export PATH=$DEVBOX_TOOLS_ROOT/bin:$PATH
+
+  # Set LC_ALL if it's unset so that setlocale won't complain when
+  # we source the environment changes below.
+  [ ! $LC_ALL ] && export LC_ALL="en_US.UTF-8"
+
+  # Store login envs so we can clear out anything we've added
+  # for any specific project later on. Clears everything else
+  # anyone sets too, but this will be good enough for now.
+  export > /tmp/.envs_at_login
+fi
+
+function cd()
+{
+  builtin cd "$@"
+
+  # Sets project specific envs, and removes any previously
+  # set envs when they are not needed anymore.
+  source <(dev envs)
+}
 
 function dev()
 {

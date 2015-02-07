@@ -24,6 +24,9 @@ MRuby::Build.new do |conf|
   # Add ENV
   conf.gem :github => "iij/mruby-env", :checksum_hash => "0b9af96e7286eb4ad2300ceace9c11ac39c8d684"
 
+  # Add Regexp
+  conf.gem :github => "iij/mruby-regexp-pcre", :checksum_hash => "79ade385e92332a67eff8600f04f800d7cf5ebae"
+
   # Adds default gems, seems like a good idea.
   conf.gembox 'default'
 end

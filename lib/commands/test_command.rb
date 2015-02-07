@@ -6,7 +6,7 @@ class TestCommand < Command
   end
 
   def run(command)
-    DevboxTools.ruby_files("test").each do |path|
+    DevboxTools.ruby_files("test").reverse.each do |path|
       next unless path.include?("tests.rb")
       system("devbox-tools-ruby #{path}") || exit(1)
     end

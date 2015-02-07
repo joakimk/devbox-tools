@@ -1,15 +1,19 @@
+require "#{ENV["DEVBOX_TOOLS_ROOT"]}/lib/devbox_tools"
+
 module TestHelpers
   def devbox_bash(command)
-    exec_command("/bin/bash -c 'source /vagrant/devbox-tools/support/shell && #{command}'")
+    exec_command("/bin/bash -c 'source $DEVBOX_TOOLS_ROOT/support/shell && #{command}'")
   end
 end
 
-Dir.entries("/vagrant/devbox-tools/test/integration").reject { |e| e.start_with?(".") }.each do |file|
-  require "/vagrant/devbox-tools/test/integration/#{file}"
+DevboxTools.ruby_files("test/integration").each do |path|
+  require path
 end
 
 class MTest::Unit::TestCase
   include TestHelpers
 end
 
+puts
+puts "Running integration tests:"
 MTest::Unit.new.run
