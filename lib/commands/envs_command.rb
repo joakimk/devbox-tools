@@ -34,7 +34,7 @@ class EnvsCommand < Command
     envs = envs_at_login.dup
 
     project_dependencies.each do |dependency|
-      envs = dependency.environment_variables(envs)
+      envs = dependency.environment_variables(envs.dup)
     end
 
     envs

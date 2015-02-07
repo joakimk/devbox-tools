@@ -15,7 +15,7 @@ class RubyDependency < Dependency
   end
 
   def environment_variables(previous_envs)
-    out = previous_envs.dup
+    out = previous_envs
     out["GEM_HOME"] = "#{Devbox.code_root}/gems"
     out
   end
