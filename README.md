@@ -90,6 +90,20 @@ Change things, run tests, send pull request.
 
 ### Developing plugins
 
+Plugins are structured like this:
+
+    plugins/devbox-tools-foo/
+      commands/
+        foo_command.rb
+      caches/
+        foo_cache.rb
+      dependencies/
+        foo_dependency.rb
+
+Command files are expected to contain... TODO
+
+Creating a plugin:
+
     dev plugin:create plugins/devbox-tools-foo
     # add things to the plugin and run dev commands
     # publish somewhere and send me a link
