@@ -58,25 +58,25 @@ Stopping services
 
 Caching to make installs quicker:
 
-   cd /path/to/project
-   dev cache
-   >> Checking cache for ruby... none
-   >> Checking cache for bundler... 60 mb on disk
-   >> Checking cache for postgres... 1500 mb on disk
-   >> Do you want to cache postgres? (it's 1500mb) y/n: n
-   >> Caching bundler... done
-   >> Caching complete.
+    cd /path/to/project
+    dev cache
+    >> Checking cache for ruby... none
+    >> Checking cache for bundler... 60 mb on disk
+    >> Checking cache for postgres... 1500 mb on disk
+    >> Do you want to cache postgres? (it's 1500mb) y/n: n
+    >> Caching bundler... done
+    >> Caching complete.
 
 Restoring caches:
 
-   cd /path/to/project
-   dev restore
-   >> Checking cache for ruby... none
-   >> Checking cache for bundler... 45mb compressed
-   >> Checking cache for postgres... 1000mb compressed
-   >> Do you want to download cache for postgres? (it's 1000mb) y/n: n
-   >> Restoring bundler... done
-   >> Restoring complete.
+    cd /path/to/project
+    dev restore
+    >> Checking cache for ruby... none
+    >> Checking cache for bundler... 45mb compressed
+    >> Checking cache for postgres... 1000mb compressed
+    >> Do you want to download cache for postgres? (it's 1000mb) y/n: n
+    >> Restoring bundler... done
+    >> Restoring complete.
 
 ### Developing devbox-tools
 
