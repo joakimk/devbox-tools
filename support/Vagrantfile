@@ -17,6 +17,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize [ "modifyvm", :id, "--memory", "1024" ]
   end
 
+  # This can be removed, used for devbox_tools's integration tests
+  # TODO: Use templating
+  if ENV["RUNNING_TEST"]
+    config.vm.synced_folder "../..", "/devbox_tools"
+  end
+
   # Kept the original vagrant docs below:
 
   # Create a forwarded port mapping which allows access to a specific port

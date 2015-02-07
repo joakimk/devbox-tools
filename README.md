@@ -36,7 +36,13 @@ If a project is setup, cd-ing into it will scope you to that projects dependenci
 
 Change things, run tests, send pull request.
 
-    ./test
+    ./test up
+    ./test integration
+    ./test unit
+    ./test ssh # optional, to debug
+    ./test destroy
+
+devbox\_tools uses mruby since it can compile to a stand alone binary (and because it's fun to try new things). It's configuration is in support/mruby\_build\_config.rb
 
 ### Credits and license
 

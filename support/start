@@ -6,7 +6,7 @@ DEVBOX_TOOLS_REPO=git@github.com:joakimk/devbox_tools.git
 
 set -e
 
-if [ -d devbox_tools ]
+if [ -e devbox_tools ]
 then
   printf "\e[00;34mUpdating devbox_tools\e[00m... "
 else

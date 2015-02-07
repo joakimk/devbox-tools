@@ -14,6 +14,7 @@ INSTALLED_CHECKSUM=$(cat $MRUBY_INSTALLED_CHECKSUM_PATH 2> /dev/null)
 
 if [ "$INSTALLED_CHECKSUM" != "$CURRENT_CHECKUM" ]
 then
+  rm -rf /tmp/mruby-$MRUBY_VERSION 2> /dev/null # if the previous run failed
   set -e
 
   cd /tmp

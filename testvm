@@ -1,0 +1,87 @@
+#!/bin/sh
+
+if [ "$1" = "up" ]
+then
+  cd tmp/test && vagrant destroy -f; cd ../.. 2> /dev/null
+  rm -rf tmp/test 2> /dev/null
+
+  mkdir -p tmp/test
+  cd tmp/test
+
+  # Test that we check for devbox_tools
+  ../../bootstrap | grep "Expected devbox_tools to be available" > /dev/null ||
+    { echo "TEST FAIL: Check for devbox_tools failed"; exit 1; }
+
+  # Test integration
+  rsync -a --exclude="tmp" ../.. devbox_tools
+  devbox_tools/bootstrap
+
+  ls Vagrantfile 1> /dev/null ||
+    { echo "TEST FAIL: Expected bootstrap to setup Vagrantfile"; exit 1; }
+
+  ls start 1> /dev/null ||
+    { echo "TEST FAIL: Expected bootstrap to setup start script"; exit 1; }
+
+  cat .gitignore | grep devbox_tools > /dev/null ||
+    { echo "TEST FAIL: Expected bootstrap to setup .gitignore"; exit 1; }
+
+  git status | grep "working directory clean" > /dev/null ||
+    { echo "TEST FAIL: Expected bootstrap to setup git"; exit 1; }
+
+  export RUNNING_TEST=true
+  ./start && vagrant ssh -c '/vagrant/devbox_tools/bin/devbox_tools_ruby -e "puts 20/2"' | grep "10" > /dev/null ||
+    { echo "TEST FAIL: Expected working ruby after VM is setup"; exit 1; }
+
+  # Symlink in the main tools directory so that we can edit tests
+  # and re-run them inside an existing VM during development
+  vagrant ssh -c "cp /vagrant/devbox_tools/bin/devbox_tools_ruby /devbox_tools/bin && rm -rf /vagrant/devbox_tools && ln -s /devbox_tools /vagrant/devbox_tools"
+  cd ../..
+  ./testvm test
+  exit
+fi
+
+if [ "$1" = "update" ]
+then
+  cd tmp/test && vagrant ssh -c '/devbox_tools/support/install_dependencies'
+  exit
+fi
+
+if [ "$1" = "ssh" ]
+then
+  cd tmp/test && vagrant ssh
+  exit
+fi
+
+if [ "$1" = "destroy" ]
+then
+  cd tmp/test && vagrant destroy -f
+  exit
+fi
+
+if [ "$1" = "test" ]
+then
+  cd tmp/test && vagrant ssh -c "find /devbox_tools/test/*tests.rb -exec /devbox_tools/bin/devbox_tools_ruby {} \;"
+  exit
+fi
+
+
+if [ "$1" = "integration" ]
+then
+  cd tmp/test && vagrant ssh -c "/devbox_tools/bin/devbox_tools_ruby /devbox_tools/test/integration_tests.rb"
+  exit
+fi
+
+if [ "$1" = "unit" ]
+then
+  cd tmp/test && vagrant ssh -c "/devbox_tools/bin/devbox_tools_ruby /devbox_tools/test/unit_tests.rb"
+  exit
+fi
+
+echo "Usage:"
+echo "./testvm up           # Start VM and run all tests"
+echo "./testvm test         # Run all tests inside VM"
+echo "./testvm integration  # Run integration tests inside VM"
+echo "./testvm unit         # Run unit tests inside VM"
+echo "./testvm ssh          # Log in to the test VM"
+echo "./testvm update       # Update dependencies"
+echo "./testvm destroy      # Destroy VM"
