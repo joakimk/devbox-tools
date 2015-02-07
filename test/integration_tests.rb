@@ -1,4 +1,5 @@
-require "#{ENV["DEVBOX_TOOLS_ROOT"]}/lib/devbox_tools"
+$LOAD_PATH << File.join(ENV["DEVBOX_TOOLS_ROOT"], "lib")
+require "finder"
 
 module TestHelpers
   def devbox_bash(command)
@@ -6,7 +7,7 @@ module TestHelpers
   end
 end
 
-DevboxTools.ruby_files("test/integration").each do |path|
+Finder.ruby_files("test/integration").each do |path|
   require path
 end
 
