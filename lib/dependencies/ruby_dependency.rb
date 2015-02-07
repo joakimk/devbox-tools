@@ -2,6 +2,18 @@
 #       supposed to be moved to a plugin.
 
 class RubyDependency < Dependency
+  def name
+    "ruby"
+  end
+
+  def status
+    "no status yet"
+  end
+
+  def install
+    # todo
+  end
+
   def environment_variables(previous_envs)
     out = previous_envs.dup
     out["GEM_HOME"] = "#{Devbox.code_root}/gems"

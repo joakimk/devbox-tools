@@ -44,7 +44,7 @@ Example for a ruby project.
     >> Checking dependency ruby: 2.2.0 installed (autodetected).
     >> Checking dependency bundler: 1.7.12 installed (devbox-tools default).
     >> Checking dependency postgres: postgres:9.2 (configured in project).
-    >> Starting services.... done
+    >> Starting services.... done.
     >> Development environment ready.
 
     rake spec
@@ -70,7 +70,7 @@ Caching to make installs quicker:
     >> Checking cache for bundler... 60 mb on disk
     >> Checking cache for postgres... 1500 mb on disk
     >> Do you want to cache postgres? (it's 1500mb) y/n: n
-    >> Caching bundler... done
+    >> Caching bundler... done.
     >> Caching complete.
 
 Restoring caches:
@@ -81,7 +81,7 @@ Restoring caches:
     >> Checking cache for bundler... 45mb compressed
     >> Checking cache for postgres... 1000mb compressed
     >> Do you want to download cache for postgres? (it's 1000mb) y/n: n
-    >> Restoring bundler... done
+    >> Restoring bundler... done.
     >> Restoring complete.
 
 ### Gotchas to be aware of...
@@ -114,7 +114,7 @@ Setting OFFLINE=true will make devbox-tools attempt to not use an internet conne
     OFFLINE=true dev
     >> Checking dependency ruby: 2.1.0 installed (autodetected).
     >> Checking dependency postgres: postgres:9.2 (configured in project).
-    >> Starting services.... done
+    >> Starting services.... done.
     >> Development environment ready.
 
     # You're ready to go

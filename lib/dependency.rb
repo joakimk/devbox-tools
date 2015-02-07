@@ -1,4 +1,12 @@
 class Dependency
+  def install
+    # no-op
+  end
+
+  def start
+    # no-op
+  end
+
   def environment_variables(previous_envs)
     previous_envs
   end

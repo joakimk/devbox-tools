@@ -15,7 +15,7 @@ class CommandDispatcher
       puts "Available commands:"
       commands.each do |command|
         command.list.each do |name, description|
-          puts "- #{name}\t\t\t##{description}"
+          puts "- #{name}\t\t\t# #{description}"
         end
       end
     end
