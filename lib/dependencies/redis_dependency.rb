@@ -12,6 +12,10 @@ class RedisDependency < Dependency
     "no status yet (#{image})"
   end
 
+  def start
+    # todo
+  end
+
   def install
     #system("sudo docker pull #{image}")
   end
@@ -22,14 +26,14 @@ class RedisDependency < Dependency
     envs
   end
 
-  def used_by_project?(directory)
+  def used_by_current_project?
     image
   end
 
   private
 
   def image
-    return nil if Dir.pwd == "/"
+    return nil unless Dir.pwd == "/tmp"
     DEFAULT_REDIS_IMAGE
 
     # TODO:

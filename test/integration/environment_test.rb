@@ -1,4 +1,4 @@
-class TestEnvs < MTest::Unit::TestCase
+class TestEnvironment < MTest::Unit::TestCase
   def test_dependency_setup_when_entering_project
     devbox_bash "mkdir -p /vagrant/plugins/test/dependencies /tmp/project1 /tmp/project2"
 
@@ -6,14 +6,13 @@ class TestEnvs < MTest::Unit::TestCase
     File.open("/vagrant/plugins/test/dependencies/test_dependency.rb", "w") do |f|
       f.puts(%{
         class TestDependency
-          def environment_variables(previous_envs)
-            out = previous_envs
-            out["PATH"] = "/foo/bar/bin:" + previous_envs["PATH"]
-            out
+          def environment_variables(envs)
+            envs["PATH"] = "/foo/bar/bin:" + envs["PATH"]
+            envs
           end
 
-          def used_by_project?(directory)
-            directory.end_with?("project1")
+          def used_by_current_project?
+            Devbox.project_root.end_with?("project1")
           end
         end
 

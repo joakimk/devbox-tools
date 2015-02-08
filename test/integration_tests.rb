@@ -2,8 +2,20 @@ $LOAD_PATH << File.join(ENV["DEVBOX_TOOLS_ROOT"], "lib")
 require "finder"
 
 module TestHelpers
+  # Run command in the devbox env and return the output
   def devbox_bash(command)
-    exec_command("/bin/bash -c 'source $DEVBOX_TOOLS_ROOT/support/shell && #{command}'")
+    exec_command(devbox_command(command))
+  end
+
+  # Run command in the devbox env and raise if it fails
+  def devbox_bash!(command)
+    system(devbox_command(command)) || raise("Command failed: #{command}")
+  end
+
+  private
+
+  def devbox_command(command)
+    "/bin/bash -c 'source $DEVBOX_TOOLS_ROOT/support/shell && #{command} 2>&1'"
   end
 end
 

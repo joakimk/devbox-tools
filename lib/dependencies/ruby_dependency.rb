@@ -1,7 +1,7 @@
 # NOTE: This is only here until the dependency API is finished, then it's
 #       supposed to be moved to a plugin. Represents regular software.
 
-class RubyDependency < Dependency
+class RubyDependency < SoftwareDependency
   def name
     "ruby"
   end
@@ -14,20 +14,16 @@ class RubyDependency < Dependency
     # todo
   end
 
-  def environment_variables(previous_envs)
-    out = previous_envs
-    out["GEM_HOME"] = "#{Devbox.code_root}/gems"
-    out
-  end
-
-  def used_by_project?(directory)
-    ruby_version
+  def environment_variables(envs)
+    envs = super(envs)
+    envs["GEM_HOME"] = "#{Devbox.code_root}/gems"
+    envs
   end
 
   private
 
-  def ruby_version
-    return nil if Dir.pwd == "/"
+  def version
+    return nil unless Dir.pwd == "/tmp"
     "fake-detected-version"
   end
 end

@@ -1,4 +1,5 @@
 require "dependency"
+require "software_dependency"
 
 class DependencyRegistry
   def self.register(dependency)
@@ -6,7 +7,7 @@ class DependencyRegistry
   end
 
   def self.dependencies_used_by_the_current_project
-    list.select { |dependency| dependency.used_by_project?(Devbox.project_root) }
+    list.select(&:used_by_current_project?)
   end
 
   def self.list
