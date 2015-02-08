@@ -17,7 +17,7 @@ class RedisDependency < Dependency
   end
 
   def install(logger)
-    #system("sudo docker pull #{image}")
+    #Shell.run("sudo docker pull #{image}")
   end
 
   def environment_variables(envs)

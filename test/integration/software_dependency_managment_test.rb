@@ -5,7 +5,7 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
   end
 
   def teardown
-    shell! "rm -rf /tmp/test_project && rm -rf /tmp/other/test_project && rm -rf #{Devbox.code_root}/dependencies/test_software_dependency"
+    shell! "rm -rf /tmp/test_project && rm -rf /tmp/other/test_project && rm -rf #{Devbox.code_root}/dependencies/test_software_dependency*"
   end
 
   def test_installing
@@ -43,7 +43,17 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
     assert_include output, "installing"
 
     shell "echo '1.2.3' > /tmp/other/test_project/.some_file_with_a_version"
-    output = shell "cd /tmp/test_project && dev"
+    output = shell "cd /tmp/other/test_project && dev"
     assert_not_include output, "installing"
+  end
+
+  def test_two_versions_of_the_same_software_can_be_installed
+    shell "echo '1.2.1' > /tmp/test_project/.some_file_with_a_version"
+    output = shell "cd /tmp/test_project && dev"
+    assert_include output, "installing"
+
+    shell "echo '1.2.5' > /tmp/other/test_project/.some_file_with_a_version"
+    output = shell "cd /tmp/other/test_project && dev"
+    assert_include output, "installing"
   end
 end

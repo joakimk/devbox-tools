@@ -5,6 +5,7 @@ require "command_dispatcher"
 require "dependency_registry"
 require "finder"
 require "logger"
+require "shell"
 
 # NOTE: There is something odd going on with "path", it's always "environment.rb". That's
 # why each "map" and "each" in this file does not use "path" as the variable.

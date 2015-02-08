@@ -9,7 +9,7 @@ class Devbox
 
   # Where code is stored, eg. ruby, gems, node, ...
   def self.project_code_root
-    "#{code_root}/#{project_name}"
+    "#{code_root}/projects/#{project_name}"
   end
 
   def self.code_root

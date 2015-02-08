@@ -1,3 +1,5 @@
+require "build"
+
 class SoftwareDependency < Dependency
   def status
     installed? ? "#{version} installed (TODO: version source)" : "not installed"
@@ -9,17 +11,17 @@ class SoftwareDependency < Dependency
     # This assumes ubuntu packages, but it could be adapted in combination with
     # adapting required_packages in each dependency for other distributions.
     #
-    # Not an easy problem. Chef cookbooks usually do just that.
+    # Not an easy problem. Chef cookbooks have if/else on dist-version when names differ.
     #
     # Could be that ubuntu is good enough for most people, just like heroku's
     # standard platform works just fine for most people. Then we don't need
     # to put a lot of extra work into this.
     if required_packages.any? && !Devbox.offline?
-      system("sudo apt-get install #{required_packages.join(' ')} -y -qq") ||
-        raise("Failed to install required system packages for #{name}")
+      logger.inline("installing required system packages...")
+      Shell.run "sudo apt-get install #{required_packages.join(' ')} -y"
     end
 
-    logger.inline("installing...")
+    logger.inline("installing #{name}...")
     build_and_install
   end
 
@@ -39,6 +41,10 @@ class SoftwareDependency < Dependency
     raise "implement me in subclass to install to install_prefix"
   end
 
+  def run_build(&block)
+    Build.new(name).in_temporary_path(&block)
+  end
+
   def version
     raise "implement me in subclass, return nil if no version is found"
   end
@@ -56,7 +62,7 @@ class SoftwareDependency < Dependency
     # many pieces of software hardcode their install path into scripts and binaries.
     #
     # Otherwise we won't be able to cache installs.
-    "#{Devbox.code_root}/dependencies/#{name}"
+    "#{Devbox.code_root}/dependencies/#{name}-#{version}"
   end
 
   def project_root
