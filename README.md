@@ -10,7 +10,7 @@ And all you need is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](http
 
 ### Background
 
-This tool was created because I've successfully used similar scripts in the past to automate Vagrant VM's, but as the number of VM's grew it became a bit unpractical to manage them all. Having a single VM for many of the projects (and smaller libraries) has turned out to work really well.
+This tool was created because I've successfully used similar scripts in the past to automate Vagrant VM's, but as the number of VM's grew it became a bit unpractical to manage them all. Having a single VM for most of the projects (and smaller libraries) has turned out to work really well.
 
 ### Setting up your devbox repo
 
