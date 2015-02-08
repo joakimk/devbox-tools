@@ -147,7 +147,9 @@ Creating a plugin:
 
 ### Developing devbox-tools
 
-Change things, run tests, send pull request.
+Change things, run tests, and send a pull request.
+
+But before you do, consider making the change into a plugin. Most of devbox-tools is implemented using it's own plugin system. See the above plugin section.
 
     ./test up
     ./test test
