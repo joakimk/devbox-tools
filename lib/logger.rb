@@ -11,6 +11,8 @@ class Logger
     end
   end
 
+  # NOTE: This sometimes doesn't show anything in the terminal. Usually STDOUT.flush fixes that,
+  #       but maybe it works differently in mruby?
   def inline(text)
     print text + " "; STDOUT.flush
   end
