@@ -3,7 +3,7 @@ class SoftwareDependency < Dependency
     installed? ? "#{version} installed (TODO: version source)" : "not installed"
   end
 
-  def install
+  def install(logger)
     return if installed?
 
     # This assumes ubuntu packages, but it could be adapted in combination with
@@ -19,7 +19,7 @@ class SoftwareDependency < Dependency
         raise("Failed to install required system packages for #{name}")
     end
 
-    print "installing... "; STDOUT.flush # TODO: use console logger here too
+    logger.inline("installing...")
     build_and_install
   end
 

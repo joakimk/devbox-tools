@@ -12,7 +12,7 @@ class BootCommand < Command
 
     dependencies.each do |dependency|
       log "Checking dependency #{dependency.name}" do
-        dependency.install
+        dependency.install(logger)
         dependency.status
       end
     end

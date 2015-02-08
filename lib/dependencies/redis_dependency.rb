@@ -16,7 +16,7 @@ class RedisDependency < Dependency
     # todo
   end
 
-  def install
+  def install(logger)
     #system("sudo docker pull #{image}")
   end
 
