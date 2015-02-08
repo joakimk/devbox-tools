@@ -6,7 +6,7 @@ devbox-tools is a toolset that run within a [Vagrant](https://www.vagrantup.com/
 
 As an added benefit you can run **multiple projects within the same VM**, even if they depend on different versions of services like postgres. It's all scoped to each project (as far as possible).
 
-And all you need on the host machine is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
+And all you need is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
 
 ### Background
 
