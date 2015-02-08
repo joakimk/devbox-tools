@@ -10,7 +10,10 @@ class RubyDependency < SoftwareDependency
     run_build do
       %{
         wget #{url}
-        tar xfz ruby-#{version}.tar.gz
+
+        echo "#{expected_md5_and_filename}" | md5sum -c -
+
+        tar xfz #{archive_name}
         cd ruby-#{version}
         autoconf
 
@@ -43,10 +46,33 @@ class RubyDependency < SoftwareDependency
   private
 
   def url
-    # TODO: How to handle checksum security? homebrew handles it by having you set a checksum as well as a version,
-    # but what to do if the version is autodetected? A local list of known checksums is no good for new versions, etc.
     major_version = version[0, 3]
-    "http://cache.ruby-lang.org/pub/ruby/#{major_version}/ruby-#{version}.tar.gz"
+    "http://cache.ruby-lang.org/pub/ruby/#{major_version}/#{archive_name}"
+  end
+
+  def expected_md5_and_filename
+    manual_checksum = ENV["RUBY_CHECKSUM"]
+
+    if manual_checksum
+      "#{manual_checksum}  #{archive_name}"
+    else
+      content = exec_command("curl https://raw.githubusercontent.com/postmodern/ruby-versions/master/ruby/checksums.md5 | grep #{archive_name}").chomp
+
+      unless content.include?(archive_name)
+        raise <<-STR
+
+Could not find a checksum for #{archive_name}. The checksum is needed to verify that the downloaded ruby version is the offical version.
+
+You can set the checksum you find on https://www.ruby-lang.org/en/downloads/ using RUBY_CHECKSUM=\"md5-hash\".
+        STR
+      end
+
+      content
+    end
+  end
+
+  def archive_name
+    "ruby-#{version}.tar.gz"
   end
 
   def required_packages
