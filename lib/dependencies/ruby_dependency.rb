@@ -81,7 +81,7 @@ You can set the checksum you find on https://www.ruby-lang.org/en/downloads/ usi
     }
   end
 
-  def version
+  def autodetected_version
     return nil unless Dir.pwd == "/tmp"
     "2.2.0" # TODO: actually detect version
   end

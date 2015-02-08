@@ -20,7 +20,7 @@ class TestSoftwareDependency < SoftwareDependency
     [ "wget" ]
   end
 
-  def version
+  def autodetected_version
     path = "#{project_root}/.some_file_with_a_version"
 
     if File.exists?(path)

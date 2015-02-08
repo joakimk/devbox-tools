@@ -2,11 +2,16 @@ require "build"
 
 class SoftwareDependency < Dependency
   def status
-    installed? ? "#{version} installed (TODO: version source)" : "not installed"
+    installed? ? "#{version} installed (#{version_source})" : "not installed"
   end
 
   def install(logger)
     return if installed?
+
+    unless version
+      logger.detail("no version")
+      return
+    end
 
     # This assumes ubuntu packages, but it could be adapted in combination with
     # adapting required_packages in each dependency for other distributions.
@@ -37,16 +42,29 @@ class SoftwareDependency < Dependency
 
   private
 
+  def version_source
+    if version == autodetected_version
+      "autodetected"
+    else
+      "unknown"
+    end
+  end
+
+  def version
+    autodetected_version
+  end
+
+  # implement in subclass if autodetection is possible
+  def autodetected_version
+    nil
+  end
+
   def build_and_install
     raise "implement me in subclass to install to install_prefix"
   end
 
   def run_build(&block)
     Build.new(name).in_temporary_path(&block)
-  end
-
-  def version
-    raise "implement me in subclass, return nil if no version is found"
   end
 
   def installed?
