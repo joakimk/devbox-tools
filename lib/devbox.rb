@@ -23,5 +23,9 @@ class Devbox
   def self.project_root
     Dir.pwd
   end
+
+  def self.offline?
+    ENV["OFFLINE"]
+  end
 end
 
