@@ -27,6 +27,10 @@ MRuby::Build.new do |conf|
   # Add Regexp
   conf.gem :github => "iij/mruby-regexp-pcre", :checksum_hash => "79ade385e92332a67eff8600f04f800d7cf5ebae"
 
+  # Add hexdigest
+  # Thought I needed it, but did not, but if I do later:
+  # conf.gem :github => "iij/mruby-digest", :checksum_hash => "89dd8f7c69ea6783481560a223aed1c75eb07316"
+
   # Adds default gems, seems like a good idea.
   conf.gembox 'default'
 end
