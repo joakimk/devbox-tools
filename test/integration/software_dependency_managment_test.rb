@@ -15,10 +15,6 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
       "command not found"
     shell "cd /tmp/test_project && dev"
 
-    assert_equal \
-      "#{Devbox.code_root}/dependencies/test_software_dependency/bin/test_command\n",
-      shell("cd /tmp/test_project && which test_command")
-
     output = shell("cd /tmp/test_project && test_command")
     assert_equal output, "test-command-output 1.2.3\n"
   end
@@ -39,5 +35,15 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
     output = shell("cd /tmp/other/test_project && test_command")
     assert_include output, "command not found"
     assert_not_include output, "test_software_dependency"
+  end
+
+  def test_two_projects_using_the_same_dependency_only_installs_once
+    shell "echo '1.2.3' > /tmp/test_project/.some_file_with_a_version"
+    output = shell "cd /tmp/test_project && dev"
+    assert_include output, "installing"
+
+    shell "echo '1.2.3' > /tmp/other/test_project/.some_file_with_a_version"
+    output = shell "cd /tmp/test_project && dev"
+    assert_not_include output, "installing"
   end
 end

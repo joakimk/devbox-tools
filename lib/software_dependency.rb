@@ -1,5 +1,11 @@
 class SoftwareDependency < Dependency
+  def status
+    installed? ? "#{version} installed (TODO: version source)" : "not installed"
+  end
+
   def install
+    return if installed?
+
     # This assumes ubuntu packages, but it could be adapted in combination with
     # adapting required_packages in each dependency for other distributions.
     #
@@ -12,6 +18,9 @@ class SoftwareDependency < Dependency
       system("sudo apt-get install #{required_packages.join(' ')} -y -qq") ||
         raise("Failed to install required system packages for #{name}")
     end
+
+    print "installing... "; STDOUT.flush # TODO: use console logger here too
+    build_and_install
   end
 
   def start
@@ -25,6 +34,18 @@ class SoftwareDependency < Dependency
   end
 
   private
+
+  def build_and_install
+    raise "implement me in subclass to install to install_prefix"
+  end
+
+  def version
+    raise "implement me in subclass, return nil if no version is found"
+  end
+
+  def installed?
+    File.exists?(install_prefix)
+  end
 
   def required_packages
     []

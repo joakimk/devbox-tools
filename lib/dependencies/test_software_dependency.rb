@@ -3,12 +3,9 @@ class TestSoftwareDependency < SoftwareDependency
     "test_software_dependency"
   end
 
-  def status
-    "no status yet"
-  end
+  private
 
-  def install
-    super
+  def build_and_install
     test_command_path = "#{install_prefix}/bin/test_command"
     test_command_directory_path = File.dirname(test_command_path)
 
@@ -18,8 +15,6 @@ class TestSoftwareDependency < SoftwareDependency
       chmod +x #{test_command_path}
     })
   end
-
-  private
 
   def required_packages
     [ "wget" ]

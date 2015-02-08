@@ -6,12 +6,8 @@ class RubyDependency < SoftwareDependency
     "ruby"
   end
 
-  def status
-    "no status yet"
-  end
-
-  def install
-    super
+  def build_and_install
+    system("sleep 2")
   end
 
   def environment_variables(envs)
