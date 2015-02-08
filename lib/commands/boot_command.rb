@@ -1,7 +1,7 @@
 # The core command of devbox-tools. This triggers installs and starts services if needed.
 
 class BootCommand < Command
-  def list
+  def options
     {
       nil => "Get the project ready to go."
     }

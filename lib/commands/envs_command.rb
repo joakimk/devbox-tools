@@ -6,13 +6,13 @@ class EnvsCommand < Command
     @envs_at_login = envs_at_login
   end
 
-  def list
+  def options
     {
       "envs" => "Prints the project's environment variables"
     }
   end
 
-  def run(_name, output = STDOUT)
+  def run(_, output = STDOUT)
     new_envs_since_logged_in.each do |name, _|
       output.puts "unset #{name}"
     end

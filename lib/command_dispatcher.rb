@@ -14,8 +14,13 @@ class CommandDispatcher
     else
       puts "Available commands:"
       commands.each do |command|
-        command.list.each do |name, description|
-          puts "- #{name}\t\t\t# #{description}"
+        command.options.each do |name, description|
+          option = "- #{name}"
+
+          # String#ljust is not available in mruby.
+          puts 0.upto(20).map { |i|
+            option[i] || " "
+          }.join + "# #{description}"
         end
       end
     end

@@ -1,5 +1,5 @@
 class Command
-  def list
+  def options
     {}
   end
 
@@ -8,7 +8,7 @@ class Command
   end
 
   def match?(name)
-    list[name]
+    options[name]
   end
 
   def log(message, &block)
