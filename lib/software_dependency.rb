@@ -19,6 +19,7 @@ class SoftwareDependency < Dependency
   end
 
   def environment_variables(envs)
+    return envs unless used_by_current_project?
     envs["PATH"] = "#{install_prefix}/bin:#{envs["PATH"]}"
     envs
   end
@@ -30,7 +31,11 @@ class SoftwareDependency < Dependency
   end
 
   def install_prefix
-    "#{Devbox.project_code_root}/dependencies/#{name}"
+    # This must be a path that is the same on all machines and all projects because
+    # many pieces of software hardcode their install path into scripts and binaries.
+    #
+    # Otherwise we won't be able to cache installs.
+    "#{Devbox.code_root}/dependencies/#{name}"
   end
 
   def project_root

@@ -4,7 +4,7 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
   end
 
   def teardown
-    shell! "rm -rf /tmp/test_project && rm -rf /var/devbox/test_project"
+    shell! "rm -rf /tmp/test_project && rm -rf /var/devbox/dependencies/test_software_dependency"
   end
 
   def test_installing
@@ -16,7 +16,7 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
 
     assert_equal \
       shell("cd /tmp/test_project && which test_command"),
-      "/var/devbox/test_project/dependencies/test_software_dependency/bin/test_command\n"
+      "/var/devbox/dependencies/test_software_dependency/bin/test_command\n"
 
     output = shell("cd /tmp/test_project && test_command")
     assert_equal output, "test-command-output 1.2.3\n"
