@@ -24,8 +24,6 @@ class EnvsCommand < Command
 
   private
 
-  private
-
   def new_envs_since_logged_in
     ENV.to_hash.reject { |k, v| envs_at_login.keys.include?(k) }
   end
