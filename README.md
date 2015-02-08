@@ -1,10 +1,12 @@
 # WIP: This is readme driven development in progress. They tool may not yet do what the readme says.
 
-A tool for vagrant boxes that simplify management of development dependencies.
+Deploying to heroku is a few short commands, why isn't setting up a development box that easy?
 
-The main idea is a tool will autodetect and install the right things letting you get right to work instead of messing around with installations. **It's meant to make development box setup as easy as pushing to heroku** and it's not bound to any specific programming language or platform.
+devbox-tools attempts to autodetect and install the right things (software and services like postgres) with a single command letting you get right to work instead of messing around with installations.
 
 As an added benefit you can run multiple projects within the same VM, even if they depend on different versions of services like postgres. It's all scoped to each project (as far as possible).
+
+And all you need on the host machine is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
 
 ### Setting up your devbox repo
 
