@@ -1,4 +1,5 @@
 require "command"
+require "run_command"
 
 class CommandDispatcher
   def self.register(command)
@@ -7,23 +8,7 @@ class CommandDispatcher
 
   def self.run
     name = ARGV.first
-    command = commands.find { |command| command.match?(name) }
-
-    if command
-      command.run(name)
-    else
-      puts "Available commands:"
-      commands.each do |command|
-        command.options.each do |name, description|
-          option = "- #{name}"
-
-          # String#ljust is not available in mruby.
-          puts 0.upto(20).map { |i|
-            option[i] || " "
-          }.join + "# #{description}"
-        end
-      end
-    end
+    RunCommand.call(name, commands)
   rescue => ex
     # mruby don't let you re-raise an exception without loosing history, so printing it
     puts
