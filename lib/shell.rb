@@ -4,7 +4,7 @@ class Shell
 
     # get around escaping issues
     File.open(command_file_path, "w") { |f|
-      f.puts(command)
+      f.puts(command + " 2>&1")
     }
 
     if ENV["DEBUG"]
