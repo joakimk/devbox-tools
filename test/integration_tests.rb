@@ -3,12 +3,12 @@ require "finder"
 
 module TestHelpers
   # Run command in the devbox env and return the output
-  def devbox_bash(command)
+  def shell(command)
     exec_command(devbox_command(command))
   end
 
   # Run command in the devbox env and raise if it fails
-  def devbox_bash!(command)
+  def shell!(command)
     system(devbox_command(command)) || raise("Command failed: #{command}")
   end
 

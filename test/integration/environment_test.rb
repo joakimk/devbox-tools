@@ -1,6 +1,6 @@
 class TestEnvironment < MTest::Unit::TestCase
   def test_dependency_setup_when_entering_project
-    devbox_bash "mkdir -p /vagrant/plugins/test/dependencies /tmp/project1 /tmp/project2"
+    shell "mkdir -p /vagrant/plugins/test/dependencies /tmp/project1 /tmp/project2"
 
     # add dependency plugin
     File.open("/vagrant/plugins/test/dependencies/test_dependency.rb", "w") do |f|
@@ -21,16 +21,16 @@ class TestEnvironment < MTest::Unit::TestCase
     end
 
     # enter directory it matches adds paths from dependencies
-    envs = devbox_bash("cd /tmp/project1 && echo $PATH").split(":")
+    envs = shell("cd /tmp/project1 && echo $PATH").split(":")
     assert_include envs, "/foo/bar/bin"
     assert_equal envs[0], "/foo/bar/bin"
     assert_equal envs[1], "/vagrant/devbox-tools/bin"
 
     # entering another directory removes the paths
-    envs = devbox_bash("cd /tmp/project1 && cd /tmp/project2 && echo $PATH").split(":")
+    envs = shell("cd /tmp/project1 && cd /tmp/project2 && echo $PATH").split(":")
     assert_not_include envs, "/foo/bar/bin"
     assert_equal envs[0], "/vagrant/devbox-tools/bin"
   ensure
-    devbox_bash "rm -rf /vagrant/plugins/test && rm -rf /tmp/project1 && rm -rf /tmp/project2"
+    shell "rm -rf /vagrant/plugins/test && rm -rf /tmp/project1 && rm -rf /tmp/project2"
   end
 end
