@@ -56,7 +56,7 @@ class RubyDependency < SoftwareDependency
     if manual_checksum
       "#{manual_checksum}  #{archive_name}"
     else
-      content = exec_command("curl https://raw.githubusercontent.com/postmodern/ruby-versions/master/ruby/checksums.md5 | grep #{archive_name}").chomp
+      content = exec_command("curl -s https://raw.githubusercontent.com/postmodern/ruby-versions/master/ruby/checksums.md5 | grep #{archive_name}").chomp
 
       unless content.include?(archive_name)
         raise <<-STR
