@@ -16,7 +16,7 @@ This tool was created because I've successfully used similar scripts in the past
 
 Set up your devbox repo.
 
-    mkdir devbox && cd devbox && git clone git@github.com:joakimk/devbox-tools.git && devbox-tools/bootstrap
+    mkdir devbox && cd devbox && git clone https://github.com/joakimk/devbox-tools.git && devbox-tools/bootstrap
 
 Then customize `Vagrantfile` and run:
 
