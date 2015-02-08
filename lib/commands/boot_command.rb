@@ -29,12 +29,14 @@ class BootCommand < Command
 
   def prepare_directories
     prepare_directory(Devbox.code_root)
+    prepare_directory(Devbox.project_code_root)
   end
 
   def prepare_directory(path)
     return if File.exists?(path)
     user = ENV["USER"]
-    system("sudo mkdir -p #{path} && sudo chown #{user} -R #{path}")
+    system("sudo mkdir -p #{path} && sudo chown #{user} -R #{path}") ||
+      raise("Failed to set up #{path}")
   end
 
   def dependencies

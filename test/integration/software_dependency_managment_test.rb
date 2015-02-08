@@ -1,14 +1,17 @@
 class TestSoftwareDependencyManagement < MTest::Unit::TestCase
   def setup
-    shell "mkdir /tmp/test_project"
+    shell! "mkdir /tmp/test_project"
   end
 
   def teardown
-    shell!("rm -rf /tmp/test_project")
+    shell! "rm -rf /tmp/test_project && rm -rf /var/devbox/test_project"
   end
 
   def test_installing
     shell "echo '1.2.3' > /tmp/test_project/.some_file_with_a_version"
+    assert_include \
+      shell("cd /tmp/test_project && test_command"),
+      "command not found"
     shell "cd /tmp/test_project && dev"
 
     assert_equal \

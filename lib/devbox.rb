@@ -8,8 +8,12 @@ class Devbox
   end
 
   # Where code is stored, eg. ruby, gems, node, ...
+  def self.project_code_root
+    "#{code_root}/#{project_name}"
+  end
+
   def self.code_root
-    "/var/devbox/#{project_name}"
+    "/var/devbox"
   end
 
   def self.project_name
