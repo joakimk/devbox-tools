@@ -6,6 +6,7 @@
 MRUBY_INSTALL_PATH=/vagrant/devbox-tools/bin/devbox-tools-ruby
 MRUBY_BUILD_CONFIG_PATH=/vagrant/devbox-tools/support/mruby_build_config.rb
 MRUBY_VERSION=1.1.0
+MRUBY_ARCHIVE=mruby-1.1.0.zip
 MRUBY_INSTALLED_CHECKSUM_PATH=/home/vagrant/.mruby_checksum
 
 # Only install if the version or the build config changes.
@@ -19,9 +20,14 @@ then
 
   cd /tmp
 
+
   wget https://github.com/mruby/mruby/archive/$MRUBY_VERSION.zip
-  unzip $MRUBY_VERSION.zip
-  rm $MRUBY_VERSION.zip
+  mv $MRUBY_VERSION.zip $MRUBY_ARCHIVE
+
+  echo "$(curl https://raw.githubusercontent.com/postmodern/ruby-versions/master/mruby/checksums.sha1 | grep $MRUBY_ARCHIVE)" | sha1sum -c -
+
+  unzip $MRUBY_ARCHIVE
+  rm $MRUBY_ARCHIVE
 
   cd mruby-$MRUBY_VERSION
   cp $MRUBY_BUILD_CONFIG_PATH build_config.rb
