@@ -1,4 +1,10 @@
 class Logger
+  module Loggable
+    def log(message, &block)
+      Logger.new.log(message, &block)
+    end
+  end
+
   def log(message, &block)
     if block
       event "#{message}..."
