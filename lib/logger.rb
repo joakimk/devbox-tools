@@ -1,23 +1,25 @@
 class Logger
   def log(message, &block)
-    start_tags = "\e[1;34;30m>>\e[0m"
-
     if block
-      inline "#{start_tags} #{message}..."
+      event "#{message}..."
       finish_message = block.call || "done"
-      line finish_message + "."
+      detail finish_message
     else
-      line "#{start_tags} #{message}."
+      event "#{message}."
     end
   end
 
-  # NOTE: This sometimes doesn't show anything in the terminal. Usually STDOUT.flush fixes that,
-  #       but maybe it works differently in mruby?
-  def inline(text)
-    print text + " "; STDOUT.flush
+  def event(message)
+    puts "#{start_tags} #{message}"
   end
 
-  def line(text)
-    puts text
+  def detail(text)
+    puts "   " + text
+  end
+
+  private
+
+  def start_tags
+    start_tags = "\e[1;34;30m>>\e[0m"
   end
 end

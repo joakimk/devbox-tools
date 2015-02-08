@@ -17,11 +17,11 @@ class SoftwareDependency < Dependency
     # standard platform works just fine for most people. Then we don't need
     # to put a lot of extra work into this.
     if required_packages.any? && !Devbox.offline?
-      logger.inline("installing required system packages...")
+      logger.detail("installing required system packages...")
       Shell.run "sudo apt-get install #{required_packages.join(' ')} -y"
     end
 
-    logger.inline("installing #{name}...")
+    logger.detail("installing #{name}...")
     build_and_install
   end
 
