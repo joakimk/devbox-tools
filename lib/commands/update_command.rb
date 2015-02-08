@@ -9,7 +9,7 @@ class UpdateCommand < Command
 
   def run(_)
     log "Updating devbox-tools" do
-      Shell.run("cd #{Devbox.tools_root} && git pull")
+      Shell.run("cd #{Devbox.tools_root} && git pull 2>&1")
       nil
     end
 
