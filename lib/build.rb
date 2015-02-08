@@ -10,7 +10,7 @@ class Build
       set -e
       mkdir -p #{build_path}
       cd #{build_path}
-      #{command}
+      (#{command}) 2>&1
     }
 
     Shell.run(build_command)
