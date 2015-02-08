@@ -1,6 +1,6 @@
 # WIP: This is readme driven development in progress. They tool may not yet do what the readme says.
 
-Deploying to heroku is a few short commands, why isn't setting up a development box that easy?
+Deploying to heroku is just a few short commands, why isn't setting up a development box that easy?
 
 devbox-tools is a toolset that run within a [Vagrant](https://www.vagrantup.com/) VM that attempts to **autodetect and install** the right things (software and services like postgres) **with a single command** letting you get right to work instead of messing around with installations.
 
