@@ -19,8 +19,6 @@ then
   set -e
 
   cd /tmp
-
-
   wget https://github.com/mruby/mruby/archive/$MRUBY_VERSION.zip
   mv $MRUBY_VERSION.zip $MRUBY_ARCHIVE
 
