@@ -24,7 +24,7 @@ function cd()
 
 function dev()
 {
-  __cli
+  __cli $@
   __update_environment
 }
 
