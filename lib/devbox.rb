@@ -18,7 +18,7 @@ class Devbox
   end
 
   def self.data_root
-    "/var/devbox"
+    ENV["DEVBOX_DATA_ROOT"] || "/var/devbox"
   end
 
   # An identifier of the project locally that is as unique as possible without

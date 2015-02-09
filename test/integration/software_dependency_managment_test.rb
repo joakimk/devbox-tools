@@ -5,7 +5,7 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
   end
 
   def teardown
-    shell! "rm -rf /tmp/test_project && rm -rf /tmp/other/test_project && rm -rf #{Devbox.software_dependencies_root}/test_software_dependency*"
+    shell! "rm -rf /tmp/test_project && rm -rf /tmp/other/test_project && rm -rf #{Devbox.software_dependencies_root}"
   end
 
   def test_installing

@@ -1,3 +1,4 @@
+ENV["DEVBOX_DATA_ROOT"] = "/var/devbox_test"
 $LOAD_PATH << File.join(ENV["DEVBOX_TOOLS_ROOT"], "lib")
 require "finder"
 
