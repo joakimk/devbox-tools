@@ -7,12 +7,17 @@ class Devbox
     "#{Devbox.root}/devbox-tools"
   end
 
-  # Where code is stored, eg. ruby, gems, node, ...
-  def self.project_code_root
-    "#{code_root}/projects/#{local_project_identifier}"
+  # Where project specific code and data is stored, eg. databases, gems, ...
+  def self.project_data_root
+    "#{data_root}/projects/#{local_project_identifier}"
   end
 
-  def self.code_root
+  # Where software dependencies are stored, e.g. ruby, node, ...
+  def self.software_dependencies_root
+    "#{data_root}/dependencies"
+  end
+
+  def self.data_root
     "/var/devbox"
   end
 
@@ -39,4 +44,3 @@ class Devbox
     ENV["OFFLINE"]
   end
 end
-

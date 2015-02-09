@@ -27,7 +27,7 @@ class RubyDependency < SoftwareDependency
 
   def environment_variables(envs)
     envs = super(envs)
-    envs["GEM_HOME"] = "#{Devbox.project_code_root}/gems"
+    envs["GEM_HOME"] = "#{Devbox.project_data_root}/gems"
     envs["GEM_PATH"] = envs["GEM_HOME"]
     envs["PATH"] = "#{envs["GEM_HOME"]}/bin:#{envs["PATH"]}"
 

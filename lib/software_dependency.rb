@@ -80,7 +80,7 @@ class SoftwareDependency < Dependency
     # many pieces of software hardcode their install path into scripts and binaries.
     #
     # Otherwise we won't be able to cache installs.
-    "#{Devbox.code_root}/dependencies/#{name}-#{version}"
+    "#{Devbox.software_dependencies_root}/#{name}-#{version}"
   end
 
   def project_root

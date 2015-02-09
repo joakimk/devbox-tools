@@ -28,8 +28,7 @@ class BootCommand < Command
   private
 
   def prepare_directories
-    prepare_directory(Devbox.code_root)
-    prepare_directory(Devbox.project_code_root)
+    prepare_directory(Devbox.project_data_root)
   end
 
   def prepare_directory(path)
