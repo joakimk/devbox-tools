@@ -1,6 +1,7 @@
 require "#{File.dirname(__FILE__)}/devbox"
 $LOAD_PATH << "#{Devbox.tools_root}/lib"
 
+require "generate_global_project_identifier"
 require "command_dispatcher"
 require "dependency_registry"
 require "finder"
