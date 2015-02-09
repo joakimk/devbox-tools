@@ -14,16 +14,30 @@ then
   export > /tmp/.envs_at_login
 fi
 
+# public
+
 function cd()
 {
   builtin cd "$@"
-
-  # Sets project specific envs, and removes any previously
-  # set envs when they are not needed anymore.
-  source <(dev envs)
+  __update_environment
 }
 
 function dev()
+{
+  __cli
+  __update_environment
+}
+
+# private
+
+function __update_environment()
+{
+  # Sets project specific envs, and removes any previously
+  # set envs when they are not needed anymore.
+  source <(__cli envs)
+}
+
+function __cli()
 {
   devbox-tools-ruby $DEVBOX_TOOLS_ROOT/lib/cli.rb $@
 }
