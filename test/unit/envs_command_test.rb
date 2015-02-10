@@ -9,7 +9,7 @@ class TestEnvsCommand < MTest::Unit::TestCase
     command = EnvsCommand.new([ dependency ], envs_at_login)
 
     output = TestOutput.new
-    command.run("envs", output)
+    command.run("envs", [], output)
 
     assert_include output.lines, 'export BAR="set-by-dependency"'
     assert_include output.lines, 'export FOO="set-at-login"'
@@ -22,7 +22,7 @@ class TestEnvsCommand < MTest::Unit::TestCase
     command = EnvsCommand.new([ dependency ], {})
 
     output = TestOutput.new
-    command.run("envs", output)
+    command.run("envs", [], output)
 
     assert_include output.lines, 'unset OTHER'
   end
@@ -36,7 +36,7 @@ class TestEnvsCommand < MTest::Unit::TestCase
     command = EnvsCommand.new([ dependency ], envs_at_login)
 
     output = TestOutput.new
-    command.run("envs", output)
+    command.run("envs", [], output)
 
     assert_equal envs_at_login["BAR"], "set-at-login"
   end

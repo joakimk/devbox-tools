@@ -7,7 +7,7 @@ class UpdateCommand < Command
     }
   end
 
-  def run(_)
+  def run(_option, _parameters)
     log "Updating devbox-tools" do
       Shell.run("cd #{Devbox.tools_root} && git pull")
       nil

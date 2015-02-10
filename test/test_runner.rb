@@ -1,6 +1,5 @@
 ENV["DEVBOX_DATA_ROOT"] = "/var/devbox_test"
-$LOAD_PATH << File.join(ENV["DEVBOX_TOOLS_ROOT"], "lib")
-require "finder"
+require "#{File.dirname(__FILE__)}/../lib/environment"
 
 module TestHelpers
   # Run command in the devbox env and return the output
@@ -20,14 +19,18 @@ module TestHelpers
   end
 end
 
-Finder.ruby_files("test/integration").each do |path|
-  require path
-end
-
 class MTest::Unit::TestCase
   include TestHelpers
 end
 
-puts
-puts "Running integration tests:"
+# Load tests
+test_files = ARGV.select { |f| f.end_with?("_test.rb") }
+test_files.each do |path|
+  # converts both full paths and project relative paths a path relative to this directory
+  relative_path = path.gsub(/.+?test\//, "").gsub(/test\//, "")
+
+  full_path = File.expand_path(File.join(File.dirname(__FILE__), relative_path))
+  require full_path
+end
+
 MTest::Unit.new.run

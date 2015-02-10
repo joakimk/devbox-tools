@@ -7,7 +7,7 @@ class BootCommand < Command
     }
   end
 
-  def run(_)
+  def run(_option, _parameters)
     prepare_directories
 
     dependencies.each do |dependency|

@@ -8,7 +8,7 @@ class CommandDispatcher
 
   def self.run
     name = ARGV.first
-    RunCommand.call(name, commands)
+    RunCommand.call(name, commands, ARGV[1..-1])
   rescue => ex
     # mruby don't let you re-raise an exception without loosing history, so printing it
     puts

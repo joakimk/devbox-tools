@@ -3,8 +3,8 @@ class Command
     {}
   end
 
-  def run(name)
-    raise "Unimplemented run for #{name}"
+  def run(option, parameters)
+    raise "Unimplemented run for #{option}"
   end
 
   def match?(name)

@@ -12,7 +12,7 @@ class EnvsCommand < Command
     }
   end
 
-  def run(_, output = STDOUT)
+  def run(_option, _parameters, output = STDOUT)
     new_envs_since_logged_in.each do |name, _|
       output.puts "unset #{name}"
     end

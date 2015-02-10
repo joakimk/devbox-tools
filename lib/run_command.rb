@@ -1,16 +1,17 @@
 class RunCommand
-  def self.call(name, commands)
-    new(name, commands).call
+  def self.call(name, commands, parameters)
+    new(name, commands, parameters).call
   end
 
-  def initialize(name, commands)
+  def initialize(name, commands, parameters)
     @name = name
     @commands = commands
+    @parameters = parameters
   end
 
   def call
     if command
-      command.run(name)
+      command.run(name, parameters)
     else
       list_commands
     end
@@ -40,5 +41,5 @@ class RunCommand
     }.join + "# #{description}"
   end
 
-  attr_reader :name, :commands
+  attr_reader :name, :commands, :parameters
 end
