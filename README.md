@@ -12,7 +12,7 @@ All you need to get started is [VirtualBox](https://www.virtualbox.org/) and [Va
 
 ### Services
 
-This tool uses [docker](https://www.docker.com/) to run services like postgres or redis. It can run any docker image. You can find docker images on the [docker hub](https://registry.hub.docker.com/) and even [make your own](https://docs.docker.com/reference/builder/).
+This tool uses [docker](https://www.docker.com/) to run services like postgres or redis. It can run any docker image and you can find docker images on [docker hub](https://registry.hub.docker.com/) or even [make your own](https://docs.docker.com/reference/builder/).
 
 Some of these services have special support in the form of service dependency plugins that among other things adds environment variables you can use to configure projects. As far as possible these variables use standard names like REDIS\_URL.
 
