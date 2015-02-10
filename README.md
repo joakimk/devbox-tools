@@ -12,7 +12,9 @@ And all you need to get started is [VirtualBox](https://www.virtualbox.org/) and
 
 ### Background
 
-This tool was created after years of making shell scripts and chef recipes to automate Vagrant VM's. During that time, one thing I found was that having multiple VM's and having to specify the dependencies for each project wasn't quite ideal. This tools tries to address that.
+This tool was created after years of making shell scripts and chef recipes to automate Vagrant VM's.
+
+During that time, one thing I found was that having multiple VM's and having to specify the dependencies wasn't quite ideal. This tools tries to make that a little bit better.
 
 The autodetection and fallback on configuration was inspired by [Heroku](https://heroku.com/) and [CircleCI](https://circleci.com/).
 
