@@ -10,9 +10,9 @@ And all you need is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](http
 
 ### Background
 
-This tool was created because I've used shell scripts and chef recipes for years to automate Vagrant VM's, but as the number of VM's grew it became a bit unpractical to manage them all. Having a single VM for most of the projects and smaller libraries turns out to work really well.
+This tool was created after years of making shell scripts and chef recipes to automate Vagrant VM's. During that time, one thing I found was that having multiple VM's and having to specify the dependencies for each project wasn't quite ideal. This tools tries to address that.
 
-I've also taken inspiration from how [Heroku](https://heroku.com/) and [CircleCI](https://circleci.com/) autodetects dependencies so that you don't have to specify them for each environment.
+Some of the inspiration comes from how [Heroku](https://heroku.com/) and [CircleCI](https://circleci.com/) autodetects dependencies so that you don't have to specify them for each environment.
 
 ### Services
 
