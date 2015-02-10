@@ -8,7 +8,7 @@ As an added benefit you can run **multiple projects within the same VM**, even i
 
 When autodetection isn't possible, you can of course specify what you need installed.
 
-All you need to get started is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
+All you need to get started is [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/).
 
 ### Services
 
