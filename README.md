@@ -2,17 +2,17 @@
 
 Deploying to heroku is just a few short commands, why isn't setting up a development box that easy?
 
-devbox-tools is a toolset that run within a [Vagrant](https://www.vagrantup.com/) VM that attempts to **autodetect and install** the right things (software and services like postgres) **with a single command** letting you get right to work instead of messing around with installations.
+devbox-tools is a toolset that run within a [Vagrant](https://www.vagrantup.com/) VM that attempts to **autodetect and install** the right things (software and services like postgres) with a single command letting you get right to work instead of messing around with installations.
 
 As an added benefit you can run **multiple projects within the same VM**, even if they depend on different versions of services like postgres. It's all scoped to each project (as far as possible).
 
-When auto detection isn't possible, you can of course specify what you need installed.
+When autodetection isn't possible, you can of course specify what you need installed.
 
 All you need to get started is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
 
 ### Services
 
-This tool uses [docker](https://www.docker.com/) to run services like postgres or redis. It can run any docker image, and you can find such images easily on the [docker hub](https://registry.hub.docker.com/) and even [make your own](https://docs.docker.com/reference/builder/).
+This tool uses [docker](https://www.docker.com/) to run services like postgres or redis. It can run any docker image, and you can find docker images easily on the [docker hub](https://registry.hub.docker.com/) and even [make your own](https://docs.docker.com/reference/builder/).
 
 Some of these services have special support in the form of service dependency plugins that adds environment variables you can use to configure projects. As far as possible these envs use standard names like REDIS\_URL.
 
