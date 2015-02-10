@@ -4,6 +4,8 @@ Deploying to heroku is just a few short commands, why isn't setting up a develop
 
 devbox-tools is a toolset that run within a [Vagrant](https://www.vagrantup.com/) VM that attempts to **autodetect and install** the right things (software and services like postgres) **with a single command** letting you get right to work instead of messing around with installations.
 
+When auto detection isn't possible, you can of course specify what you need installed.
+
 As an added benefit you can run **multiple projects within the same VM**, even if they depend on different versions of services like postgres. It's all scoped to each project (as far as possible).
 
 And all you need is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
@@ -12,7 +14,7 @@ And all you need is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](http
 
 This tool was created after years of making shell scripts and chef recipes to automate Vagrant VM's. During that time, one thing I found was that having multiple VM's and having to specify the dependencies for each project wasn't quite ideal. This tools tries to address that.
 
-The autodetection and fallback on configuration was inspired by how [Heroku](https://heroku.com/) and [CircleCI](https://circleci.com/) works.
+The autodetection and fallback on configuration was inspired by [Heroku](https://heroku.com/) and [CircleCI](https://circleci.com/).
 
 ### Services
 
