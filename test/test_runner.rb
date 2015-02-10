@@ -12,6 +12,10 @@ module TestHelpers
     system(devbox_command(command)) || raise("Command failed: #{command}")
   end
 
+  def fixture_path(name)
+    File.expand_path(File.join(File.dirname(__FILE__), "fixtures/#{name}"))
+  end
+
   private
 
   def devbox_command(command)

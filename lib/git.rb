@@ -1,7 +1,11 @@
 class Git
-  def self.origin_url(directory)
-    raise "implement me with integrated tests"
-    #exec_command("git config --get remote.origin.url")
-    #verify output, etc.
+  def self.origin_url(path)
+    remote = exec_command("cd #{path} && git config --get remote.origin.url").chomp
+
+    if remote == ""
+      nil
+    else
+      remote
+    end
   end
 end
