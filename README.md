@@ -10,7 +10,15 @@ And all you need is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](http
 
 ### Background
 
-This tool was created because I've successfully used similar scripts in the past to automate Vagrant VM's, but as the number of VM's grew it became a bit unpractical to manage them all. Having a single VM for most of the projects (and smaller libraries) has turned out to work really well.
+This tool was created because I've used shell scripts and chef recipes for years to automate Vagrant VM's, but as the number of VM's grew it became a bit unpractical to manage them all. Having a single VM for most of the projects and smaller libraries turns out to work really well.
+
+I've also taken inspiration from how [Heroku](https://heroku.com/) and [CircleCI](https://circleci.com/) autodetects dependencies so that you don't have to specify them for each environment.
+
+### Services
+
+This tool uses docker to run services like postgres or redis. It can run any docker image. You can find such images easily on the [docker hub](https://registry.hub.docker.com/) and even [make your own](https://docs.docker.com/reference/builder/).
+
+Some of these services have special support in the form of service plugins that adds environment variables like REDIS\_URL to allow you to configure projects using ENVs (hopefully the same envs as you then use in production).
 
 ### Setting up your devbox repo
 
