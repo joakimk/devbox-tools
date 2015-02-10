@@ -12,7 +12,7 @@ And all you need is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](http
 
 This tool was created after years of making shell scripts and chef recipes to automate Vagrant VM's. During that time, one thing I found was that having multiple VM's and having to specify the dependencies for each project wasn't quite ideal. This tools tries to address that.
 
-Some of the inspiration comes from how [Heroku](https://heroku.com/) and [CircleCI](https://circleci.com/) autodetects dependencies so that you don't have to specify them for each environment.
+The autodetection and fallback on configuration was inspired by how [Heroku](https://heroku.com/) and [CircleCI](https://circleci.com/) works.
 
 ### Services
 
