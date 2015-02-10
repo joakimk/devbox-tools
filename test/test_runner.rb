@@ -30,7 +30,7 @@ end
 # Load tests
 test_files = ARGV.select { |f| f.end_with?("_test.rb") }
 test_files.each do |path|
-  # converts both full paths and project relative paths a path relative to this directory
+  # converts both full paths and project relative paths to a path that is relative to this directory
   relative_path = path.gsub(/.+?test\//, "").gsub(/test\//, "")
 
   full_path = File.expand_path(File.join(File.dirname(__FILE__), relative_path))
