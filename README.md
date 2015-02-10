@@ -8,7 +8,7 @@ As an added benefit you can run **multiple projects within the same VM**, even i
 
 When auto detection isn't possible, you can of course specify what you need installed.
 
-And all you need to get started is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
+All you need to get started is [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
 
 ### Background
 
@@ -16,7 +16,7 @@ This tool was created after years of making shell scripts and chef recipes to au
 
 During that time, one thing I found was that having multiple VM's and having to specify the dependencies wasn't quite ideal.
 
-The autodetection and fallback on configuration was inspired by [Heroku](https://heroku.com/) and [CircleCI](https://circleci.com/).
+Autodetection and fallback on configuration was inspired by [Heroku](https://heroku.com/) and [CircleCI](https://circleci.com/).
 
 ### Services
 
