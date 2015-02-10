@@ -20,7 +20,7 @@ The autodetection and fallback on configuration was inspired by [Heroku](https:/
 
 ### Services
 
-This tool uses docker to run services like postgres or redis. It can run any docker image, and you can find such images easily on the [docker hub](https://registry.hub.docker.com/) and even [make your own](https://docs.docker.com/reference/builder/).
+This tool uses [docker](https://www.docker.com/) to run services like postgres or redis. It can run any docker image, and you can find such images easily on the [docker hub](https://registry.hub.docker.com/) and even [make your own](https://docs.docker.com/reference/builder/).
 
 Some of these services have special support in the form of service plugins that adds environment variables like REDIS\_URL to allow you to configure projects using ENVs (hopefully the same envs as you then use in production).
 
