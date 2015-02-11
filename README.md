@@ -4,7 +4,7 @@ Deploying to heroku is just a few short commands, why isn't setting up a develop
 
 devbox-tools is a toolset that run within a [Vagrant](https://www.vagrantup.com/) VM that attempts to **autodetect and install** the right things with a single command letting you get right to work instead of messing around with installations.
 
-As an added benefit you can run **multiple projects within the same VM**, even if they depend on different versions of services like postgres. It's all scoped to each project (as far as possible).
+As an added benefit you can run **multiple projects within the same VM**, even if they depend on different versions of software or services. It's all scoped to each project (as far as possible).
 
 When autodetection isn't possible, you can of course specify what you need installed.
 
