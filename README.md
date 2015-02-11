@@ -7,6 +7,7 @@
 - [x] Installing software dependencies
 - Caching
   - [x] Local caching
+  - [ ] Project specific gem and database caching
   - [ ] Remote caching
 - Plugin support
   - [ ] Very basic plugin support, be able to load /devbox/plugins
