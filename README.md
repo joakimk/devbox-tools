@@ -13,7 +13,7 @@
   - [ ] Very basic plugin support, be able to load /devbox/plugins
 - Plugins
   - [ ] Plugins for all things our projects depend upon
-  - [ ] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
+  - [x] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
 - Configuration
   - [ ] Project configuration
   - [ ] Global configuration fallback (use for default values)

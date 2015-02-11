@@ -1,5 +1,6 @@
 require "dependency"
 require "software_dependency"
+require "system_software_dependency"
 
 class DependencyRegistry
   def self.register(dependency)
