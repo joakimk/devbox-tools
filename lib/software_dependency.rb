@@ -64,11 +64,13 @@ class SoftwareDependency < Dependency
   end
 
   def build_and_install
-    raise "implement me in subclass to install to install_prefix"
+    Build.new(name).in_temporary_path do
+      build_and_install_command
+    end
   end
 
-  def run_build(&block)
-    Build.new(name).in_temporary_path(&block)
+  def build_and_install_command
+    raise "implement me, or override build_and_install for completly custom installs"
   end
 
   def installed?

@@ -6,23 +6,23 @@ class RubyDependency < SoftwareDependency
     "ruby"
   end
 
-  def build_and_install
-    run_build do
-      %{
-        wget #{url}
+  private
 
-        echo "#{expected_md5_and_filename}" | md5sum -c -
+  def build_and_install_command
+    %{
+      wget #{url}
 
-        tar xfz #{archive_name}
-        cd ruby-#{version}
-        autoconf
+      echo "#{expected_md5_and_filename}" | md5sum -c -
 
-        ./configure --prefix=#{install_prefix}
+      tar xfz #{archive_name}
+      cd ruby-#{version}
+      autoconf
 
-        make -j 2
-        make install
-      }
-    end
+      ./configure --prefix=#{install_prefix}
+
+      make -j 2
+      make install
+    }
   end
 
   def environment_variables(envs)
@@ -42,8 +42,6 @@ class RubyDependency < SoftwareDependency
 
     envs
   end
-
-  private
 
   def url
     major_version = version[0, 3]

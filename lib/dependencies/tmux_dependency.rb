@@ -3,18 +3,18 @@ class TmuxDependency < SystemSoftwareDependency
     "tmux"
   end
 
-  def build_and_install
-    run_build do
-      %{
-        wget http://downloads.sourceforge.net/project/tmux/tmux/tmux-#{version[0, 3]}/tmux-#{version}.tar.gz
-        tar xfz tmux-#{version}.tar.gz
-        echo "#{shasum}  tmux-#{version}.tar.gz" | sha1sum -c -
-        cd tmux-#{version}
-        ./configure --prefix=#{install_prefix}
-        make -j 2
-        make install
-      }
-    end
+  private
+
+  def build_and_install_command
+    %{
+      wget http://downloads.sourceforge.net/project/tmux/tmux/tmux-#{version[0, 3]}/tmux-#{version}.tar.gz
+      tar xfz tmux-#{version}.tar.gz
+      echo "#{shasum}  tmux-#{version}.tar.gz" | sha1sum -c -
+      cd tmux-#{version}
+      ./configure --prefix=#{install_prefix}
+      make -j 2
+      make install
+    }
   end
 
   def required_packages

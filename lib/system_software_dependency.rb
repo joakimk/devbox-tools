@@ -1,5 +1,5 @@
 class SystemSoftwareDependency < SoftwareDependency
   def used_by_current_project?
-    true
+    !ENV["DEVBOX_TEST"]
   end
 end

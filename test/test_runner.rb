@@ -1,4 +1,5 @@
 ENV["DEVBOX_DATA_ROOT"] = "/var/devbox_test"
+ENV["DEVBOX_TEST"] = "true"
 require "#{File.dirname(__FILE__)}/../lib/environment"
 
 module TestHelpers

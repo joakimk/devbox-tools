@@ -27,7 +27,7 @@
 
 **High level roadmap: 1.0: public release**
 - [ ] Full plugin support.
-- [ ] More stable APIs. Follow semver.
+- [ ] More consitent and very stable APIs. Follow semver from 1.0.
 - [ ] "dev update" should probably require version instead of getting latest master.
 - [ ] Service plugins for redis and postgres.
 - [ ] Most things should work out of the box for a classic rails app.
