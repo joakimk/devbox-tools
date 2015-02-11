@@ -12,6 +12,10 @@ class RedisDependency < Dependency
     "no status yet (#{image})"
   end
 
+  def installed?
+    false # todo
+  end
+
   def start
     # todo
   end

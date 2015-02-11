@@ -5,6 +5,10 @@ class SoftwareDependency < Dependency
     installed? ? "#{version} installed (#{version_source})" : "not installed"
   end
 
+  def cacheable_path
+    install_prefix
+  end
+
   def install(logger)
     return if installed?
 

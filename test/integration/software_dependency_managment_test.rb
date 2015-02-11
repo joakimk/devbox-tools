@@ -5,9 +5,10 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
   end
 
   def teardown
-    shell! "rm -rf /tmp/test_project && rm -rf /tmp/other/test_project && rm -rf #{Devbox.software_dependencies_root}"
+    shell! "rm -rf /tmp/test_project && rm -rf /tmp/other/test_project && rm -rf #{Devbox.software_dependencies_root} && rm -rf #{Devbox.local_cache_path}"
   end
 
+  if false
   def test_installing
     shell "echo '1.2.3' > /tmp/test_project/.some_file_with_a_version"
     assert_include \
@@ -55,5 +56,25 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
     shell "echo '1.2.5' > /tmp/other/test_project/.some_file_with_a_version"
     output = shell "cd /tmp/other/test_project && dev"
     assert_include output, "installing"
+  end
+end
+
+  def test_reinstalling_will_use_cached_version
+    shell "echo '1.2.3' > /tmp/test_project/.some_file_with_a_version"
+
+    output = shell "cd /tmp/test_project && dev"
+    assert_include output, "installing"
+    assert_include output, "building cache"
+
+    system("rm -rf #{Devbox.software_dependencies_root}")
+
+    output = shell "cd /tmp/test_project && dev"
+    assert_include output, "restoring cache"
+    assert_not_include output, "installing"
+
+    # do nothing when already installed
+    output = shell "cd /tmp/test_project && dev"
+    assert_not_include output, "cache"
+    assert_not_include output, "installing"
   end
 end

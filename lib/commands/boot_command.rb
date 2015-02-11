@@ -12,7 +12,7 @@ class BootCommand < Command
 
     dependencies.each do |dependency|
       log "Checking dependency #{dependency.name}" do
-        dependency.install(logger)
+        install_dependency(dependency)
         dependency.status
       end
     end
@@ -30,6 +30,32 @@ class BootCommand < Command
   def prepare_directories
     prepare_directory(Devbox.data_root)
     prepare_directory(Devbox.project_data_root)
+  end
+
+  def install_dependency(dependency)
+    return if dependency.installed?
+
+    cache = Devbox.cache(dependency)
+
+    if cache.exists?
+      restore_dependency_from_cache(cache)
+    else
+      install_and_cache_dependency(dependency, cache)
+    end
+  end
+
+  def restore_dependency_from_cache(cache)
+    logger.detail "restoring cache..."
+    cache.restore
+  end
+
+  def install_and_cache_dependency(dependency, cache)
+    dependency.install(logger)
+
+    if dependency.cacheable?
+      logger.detail "building cache..."
+      cache.build
+    end
   end
 
   def prepare_directory(path)
