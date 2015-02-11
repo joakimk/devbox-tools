@@ -11,19 +11,22 @@
   - [ ] Remote caching
 - Plugin support
   - [ ] Very basic plugin support, be able to load /devbox/plugins
+- Plugins
+  - [ ] Plugins for all things our projects depend upon
+  - [ ] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
 - Configuration
   - [ ] Project configuration
   - [ ] Global configuration fallback (use for default values)
 - Services
   - [ ] Generic service support (run any docker image, but no envs)
-- [ ] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
-- [ ] zsh support
-- [ ] Plugins for all things our projects depend upon
-- [ ] VM hostname "devbox"
-- [ ] Local username instead of "vagrant"
+- Shell
+  - [ ] zsh support
+- VM
+  - [ ] VM hostname "devbox"
+  - [ ] Local username instead of "vagrant"
 
 **High level roadmap: 1.0: public release**
-- [ ] Full plugin support
+- [ ] Full plugin support.
 - [ ] More stable APIs. Follow semver.
 - [ ] "dev update" should probably require version instead of getting latest master.
 - [ ] Service plugins for redis and postgres.
