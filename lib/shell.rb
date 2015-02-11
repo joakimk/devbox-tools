@@ -19,7 +19,6 @@ class Shell
       "sh #{command_file_path} 2>&1 > /dev/null"
 
     system(command) || raise("Failed to command: #{command}")
-  ensure
     system("rm #{command_file_path}") || exit(1)
   end
 end
