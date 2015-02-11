@@ -1,5 +1,41 @@
 # WIP: This is readme driven development in progress. They tool may not yet do what the readme says.
 
+**Status**: Working on it. Still missing essential features, so not using for my own development yet.
+
+**High level roadmap: What we need to use this at work**
+- [x] Environment scoping
+- [x] Installing software dependencies
+- Caching
+  - [x] Local caching
+  - [ ] Remote caching
+- Plugin support
+  - [ ] Very basic plugin support, be able to load /devbox/plugins
+- Configuration
+  - [ ] Project configuration
+  - [ ] Global configuration fallback (use for default values)
+- Services
+  - [ ] Generic service support (run any docker image, but no envs)
+- [ ] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
+- [ ] zsh support
+- [ ] Plugins for all things our projects depend upon
+- [ ] VM hostname "devbox"
+- [ ] Local username instead of "vagrant"
+
+**High level roadmap: 1.0: public release**
+- [ ] Full plugin support
+- [ ] More stable APIs. Follow semver.
+- [ ] "dev update" should probably require version instead of getting latest master.
+- [ ] Service plugins for redis and postgres.
+- [ ] Most things should work out of the box for a classic rails app.
+- More things.
+
+**Screenshot: installing dependencies and restoring from cache**
+
+![](https://s3.amazonaws.com/f.cl.ly/items/3Z193D3v0J302x051d42/Screen%20Shot%202015-02-11%20at%2022.09.54.png)
+
+
+## Actual readme below...
+
 Deploying to heroku is just a few short commands, why isn't setting up a development box that easy?
 
 devbox-tools is a toolset that run within a [Vagrant](https://www.vagrantup.com/) VM that attempts to **autodetect and install** the right things with a single command letting you get right to work instead of messing around with installations.
