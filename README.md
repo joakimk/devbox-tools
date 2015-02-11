@@ -20,8 +20,6 @@ Some of these services have special support in the form of service dependency pl
 
 This tool was created after years of making shell scripts and chef recipes to automate Vagrant VM's.
 
-During that time, one thing I found was that having multiple VM's and having to specify the dependencies wasn't quite ideal.
-
 Autodetection and fallback on configuration was inspired by [Heroku](https://heroku.com/) and [CircleCI](https://circleci.com/).
 
 ### Setting up your devbox repo
