@@ -16,12 +16,6 @@ This tool uses [docker](https://www.docker.com/) to run services like postgres o
 
 Some of these services have special support in the form of service dependency plugins that among other things adds environment variables you can use to configure projects. As far as possible these variables use standard names like REDIS\_URL.
 
-### Background
-
-This tool was created after years of making shell scripts and chef recipes to automate Vagrant VM's.
-
-Autodetection and fallback on configuration was inspired by [Heroku](https://heroku.com/) and [CircleCI](https://circleci.com/).
-
 ### Setting up your devbox repo
 
 Set up your devbox repo.
