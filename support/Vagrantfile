@@ -7,12 +7,9 @@ VAGRANTFILE_API_VERSION = "2"
 # There are probably better ways to hook into "vagrant up", haven't had
 # any problems with this yet, but please do contribute if you do.
 if ARGV.first == "up"
-  system(%{
-    # You can use this to lock down the devbox-tools version
-    export DEVBOX_TOOLS_VERSION=master
-    export DEVBOX_TOOLS_REPO=git@github.com:joakimk/devbox-tools.git
-    ./set_up_devbox_tools
-  }) || exit(1)
+  # You can use this to lock down the devbox-tools version, but
+  # running "dev update" will do "git pull" in this repo.
+  File.exists?("devbox-tools") || system("git clone git@github.com:joakimk/devbox-tools.git") || exit(1)
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|

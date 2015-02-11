@@ -19,9 +19,6 @@ then
   ls Vagrantfile 1> /dev/null ||
     { echo "TEST FAIL: Expected bootstrap to setup Vagrantfile"; exit 1; }
 
-  ls set_up_devbox_tools 1> /dev/null ||
-    { echo "TEST FAIL: Expected bootstrap to setup set_up_devbox_tools script"; exit 1; }
-
   cat .gitignore | grep devbox-tools > /dev/null ||
     { echo "TEST FAIL: Expected bootstrap to setup .gitignore"; exit 1; }
 
