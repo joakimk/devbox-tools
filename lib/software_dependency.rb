@@ -50,7 +50,7 @@ class SoftwareDependency < Dependency
     if version == autodetected_version
       "autodetected"
     else
-      "unknown"
+      "unknown version source"
     end
   end
 
