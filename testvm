@@ -19,6 +19,9 @@ then
   ls Vagrantfile 1> /dev/null ||
     { echo "TEST FAIL: Expected bootstrap to setup Vagrantfile"; exit 1; }
 
+  ls README.md 1> /dev/null ||
+    { echo "TEST FAIL: Expected bootstrap to setup README.md"; exit 1; }
+
   cat .gitignore | grep devbox-tools > /dev/null ||
     { echo "TEST FAIL: Expected bootstrap to setup .gitignore"; exit 1; }
 
