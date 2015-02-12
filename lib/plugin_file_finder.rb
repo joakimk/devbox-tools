@@ -1,8 +1,8 @@
 class PluginFileFinder
-  KNOWN_PLUGIN_DIRECTORIES = [
-    "dependencies",
-    "caches",
-    "commands",
+  KNOWN_PLUGIN_TYPES = [
+    "dependency",
+    "cache",
+    "command",
   ]
 
   def initialize(plugin_directories)
@@ -20,8 +20,9 @@ class PluginFileFinder
   def ruby_files
     plugin_directories.flat_map { |path|
       Finder.files(path).flat_map { |plugin_path|
-        KNOWN_PLUGIN_DIRECTORIES.flat_map { |type|
-          Finder.files("#{plugin_path}/#{type}")
+        Finder.files(plugin_path).select { |path|
+          m = path.match(/.*_(.+?)\.rb/)
+          m && KNOWN_PLUGIN_TYPES.include?(m[1])
         }
       }
     }

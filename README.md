@@ -27,7 +27,7 @@
 
 **High level roadmap: 1.0: public release**
 - [ ] Full plugin support.
-  - [ ] Flatter directory structure plugins/python/python\_dependency.rb instead of plugins/python/dependencies/python\_dependency.rb.
+  - [x] Flatter directory structure plugins/python/python\_dependency.rb instead of plugins/python/dependencies/python\_dependency.rb.
 - [ ] More consitent and very stable APIs. Follow semver from 1.0.
 - [ ] "dev update" should probably require version instead of getting latest master.
 - [ ] Service plugins for redis and postgres.

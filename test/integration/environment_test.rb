@@ -3,7 +3,7 @@ class TestEnvironment < MTest::Unit::TestCase
     shell "mkdir -p /vagrant/plugins/test/dependencies /tmp/project1 /tmp/project2"
 
     # add dependency plugin
-    File.open("/vagrant/plugins/test/dependencies/test_dependency.rb", "w") do |f|
+    File.open("/vagrant/plugins/test/test_dependency.rb", "w") do |f|
       f.puts(%{
         class TestDependency
           def environment_variables(envs)

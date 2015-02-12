@@ -4,12 +4,12 @@ class TestPluginFileFinder < MTest::Unit::TestCase
 
     source_paths = [
       "#{base_path}/devbox/plugins",
-      "#{base_path}/devbox-tools",
+      "#{base_path}/devbox-tools/lib",
     ]
 
     loader = PluginFileFinder.new(source_paths)
     assert_equal [
-      "#{base_path}/devbox/plugins/ruby/dependencies/ruby_dependency.rb",
+      "#{base_path}/devbox/plugins/ruby/ruby_dependency.rb",
       "#{base_path}/devbox-tools/lib/dependencies/python_dependency.rb",
       ], loader.plugin_files
   end
@@ -18,7 +18,7 @@ class TestPluginFileFinder < MTest::Unit::TestCase
     base_path = fixture_path("plugin_finder_non_plugin_files")
 
     source_paths = [
-      "#{base_path}/devbox-tools",
+      "#{base_path}/devbox-tools/lib",
     ]
 
     loader = PluginFileFinder.new(source_paths)
@@ -29,7 +29,7 @@ class TestPluginFileFinder < MTest::Unit::TestCase
     base_path = fixture_path("plugin_finder_all_types")
 
     source_paths = [
-      "#{base_path}/devbox-tools",
+      "#{base_path}/devbox-tools/lib",
     ]
 
     loader = PluginFileFinder.new(source_paths)
