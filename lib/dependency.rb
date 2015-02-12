@@ -27,6 +27,10 @@ class Dependency
     true
   end
 
+  def status
+    "done"
+  end
+
   def start
     # do nothing by default
   end
