@@ -37,7 +37,7 @@ then
   vagrant ssh -c "cp /vagrant/devbox-tools/bin/devbox-tools-ruby /devbox-tools/bin && rm -rf /vagrant/devbox-tools && ln -s /devbox-tools /vagrant/devbox-tools"
 
   # Install zsh so we can run tests to ensure it works in zsh
-  vagrant ssh -c "apt-get install zsh -y"
+  vagrant ssh -c "sudo apt-get install zsh -y"
 
   cd ../..
   ./testvm test
