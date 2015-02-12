@@ -22,7 +22,7 @@
 - Shell
   - [x] zsh support
 - VM
-  - [ ] VM hostname "devbox"
+  - [x] VM hostname "devbox"
   - [ ] Local username instead of "vagrant"
 
 **High level roadmap: 1.0: public release**

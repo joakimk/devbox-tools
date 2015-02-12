@@ -30,9 +30,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     sh -c "echo deb https://get.docker.com/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
 
     apt-get update && apt-get install build-essential unzip git bison lxc-docker libssl-dev -y
-
     cat /home/vagrant/.bashrc | grep devbox-tools || echo 'source /vagrant/devbox-tools/support/shell' >> /home/vagrant/.bashrc
     /vagrant/devbox-tools/support/install_dependencies
+
+    # Not needed, but makes the prompt look nicer
+    echo "devbox" > /etc/hostname
+    /etc/init.d/hostname restart
 }
 
   config.vm.provider "virtualbox" do |vb|
