@@ -13,6 +13,10 @@ if ARGV.first == "up"
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize [ "modifyvm", :id, "--memory", "1024" ]
+  end
+
   config.vm.box = "ubuntu-12.04-amd64-vbox"
 
   # The box must have docker support. For more boxes see http://www.vagrantbox.es/.
@@ -21,26 +25,54 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # need to be modified to work with other distributions.
   config.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-12.04-amd64-vbox.box"
 
-  # Install some basic tools that devbox-tools needs to bootstrap itself (adapt for your box type).
+  user_name = ENV["USER"]
+  # Optional, see below. config.ssh.username = user_name
+
   config.vm.provision :shell, inline: %{
     set -e
 
-    # Add docker source
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
-    sh -c "echo deb https://get.docker.com/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
+    # Optional: Setup user so that you can log in using your host system user name.
+    #           If you use this, also set config.ssh.username.
+    #
+    #if [ ! -e /home/#{user_name} ]
+    #then
+    #  # Same user and group as in OSX for NFS mounts
+    #  useradd #{user_name} -u 501 -g 20 -m -s /bin/bash -G sudo,admin
+    #  groupmod -n #{user_name} dialout
+    #  cp -rf /home/vagrant/.ssh /home/#{user_name}
+    #  chown #{user_name} -R /home/#{user_name}/.ssh
+    #fi
 
-    apt-get update && apt-get install build-essential unzip git bison lxc-docker libssl-dev -y
-    cat /home/vagrant/.bashrc | grep devbox-tools || echo 'source /vagrant/devbox-tools/support/shell' >> /home/vagrant/.bashrc
-    /vagrant/devbox-tools/support/install_dependencies
+    if [ ! -e /usr/bin/docker ]
+    then
+      # Add docker source
+      apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+      sh -c "echo deb https://get.docker.com/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
 
-    # Not needed, but makes the prompt look nicer
-    echo "devbox" > /etc/hostname
-    /etc/init.d/hostname restart
-}
+      # Install some basic tools that devbox-tools needs to bootstrap itself (adapt for your box type).
+      apt-get update && apt-get install build-essential unzip git bison lxc-docker libssl-dev -y
+      cat /home/vagrant/.bashrc | grep devbox-tools || echo 'source /vagrant/devbox-tools/support/shell' >> /home/vagrant/.bashrc
+      /vagrant/devbox-tools/support/install_dependencies
+    fi
 
-  config.vm.provider "virtualbox" do |vb|
-    vb.customize [ "modifyvm", :id, "--memory", "1024" ]
-  end
+    # Make the prompt look nicer
+    set +e
+    cat /etc/hosts|grep devbox > /dev/null
+
+    if [ $? -eq 1 ]
+    then
+      set -e
+      echo "devbox" > /etc/hostname
+      echo "127.0.1.1 devbox" >> /etc/hosts
+      /etc/init.d/hostname restart
+    fi
+  }
+
+  # Setup a synced folder to access your projects. NFS is much faster than the default method.
+  # config.vm.synced_folder "/projects", "/path/to/your/projects", :nfs => true
+
+  # To be able to access web servers and such running inside the VM.
+  config.vm.network :private_network, ip: "10.11.12.13"
 
   # This can be removed, used for devbox-tools's integration tests
   # TODO: Use templating

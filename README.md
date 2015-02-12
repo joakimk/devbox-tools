@@ -23,7 +23,7 @@
   - [x] zsh support
 - VM
   - [x] VM hostname "devbox"
-  - [ ] Local username instead of "vagrant"
+  - [x] Local username instead of "vagrant" (though not in the example Vagrantfile, OSX specific, etc.)
 
 **High level roadmap: 1.0: public release**
 - [ ] Full plugin support.
