@@ -5,8 +5,8 @@ class Finder
     files(relative_path, root).select { |path| path.include?(".rb") }
   end
 
-  def self.files(relative_path, root)
-    directory = "#{root}/#{relative_path}"
+  def self.files(relative_path, root = "/")
+    directory = File.join(root, relative_path)
     found = Dir.entries(directory).
       reject { |name| name == "." || name == ".." }.
       map { |name| "#{directory}/#{name}" }

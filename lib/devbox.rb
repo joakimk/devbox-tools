@@ -51,4 +51,11 @@ class Devbox
   def self.offline?
     ENV["OFFLINE"]
   end
+
+  def self.debug?
+    ENV["DEBUG"] &&
+
+      # Don't print debug info when extracting envs, it breaks things :)
+      ARGV.first.to_s != "envs"
+  end
 end

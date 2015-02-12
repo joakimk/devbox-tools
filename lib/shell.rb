@@ -7,14 +7,14 @@ class Shell
       f.puts(command + " 2>&1")
     }
 
-    if ENV["DEBUG"]
+    if Devbox.debug?
       puts
       puts "Running command:"
       puts command
       puts
     end
 
-    command = ENV["DEBUG"] ?
+    command = Devbox.debug? ?
       "sh #{command_file_path}" :
       "sh #{command_file_path} 2>&1 > /dev/null"
 

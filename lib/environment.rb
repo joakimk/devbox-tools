@@ -5,25 +5,21 @@ require "generate_global_project_identifier"
 require "command_dispatcher"
 require "dependency_registry"
 require "finder"
+require "plugin_file_finder"
 require "logger"
 require "shell"
 require "git"
 require "caches/file_cache"
 
-# NOTE: There is something odd going on with "path", it's always "environment.rb". That's
-# why each "map" and "each" in this file does not use "path" as the variable.
+plugin_directories = [
+  "#{Devbox.root}/plugins",
+  Devbox.tools_root,
+]
 
-dependency_paths = Finder.files("plugins", Devbox.root).flat_map { |dependency_path|
-  Finder.files("dependencies", dependency_path)
-}.compact
+PluginFileFinder.new(plugin_directories).plugin_files.each do |plugin_path|
+  if Devbox.debug?
+    puts "Loading #{plugin_path}"
+  end
 
-dependency_paths += Finder.files("lib/dependencies", Devbox.tools_root)
-
-# NOTE: We don't support overriding default dependencies yet
-dependency_paths.each do |dependency_path|
-  require dependency_path
-end
-
-Finder.ruby_files("lib/commands").each do |command_path|
-  require command_path
+  require plugin_path
 end
