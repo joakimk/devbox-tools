@@ -16,6 +16,8 @@ plugin_directories = [
   Devbox.tools_root,
 ]
 
+plugin_directories << "#{Devbox.tools_root}/test/plugins" if ENV["DEVBOX_TEST"]
+
 PluginFileFinder.new(plugin_directories).plugin_files.each do |plugin_path|
   if Devbox.debug?
     puts "Loading #{plugin_path}"
