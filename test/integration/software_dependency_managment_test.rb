@@ -8,7 +8,6 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
     shell! "rm -rf /tmp/test_project && rm -rf /tmp/other/test_project && rm -rf #{Devbox.software_dependencies_root} && rm -rf #{Devbox.local_cache_path}"
   end
 
-  if false
   def test_installing
     shell "echo '1.2.3' > /tmp/test_project/.some_file_with_a_version"
     assert_include \
@@ -57,7 +56,6 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
     output = shell "cd /tmp/other/test_project && dev"
     assert_include output, "installing"
   end
-end
 
   def test_reinstalling_will_use_cached_version
     shell "echo '1.2.3' > /tmp/test_project/.some_file_with_a_version"

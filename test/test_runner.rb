@@ -20,7 +20,7 @@ module TestHelpers
   private
 
   def devbox_command(command)
-    "/bin/bash -c 'source $DEVBOX_TOOLS_ROOT/support/shell && #{command} 2>&1'"
+    "cd $HOME && /bin/bash -c 'source $DEVBOX_TOOLS_ROOT/support/shell && #{command} 2>&1'"
   end
 end
 

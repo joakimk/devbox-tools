@@ -21,18 +21,18 @@ class Devbox
     "#{data_root}/dependencies"
   end
 
+  def self.local_cache_path
+    "#{data_root}/cache"
+  end
+
   def self.data_root
-    ENV["DEVBOX_DATA_ROOT"] || "/var/devbox"
+    ENV["DEVBOX_DATA_ROOT"] || raise("DEVBOX_DATA_ROOT not set")
   end
 
   # An identifier of the project locally that is as unique as possible without
   # having to place a generated identifier within the project directory.
   def self.local_project_identifier(root = project_root)
     Digest::MD5.hexdigest(root)
-  end
-
-  def self.local_cache_path
-    "#{data_root}/cache"
   end
 
   def self.global_project_identifier
