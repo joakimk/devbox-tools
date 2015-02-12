@@ -1,3 +1,5 @@
+# TODO: Move to plugin
+
 class TmuxDependency < SystemSoftwareDependency
   def name
     "tmux"
