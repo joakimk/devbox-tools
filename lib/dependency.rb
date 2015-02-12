@@ -1,4 +1,8 @@
 class Dependency
+  def name
+    raise "implement name"
+  end
+
   def environment_variables(previous_envs)
     previous_envs
   end
@@ -20,11 +24,11 @@ class Dependency
   end
 
   def installed?
-    raise "implement me"
+    true
   end
 
-  def name
-    raise "implement me"
+  def start
+    # do nothing by default
   end
 
   def version
