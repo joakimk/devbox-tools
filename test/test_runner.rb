@@ -38,4 +38,4 @@ test_files.each do |path|
   require full_path
 end
 
-MTest::Unit.new.run
+exit MTest::Unit.new.run

@@ -2,6 +2,7 @@ if [ $HOME = `pwd` ]
 then
   export DEVBOX_ROOT=/vagrant
   export DEVBOX_TOOLS_ROOT=$DEVBOX_ROOT/devbox-tools
+  export DEVBOX_DATA_ROOT=/var/devbox
   export PATH=$DEVBOX_TOOLS_ROOT/bin:$PATH
 
   # Set LC_ALL if it's unset so that setlocale won't complain when
@@ -25,7 +26,9 @@ function cd()
 function dev()
 {
   __cli $@
+  status=$?
   __update_environment
+  return $status
 }
 
 # private
