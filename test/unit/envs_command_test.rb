@@ -15,6 +15,22 @@ class TestEnvsCommand < MTest::Unit::TestCase
     assert_include output.lines, 'export FOO="set-at-login"'
   end
 
+  def test_does_not_set_read_only_envs
+    envs_at_login = {
+      "FOO" => "set-at-login",
+      "_" => "set-at-login",
+    }
+
+    dependency = FakeDependency.new
+    command = EnvsCommand.new([ dependency ], envs_at_login)
+
+    output = TestOutput.new
+    command.run("envs", [], output)
+
+    assert_not_include output.lines, 'export _="set-at-login"'
+    assert_include output.lines, 'export FOO="set-at-login"'
+  end
+
   def test_cleaning_out_unused_envs
     ENV["OTHER"] = "set-after-login"
 
@@ -25,6 +41,20 @@ class TestEnvsCommand < MTest::Unit::TestCase
     command.run("envs", [], output)
 
     assert_include output.lines, 'unset OTHER'
+  end
+
+  def test_does_not_clear_read_only_envs
+    ENV["OTHER"] = "set-after-login"
+    ENV["_"] = "set-after-login"
+
+    dependency = FakeDependency.new
+    command = EnvsCommand.new([ dependency ], {})
+
+    output = TestOutput.new
+    command.run("envs", [], output)
+
+    assert_include output.lines, 'unset OTHER'
+    assert_not_include output.lines, 'unset _'
   end
 
   def test_does_not_modify_the_original_hash

@@ -13,14 +13,18 @@ module TestHelpers
     system(devbox_command(command)) || raise("Command failed: #{command}")
   end
 
+  def zsh_shell(command)
+    exec_command(devbox_command(command, "zsh"))
+  end
+
   def fixture_path(name)
     File.expand_path(File.join(File.dirname(__FILE__), "fixtures/#{name}"))
   end
 
   private
 
-  def devbox_command(command)
-    "cd $HOME && /bin/bash -c 'source $DEVBOX_TOOLS_ROOT/support/shell && #{command} 2>&1'"
+  def devbox_command(command, shell = "bash")
+    "cd $HOME && #{shell} -c 'source $DEVBOX_TOOLS_ROOT/support/shell && #{command} 2>&1'"
   end
 end
 

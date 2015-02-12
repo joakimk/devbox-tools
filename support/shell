@@ -32,9 +32,9 @@ function cd()
 function dev()
 {
   __cli $@
-  status=$?
+  return_code=$?
   __update_environment
-  return $status
+  return $return_code
 }
 
 # private

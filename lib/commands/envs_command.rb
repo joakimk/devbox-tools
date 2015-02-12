@@ -1,6 +1,8 @@
 require "envs_at_login"
 
 class EnvsCommand < Command
+  READ_ONLY_ENVS = [ "_" ]
+
   def initialize(project_dependencies, envs_at_login)
     @project_dependencies = project_dependencies
     @envs_at_login = envs_at_login
@@ -13,11 +15,11 @@ class EnvsCommand < Command
   end
 
   def run(_option, _parameters, output = STDOUT)
-    new_envs_since_logged_in.each do |name, _|
+    except_read_only_envs(new_envs_since_logged_in).each do |name, _|
       output.puts "unset #{name}"
     end
 
-    envs_to_set.each do |name, value|
+    except_read_only_envs(envs_to_set).each do |name, value|
       output.puts "export #{name}=#{value.inspect}"
     end
   end
@@ -36,6 +38,10 @@ class EnvsCommand < Command
     end
 
     envs
+  end
+
+  def except_read_only_envs(envs)
+    envs.reject { |k, v| READ_ONLY_ENVS.include?(k) }
   end
 
   attr_reader :project_dependencies, :envs_at_login

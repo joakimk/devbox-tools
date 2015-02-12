@@ -13,7 +13,9 @@ class EnvsAtLogin
   private
 
   def parse_environment_variable(line)
-    match = line.match(/declare -x (.+?)="(.+?)"/) || line.match(/declare -x (.+)/)
+    match =  line.match(/declare -x (.+?)="(.+?)"/) || # bash: with value
+      line.match(/declare -x (.+)/) || # bash: no value
+      line.match(/(.+?)=(.+)/) # zsh
     [ match[1], match[2] ]
   end
 

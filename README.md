@@ -20,7 +20,7 @@
 - Services
   - [ ] Generic service support (run any docker image, but no envs)
 - Shell
-  - [ ] zsh support
+  - [x] zsh support
 - VM
   - [ ] VM hostname "devbox"
   - [ ] Local username instead of "vagrant"

@@ -26,6 +26,12 @@ class TestEnvironment < MTest::Unit::TestCase
     assert_equal envs[0], "/foo/bar/bin"
     assert_equal envs[1], "/vagrant/devbox-tools/bin"
 
+    # enter directory using zsh works too
+    envs = zsh_shell("cd /tmp/project1 && echo $PATH").split(":")
+    assert_include envs, "/foo/bar/bin"
+    assert_equal envs[0], "/foo/bar/bin"
+    assert_equal envs[1], "/vagrant/devbox-tools/bin"
+
     # entering another directory removes the paths
     envs = shell("cd /tmp/project1 && cd /tmp/project2 && echo $PATH").split(":")
     assert_not_include envs, "/foo/bar/bin"
