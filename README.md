@@ -5,25 +5,26 @@
 **High level roadmap: What we need to use this at work**
 - [x] Environment scoping
 - [x] Installing software dependencies
-- Caching
-  - [x] Local caching
-  - [ ] Project specific gem and database caching
-  - [ ] Remote caching
 - Plugin support
   - [x] Very basic plugin support, be able to load /devbox/plugins
-- Plugins
-  - [ ] Plugins for all things our projects depend upon
-  - [x] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
-- Configuration
-  - [ ] Project configuration
-  - [ ] Global configuration fallback (use for default values)
-- Services
-  - [ ] Generic service support (run any docker image, but no envs)
 - Shell
   - [x] zsh support
 - VM
   - [x] VM hostname "devbox"
   - [x] Local username instead of "vagrant" (though not in the example Vagrantfile, OSX specific, etc.)
+- Plugins
+  - [ ] Plugins for all things our projects depend upon
+  - [x] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
+- Caching
+  - [x] Local caching
+  - [ ] Project specific gem and database caching
+  - [ ] Remote caching
+- Configuration
+  - [ ] Project configuration
+  - [ ] Global configuration fallback (use for default values)
+  - [ ] Autodetection for various dependencies
+- Services
+  - [ ] Generic service support (run any docker image, but no envs)
 
 **High level roadmap: 1.0: public release**
 - [ ] Full plugin support.
