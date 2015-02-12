@@ -26,6 +26,9 @@ function cd()
   __update_environment
 }
 
+# Support the non-cd navigation in zsh
+[ $SHELL = "/usr/bin/zsh" ] && chpwd_functions+=("__update_environment")
+
 function dev()
 {
   __cli $@
