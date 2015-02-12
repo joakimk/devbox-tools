@@ -11,12 +11,10 @@ require "shell"
 require "git"
 require "caches/file_cache"
 
-plugin_directories = [
-  "#{Devbox.root}/plugins",
-  Devbox.tools_root,
-]
-
+plugin_directories = []
 plugin_directories << "#{Devbox.tools_root}/test/plugins" if ENV["DEVBOX_TEST"]
+plugin_directories << "#{Devbox.root}/plugins"
+plugin_directories << Devbox.tools_root
 
 PluginFileFinder.new(plugin_directories).plugin_files.each do |plugin_path|
   if Devbox.debug?
