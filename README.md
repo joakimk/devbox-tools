@@ -10,7 +10,7 @@
   - [ ] Project specific gem and database caching
   - [ ] Remote caching
 - Plugin support
-  - [ ] Very basic plugin support, be able to load /devbox/plugins
+  - [x] Very basic plugin support, be able to load /devbox/plugins
 - Plugins
   - [ ] Plugins for all things our projects depend upon
   - [x] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
