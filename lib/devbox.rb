@@ -41,7 +41,7 @@ class Devbox
   end
 
   def self.project_name
-    File.basename(root)
+    File.basename(project_root)
   end
 
   def self.project_root

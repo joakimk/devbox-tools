@@ -10,6 +10,7 @@ require "logger"
 require "shell"
 require "git"
 require "caches/file_cache"
+require "extentions"
 
 plugin_directories = []
 plugin_directories << "#{Devbox.tools_root}/test/plugins" if ENV["DEVBOX_TEST"]
