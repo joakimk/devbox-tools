@@ -8,21 +8,21 @@ class Build
 
     build_command = %{
       set -e
-      mkdir -p #{build_path}
-      cd #{build_path}
+      mkdir -p #{path}
+      cd #{path}
       (#{command}) 2>&1
     }
 
     Shell.run(build_command)
   ensure
-    system("rm -rf #{build_path}")
+    system("rm -rf #{path}")
+  end
+
+  def path
+    "/tmp/build/#{dependency_name}"
   end
 
   private
-
-  def build_path
-    "/tmp/build/#{dependency_name}"
-  end
 
   attr_reader :dependency_name
 end

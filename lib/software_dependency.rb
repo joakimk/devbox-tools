@@ -64,9 +64,21 @@ class SoftwareDependency < Dependency
   end
 
   def build_and_install
-    Build.new(name).in_temporary_path do
+    build_step do
       build_and_install_command
     end
+  end
+
+  def build_step(&block)
+    build.in_temporary_path(&block)
+  end
+
+  def build_path
+    build.path
+  end
+
+  def build
+    Build.new(name)
   end
 
   def build_and_install_command
