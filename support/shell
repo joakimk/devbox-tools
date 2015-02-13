@@ -21,7 +21,7 @@ function cd()
 {
   builtin cd "$@"
 
-  # Trigger envs to write to a file, this normally happens
+  # Trigger dev to write envs to a file, this normally happens
   # when you run any "dev" command, but we also want to
   # update envs when navigating.
   dev no-command > /dev/null
