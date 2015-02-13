@@ -138,7 +138,7 @@ Restoring caches:
 
 ### Gotchas to be aware of...
 
-devbox-tools will change envs when navigating between directories. It does it's best not to clear away anything you may have set, but may do so, so keep that in mind. PATH is handled extra carefully, so it should work like you expect it to.
+devbox-tools will change envs when navigating between directories in order to do it's job. It does it's best not to clear away anything you may have set, but may do so, so keep that in mind. PATH is handled extra carefully, so it should work like you expect it to.
 
 Any environment variables the dependencies do not need to set are not touched by devbox-tools.
 
