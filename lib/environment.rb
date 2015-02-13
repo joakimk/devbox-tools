@@ -11,6 +11,7 @@ require "shell"
 require "git"
 require "caches/file_cache"
 require "extensions"
+require "environment_variables"
 
 plugin_directories = []
 plugin_directories << "#{Devbox.tools_root}/test/plugins" if Devbox.environment == "test"

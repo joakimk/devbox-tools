@@ -1,4 +1,4 @@
-class TestEnvsCommand < MTest::Unit::TestCase
+class TestEnvironmentVariables < MTest::Unit::TestCase
   def test_setting_envs_from_used_dependencies
     envs_at_login = {
       "FOO" => "set-at-login",
@@ -6,10 +6,10 @@ class TestEnvsCommand < MTest::Unit::TestCase
     }
 
     dependency = UsedDependency.new
-    command = EnvsCommand.new([ dependency ], envs_at_login)
+    envs = EnvironmentVariables.new([ dependency ], envs_at_login)
 
     output = TestOutput.new
-    command.run("envs", [], output)
+    envs.write_to(output)
 
     assert_include output.lines, 'export BAR="set-by-dependency"'
     assert_include output.lines, 'export FOO="set-at-login"'
@@ -20,10 +20,10 @@ class TestEnvsCommand < MTest::Unit::TestCase
 
     used_dependency = UsedDependency.new
     unused_dependency = UnusedDependency.new
-    command = EnvsCommand.new([ used_dependency, unused_dependency ], {})
+    envs = EnvironmentVariables.new([ used_dependency, unused_dependency ], {})
 
     output = TestOutput.new
-    command.run("envs", [], output)
+    envs.write_to(output)
 
     assert_include output.lines, 'unset ENV_FROM_UNUSED_DEPENDENCY'
     assert_include output.lines, 'export ENV_FROM_USED_DEPENDENCY="set-by-dependency"'
@@ -34,10 +34,10 @@ class TestEnvsCommand < MTest::Unit::TestCase
 
     used_dependency = UsedDependency.new
     unused_dependency = UnusedDependency.new
-    command = EnvsCommand.new([ used_dependency, unused_dependency ], {})
+    envs = EnvironmentVariables.new([ used_dependency, unused_dependency ], {})
 
     output = TestOutput.new
-    command.run("envs", [], output)
+    envs.write_to(output)
 
     assert_not_include output.lines, 'unset UNKNOWN_ENV'
   end
@@ -48,10 +48,10 @@ class TestEnvsCommand < MTest::Unit::TestCase
 
     used_dependency = UsedDependency.new
     unused_dependency = UnusedDependency.new
-    command = EnvsCommand.new([ used_dependency, unused_dependency ], {})
+    envs = EnvironmentVariables.new([ used_dependency, unused_dependency ], {})
 
     output = TestOutput.new
-    command.run("envs", [], output)
+    envs.write_to(output)
 
     assert_include output.lines, 'unset ENV_FROM_UNUSED_DEPENDENCY'
     assert_not_include output.lines, 'unset _'
@@ -63,10 +63,10 @@ class TestEnvsCommand < MTest::Unit::TestCase
     }
 
     dependency = UsedDependency.new
-    command = EnvsCommand.new([ dependency ], envs_at_login)
+    envs = EnvironmentVariables.new([ dependency ], envs_at_login)
 
     output = TestOutput.new
-    command.run("envs", [], output)
+    envs.write_to(output)
 
     assert_equal envs_at_login["BAR"], "set-at-login"
   end
@@ -78,10 +78,10 @@ class TestEnvsCommand < MTest::Unit::TestCase
     }
 
     dependency = UsedDependency.new
-    command = EnvsCommand.new([ dependency ], envs_at_login)
+    envs = EnvironmentVariables.new([ dependency ], envs_at_login)
 
     output = TestOutput.new
-    command.run("envs", [], output)
+    envs.write_to(output)
 
     assert_not_include output.lines, 'export _="set-at-login"'
     assert_include output.lines, 'export FOO="set-at-login"'
@@ -97,10 +97,10 @@ class TestEnvsCommand < MTest::Unit::TestCase
 
     used_dependency = UsedDependency.new
     unused_dependency = UnusedDependency.new
-    command = EnvsCommand.new([ used_dependency, unused_dependency ], envs_at_login)
+    envs = EnvironmentVariables.new([ used_dependency, unused_dependency ], envs_at_login)
 
     output = TestOutput.new
-    command.run("envs", [], output)
+    envs.write_to(output)
 
     assert_include output.lines, %{export PATH="#{Devbox.software_dependencies_root}/used/bin:/bin:/usr/bin:/custom/bin"}
   end

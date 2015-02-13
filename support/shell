@@ -21,6 +21,12 @@ fi
 function cd()
 {
   builtin cd "$@"
+
+  # Trigger envs to write to a file, this normally happens
+  # when you run any "dev" command, but we also want to
+  # update envs when navigating.
+  dev no-command > /dev/null
+
   __update_environment
 }
 
@@ -41,7 +47,7 @@ function __update_environment()
 {
   # Sets project specific envs, and removes any previously
   # set envs when they are not needed anymore.
-  source <(__cli envs)
+  source /tmp/.envs_update
 }
 
 function __cli()
