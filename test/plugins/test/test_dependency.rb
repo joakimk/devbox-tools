@@ -1,6 +1,6 @@
 class TestDependency
   def environment_variables(envs)
-    envs["PATH"] = "/foo/bar/bin:" + envs["PATH"]
+    envs["PATH"] = "#{Devbox.software_dependencies_root}/test/bin:" + envs["PATH"]
     envs
   end
 

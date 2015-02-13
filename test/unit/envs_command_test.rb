@@ -87,6 +87,24 @@ class TestEnvsCommand < MTest::Unit::TestCase
     assert_include output.lines, 'export FOO="set-at-login"'
   end
 
+  def test_keeps_changes_to_path_that_we_did_not_make
+    # set by user after login, and what remains of previous paths
+    ENV["PATH"] = "/bin:/usr/bin:/custom/bin:#{Devbox.software_dependencies_root}/unused/bin"
+
+    envs_at_login = {
+      "PATH" => "/bin:/usr/bin"
+    }
+
+    used_dependency = UsedDependency.new
+    unused_dependency = UnusedDependency.new
+    command = EnvsCommand.new([ used_dependency, unused_dependency ], envs_at_login)
+
+    output = TestOutput.new
+    command.run("envs", [], output)
+
+    assert_include output.lines, %{export PATH="#{Devbox.software_dependencies_root}/used/bin:/bin:/usr/bin:/custom/bin"}
+  end
+
   class TestOutput
     def puts(line)
       lines.push(line)
@@ -105,6 +123,7 @@ class TestEnvsCommand < MTest::Unit::TestCase
     def environment_variables(previous_envs)
       previous_envs["ENV_FROM_USED_DEPENDENCY"] = "set-by-dependency"
       previous_envs["BAR"] = "set-by-dependency"
+      previous_envs["PATH"] = "#{Devbox.software_dependencies_root}/used/bin:" + previous_envs["PATH"]
       previous_envs
     end
   end
@@ -116,7 +135,7 @@ class TestEnvsCommand < MTest::Unit::TestCase
 
     def environment_variables(previous_envs)
       previous_envs["ENV_FROM_UNUSED_DEPENDENCY"] = "set-by-dependency"
-      previous_envs["EDITOR"] = "set-by-dependency"
+      previous_envs["PATH"] = "#{Devbox.software_dependencies_root}/unused/bin:" + previous_envs["PATH"]
       previous_envs
     end
   end

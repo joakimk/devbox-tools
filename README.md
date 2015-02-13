@@ -138,9 +138,11 @@ Restoring caches:
 
 ### Gotchas to be aware of...
 
-devbox-tools will change envs when navigating between directories and must have some base to work with for common variables like PATH. This means that PATH will be recorded at some point and any change you make after that point will be reset when you navigate or run "dev".
+devbox-tools will change envs when navigating between directories. It does it's best not to clear away anything you may have set, but may do so, so keep that in mind. It specifically ensures PATH's you add are not removed.
 
-Any environment variables not handled by any devbox-tools dependency still remains as they are though.
+Any environment variables not changed by any of the dependencies are not touched.
+
+So in practice this means that devbox-tools may change envs like GEM\_PATH but will leave EDITOR alone and handles PATH gracefully.
 
 ### Offline and/or slow connection support
 

@@ -43,7 +43,6 @@ class SoftwareDependency < Dependency
   end
 
   def environment_variables(envs)
-    return envs unless used_by_current_project?
     envs["PATH"] = "#{install_prefix}/bin:#{envs["PATH"]}"
     envs
   end

@@ -1,11 +1,5 @@
 require "envs_at_login"
 
-# This command clears out any ENVs set that is no longer used,
-# updates envs that have changed and sets new envs.
-#
-# It does so by printing shell commands which we source in
-# support/shell.
-
 class EnvsCommand < Command
   READ_ONLY_ENVS = [ "_" ]
 
@@ -21,31 +15,40 @@ class EnvsCommand < Command
   end
 
   def run(_option, _parameters, output = STDOUT)
-    except_read_only_envs(envs_that_can_be_set_by_this_tool).each do |name, _|
+    all_names_for_envs_that_can_be_set_by_this_tool.each do |name|
       output.puts "unset #{name}"
     end
 
-    except_read_only_envs(envs_to_set).each do |name, value|
+    envs_to_set.each do |name, value|
       output.puts "export #{name}=#{value.inspect}"
     end
   end
 
   private
 
-  def envs_that_can_be_set_by_this_tool
-    dependencies.flat_map { |dependency|
-      dependency.environment_variables(default_envs).keys
-    }
-  end
-
   def envs_to_set
-    envs = envs_at_login.dup
+    envs = default_envs.merge(envs_at_login.dup)
+
+    envs["PATH"] = paths_excluding_any_dependencies
 
     project_dependencies.each do |dependency|
       envs = dependency.environment_variables(envs.dup)
     end
 
-    envs
+    except_read_only_envs(envs)
+  end
+
+  def paths_excluding_any_dependencies
+    current_paths = ENV["PATH"].to_s.split(":")
+    current_paths.
+      reject { |path| path.include?(Devbox.software_dependencies_root) }.
+      join(":")
+  end
+
+  def all_names_for_envs_that_can_be_set_by_this_tool
+    dependencies.flat_map { |dependency|
+      dependency.environment_variables(default_envs).keys
+    }.uniq
   end
 
   def except_read_only_envs(envs)
