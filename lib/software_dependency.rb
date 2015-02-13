@@ -10,8 +10,6 @@ class SoftwareDependency < Dependency
   end
 
   def install(logger)
-    return if installed?
-
     unless version
       logger.detail("no version")
       return
@@ -30,8 +28,10 @@ class SoftwareDependency < Dependency
       Shell.run "sudo apt-get install #{required_packages.join(' ')} -y"
     end
 
-    logger.detail("installing #{name}...")
-    build_and_install
+    unless installed?
+      logger.detail("installing #{name}...")
+      build_and_install
+    end
   end
 
   def remove

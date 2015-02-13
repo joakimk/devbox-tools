@@ -38,15 +38,16 @@ class BootCommand < Command
     cache = Devbox.cache(dependency)
 
     if cache.exists?
-      restore_dependency_from_cache(cache)
+      restore_dependency_from_cache(dependency, cache)
     else
       install_and_cache_dependency(dependency, cache)
     end
   end
 
-  def restore_dependency_from_cache(cache)
+  def restore_dependency_from_cache(dependency, cache)
     logger.detail "restoring cache..."
     cache.restore
+    dependency.install(logger)
   end
 
   def install_and_cache_dependency(dependency, cache)
