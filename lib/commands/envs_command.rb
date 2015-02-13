@@ -44,10 +44,15 @@ class EnvsCommand < Command
     envs.reject { |k, v| READ_ONLY_ENVS.include?(k) }
   end
 
-  attr_reader :project_dependencies, :envs_at_login
+  # The DependencyRegistry must be queried at runtime and not at load time so that
+  # all dependencies has a chance to load.
+  def project_dependencies
+    @project_dependencies || DependencyRegistry.dependencies_used_by_the_current_project
+  end
+
+  attr_reader :envs_at_login
 end
 
-project_dependencies = DependencyRegistry.dependencies_used_by_the_current_project
 envs_at_login = EnvsAtLogin.call
-command = EnvsCommand.new(project_dependencies, envs_at_login)
+command = EnvsCommand.new(nil, envs_at_login)
 CommandDispatcher.register(command)
