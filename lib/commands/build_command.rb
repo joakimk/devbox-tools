@@ -10,6 +10,7 @@ class BuildCommand < Command
 
     if dependency
       log "Building dependency #{dependency.name}" do
+        logger.detail "removing old version..."
         dependency.remove
         dependency.install(logger)
         dependency.status
