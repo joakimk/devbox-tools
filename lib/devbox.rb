@@ -25,6 +25,10 @@ class Devbox
     "#{data_root}/cache"
   end
 
+  def self.metadata_path
+    "#{data_root}/metadata"
+  end
+
   def self.data_root
     ENV["DEVBOX_DATA_ROOT"] || raise("DEVBOX_DATA_ROOT not set")
   end
