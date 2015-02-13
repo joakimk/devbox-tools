@@ -20,6 +20,6 @@ class EnvsAtLogin
   end
 
   def env_lines
-    File.read("/tmp/.envs_at_login").split("\n")
+    File.read("/tmp/.envs_at_login.#{Devbox.environment}").split("\n")
   end
 end

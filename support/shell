@@ -1,10 +1,8 @@
 if [ $HOME = `pwd` ]
 then
-  export DEVBOX_ROOT=/vagrant
+  export DEVBOX_ROOT=${DEVBOX_ROOT:=/vagrant}
   export DEVBOX_TOOLS_ROOT=$DEVBOX_ROOT/devbox-tools
-
-  # Allow devbox-tools tests to override DEVBOX_DATA_ROOT
-  export DEVBOX_DATA_ROOT=${DEVBOX_DATA_ROOT:=/var/devbox}
+  export DEVBOX_ENV=${DEVBOX_ENV:=development}
 
   export PATH=$DEVBOX_TOOLS_ROOT/bin:$PATH
 
@@ -15,7 +13,7 @@ then
   # Store login envs so we can clear out anything we've added
   # for any specific project later on. Clears everything else
   # anyone sets too, but this will be good enough for now.
-  [ $DEVBOX_TEST ] || export > /tmp/.envs_at_login
+  export > /tmp/.envs_at_login.$DEVBOX_ENV
 fi
 
 # public

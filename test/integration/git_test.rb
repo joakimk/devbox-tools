@@ -1,16 +1,22 @@
 class TestGit < MTest::Unit::TestCase
   def setup
-    unpack_repo fixture_path("git_repo_with_origin")
-    unpack_repo fixture_path("git_repo_without_origin")
+    @repo_with_origin_path = unpack_repo(fixture_path("git_repo_with_origin"))
+    @repo_without_origin_path = unpack_repo(fixture_path("git_repo_without_origin"))
+  end
+
+  def teardown
+    raise "bad path?" unless @repo_with_origin_path.to_s.start_with?("/tmp")
+    shell!("rm -rf #{@repo_with_origin_path}")
+    shell!("rm -rf #{@repo_without_origin_path}")
   end
 
   def test_returns_the_origin_url
-    git_url = Git.origin_url(fixture_path("git_repo_with_origin"))
+    git_url = Git.origin_url(@repo_with_origin_path)
     assert_equal "git@github.com:joakimk/devbox-tools-fake-repo.git", git_url
   end
 
   def test_returns_nil_when_there_is_no_origin_url
-    git_url = Git.origin_url(fixture_path("git_repo_without_origin"))
+    git_url = Git.origin_url(@repo_without_origin_path)
     assert_nil git_url
   end
 
@@ -25,6 +31,8 @@ class TestGit < MTest::Unit::TestCase
 
   # You can't add a git repo within a git repo.
   def unpack_repo(path)
-    Shell.run("cp -rf #{path}/.git- #{path}/.git")
+    target_path = "/tmp/#{File.basename(path)}"
+    shell!("cp -rf #{path} #{target_path} && mv #{target_path}/.git- #{target_path}/.git")
+    target_path
   end
 end

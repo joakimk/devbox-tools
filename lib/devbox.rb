@@ -3,6 +3,10 @@ class Devbox
     ENV["DEVBOX_ROOT"] || raise("Missing DEVBOX_ROOT")
   end
 
+  def self.environment
+    ENV["DEVBOX_ENV"] || raise("Missing DEVBOX_ENV")
+  end
+
   def self.cache(dependency)
     FileCache.new(dependency, local_cache_path)
   end
@@ -30,7 +34,7 @@ class Devbox
   end
 
   def self.data_root
-    ENV["DEVBOX_DATA_ROOT"] || raise("DEVBOX_DATA_ROOT not set")
+    "/var/devbox/#{environment}"
   end
 
   # An identifier of the project locally that is as unique as possible without

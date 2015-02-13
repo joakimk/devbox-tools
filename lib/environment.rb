@@ -13,7 +13,7 @@ require "caches/file_cache"
 require "extensions"
 
 plugin_directories = []
-plugin_directories << "#{Devbox.tools_root}/test/plugins" if ENV["DEVBOX_TEST"]
+plugin_directories << "#{Devbox.tools_root}/test/plugins" if Devbox.environment == "test"
 plugin_directories << "#{Devbox.root}/plugins"
 plugin_directories << "#{Devbox.tools_root}/lib"
 

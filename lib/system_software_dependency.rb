@@ -1,5 +1,6 @@
 class SystemSoftwareDependency < SoftwareDependency
   def used_by_current_project?
-    !ENV["DEVBOX_TEST"]
+    # disabled in tests for now to make them simpler
+    Devbox.environment != "test"
   end
 end

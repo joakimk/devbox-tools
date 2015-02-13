@@ -16,7 +16,7 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
     shell "cd /tmp/test_project && dev"
 
     output = shell("cd /tmp/test_project && test_command")
-    assert_equal output, "test-command-output 1.2.3\n"
+    assert_equal "test-command-output 1.2.3\n", output
   end
 
   def test_not_installing_when_not_used_by_project
