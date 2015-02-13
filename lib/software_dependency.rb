@@ -34,6 +34,10 @@ class SoftwareDependency < Dependency
     build_and_install
   end
 
+  def remove
+    Shell.run("rm -rf #{install_prefix}")
+  end
+
   def start
     # no-op
   end

@@ -8,10 +8,11 @@ class Logger
   def log(message, &block)
     if block
       event "#{message}..."
-      finish_message = block.call || "done"
+      finish_message = block.call
+      finish_message = "done" unless finish_message.is_a?(String)
       detail finish_message
     else
-      event "#{message}."
+      event message.end_with?(".") ? message : "#{message}."
     end
   end
 
