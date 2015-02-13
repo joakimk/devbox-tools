@@ -1,10 +1,16 @@
 require "envs_at_login"
 
+# This command clears out any ENVs set that is no longer used,
+# updates envs that have changed and sets new envs.
+#
+# It does so by printing shell commands which we source in
+# support/shell.
+
 class EnvsCommand < Command
   READ_ONLY_ENVS = [ "_" ]
 
-  def initialize(project_dependencies, envs_at_login)
-    @project_dependencies = project_dependencies
+  def initialize(dependencies, envs_at_login)
+    @dependencies = dependencies
     @envs_at_login = envs_at_login
   end
 
@@ -15,7 +21,7 @@ class EnvsCommand < Command
   end
 
   def run(_option, _parameters, output = STDOUT)
-    except_read_only_envs(new_envs_since_logged_in).each do |name, _|
+    except_read_only_envs(envs_that_can_be_set_by_this_tool).each do |name, _|
       output.puts "unset #{name}"
     end
 
@@ -26,8 +32,10 @@ class EnvsCommand < Command
 
   private
 
-  def new_envs_since_logged_in
-    ENV.to_hash.reject { |k, v| envs_at_login.keys.include?(k) }
+  def envs_that_can_be_set_by_this_tool
+    dependencies.flat_map { |dependency|
+      dependency.environment_variables(default_envs).keys
+    }
   end
 
   def envs_to_set
@@ -44,10 +52,21 @@ class EnvsCommand < Command
     envs.reject { |k, v| READ_ONLY_ENVS.include?(k) }
   end
 
+  def project_dependencies
+    dependencies.select(&:used_by_current_project?)
+  end
+
+  # Don't break basic assumptions in environment_variables methods.
+  def default_envs
+    {
+      "PATH" => ""
+    }
+  end
+
   # The DependencyRegistry must be queried at runtime and not at load time so that
   # all dependencies has a chance to load.
-  def project_dependencies
-    @project_dependencies || DependencyRegistry.dependencies_used_by_the_current_project
+  def dependencies
+    @dependencies ||= DependencyRegistry.list
   end
 
   attr_reader :envs_at_login

@@ -138,17 +138,9 @@ Restoring caches:
 
 ### Gotchas to be aware of...
 
-In other to ensure that the environment variables don't leak between projects when you change directory, devbox-tools removes any environment variables that was not present at login (when you sourced support/shell) before it sets any new project specific environment variables.
+devbox-tools will change envs when navigating between directories and must have some base to work with for common variables like PATH. This means that PATH will be recorded at some point and any change you make after that point will be reset when you navigate or run "dev".
 
-This means that if you do:
-
-    cd somewhere
-    export FOO=5
-    cd ..
-
-Then FOO won't be set anymore.
-
-If you know something just as reliable that allows some custom envs, then please contribute. Until it becomes a problem, devbox-tools will continue to work this way.
+Any environment variables not handled by any devbox-tools dependency still remains as they are though.
 
 ### Offline and/or slow connection support
 
