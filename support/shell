@@ -15,7 +15,7 @@ then
   # Store login envs so we can clear out anything we've added
   # for any specific project later on. Clears everything else
   # anyone sets too, but this will be good enough for now.
-  export > /tmp/.envs_at_login
+  [ $DEVBOX_TEST ] || export > /tmp/.envs_at_login
 fi
 
 # public
