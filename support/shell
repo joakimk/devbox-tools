@@ -21,11 +21,7 @@ function cd()
 {
   builtin cd "$@"
 
-  # Trigger dev to write envs to a file, this normally happens
-  # when you run any "dev" command, but we also want to
-  # update envs when navigating.
-  dev no-command > /dev/null
-
+  __generate_env_update
   __update_environment
 }
 
@@ -42,6 +38,14 @@ function dev()
 
 # private
 
+function __generate_env_update()
+{
+  # Trigger dev to write envs to a file, this normally happens
+  # when you run any "dev" command, but we also want to
+  # update envs when navigating.
+  dev no-command > /dev/null
+}
+
 function __update_environment()
 {
   # Sets project specific envs, and removes any previously
@@ -53,3 +57,7 @@ function __cli()
 {
   devbox-tools-ruby $DEVBOX_TOOLS_ROOT/lib/cli.rb $@
 }
+
+# Set up environment for new shells (ex: a new split in tmux)
+__generate_env_update
+__update_environment
