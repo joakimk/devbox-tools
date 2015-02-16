@@ -30,6 +30,9 @@ MRuby::Build.new do |conf|
   # Add hexdigest
   conf.gem :github => "iij/mruby-digest", :checksum_hash => "89dd8f7c69ea6783481560a223aed1c75eb07316"
 
+  # Add YAML
+  conf.gem :github => "AndrewBelt/mruby-yaml", :checksum_hash => "33887291adb31977ced2be7f56bf15f74816df7a"
+
   # Adds default gems, seems like a good idea.
   conf.gembox 'default'
 end

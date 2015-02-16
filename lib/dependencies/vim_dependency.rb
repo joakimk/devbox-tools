@@ -23,12 +23,12 @@ class VimDependency < SystemSoftwareDependency
     %w{ build-essential libncurses5-dev ruby1.8-dev }
   end
 
-  def version
+  def default_version
     "7.3"
   end
 
   def md5sum
-    "5b9510a17074e2b37d8bb38ae09edbf2"
+    config.fetch(:md5sum, "5b9510a17074e2b37d8bb38ae09edbf2")
   end
 end
 

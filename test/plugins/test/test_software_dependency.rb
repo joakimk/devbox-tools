@@ -3,6 +3,10 @@ class TestSoftwareDependency < SoftwareDependency
     "test_software_dependency"
   end
 
+  def default_config
+    super.merge({ something: "default", other: "more" })
+  end
+
   private
 
   def build_and_install
@@ -18,6 +22,15 @@ class TestSoftwareDependency < SoftwareDependency
 
   def required_packages
     [ "wget" ]
+  end
+
+  def default_version
+    # We don't want test_software_dependency to install by default in most tests
+    if Devbox.project_name == "project_configured_as_default"
+      "1.0"
+    else
+      super
+    end
   end
 
   def autodetected_version

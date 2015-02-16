@@ -1,0 +1,3 @@
+dependencies:
+  test_software_dependency:
+    version: 1.0

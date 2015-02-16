@@ -75,4 +75,16 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
     assert_not_include output, "cache"
     assert_not_include output, "installing test_software_dependency..."
   end
+
+  def test_installing_configured_version
+    output = shell "cd #{fixture_path("project_configured_as_2_0")} && dev"
+    assert_include output, "installing test_software_dependency..."
+    assert_include output, "2.0 installed (configured)"
+  end
+
+  def test_installing_configured_version_that_is_same_as_default
+    output = shell "cd #{fixture_path("project_configured_as_default")} && dev"
+    assert_include output, "installing test_software_dependency..."
+    assert_include output, "1.0 installed (default)"
+  end
 end
