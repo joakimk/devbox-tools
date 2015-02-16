@@ -1,6 +1,6 @@
 # WIP: This is readme driven development in progress. They tool may not yet do what the readme says.
 
-**Status**: Working on it. Still missing essential features, so not using for my own development yet.
+**Status**: Working on it. Still missing a few features before I can use it myself.
 
 **High level roadmap: What we need to use this at work**
 - [x] Environment scoping
