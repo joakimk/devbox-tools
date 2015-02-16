@@ -45,23 +45,23 @@
 
 ## Actual readme below...
 
-Deploying to heroku is just a few short commands, why isn't setting up a development box that easy?
+devbox-tools is a pluggable toolset for [Vagrant](https://www.vagrantup.com/) VMs which installs and updates dependencies on a per-project basis in an automated way and with as little configuration as possible.
 
-devbox-tools is a toolset that run within a [Vagrant](https://www.vagrantup.com/) VM that attempts to **autodetect and install** the right things with a single command letting you get right to work instead of messing around with installations.
+In the ideal case, you simply enter a project and type "dev". Everything needed is autodetected and installed.
 
-As an added benefit you can run **multiple projects within the same VM**, even if they depend on different versions of software or services. It's all scoped to each project (as far as possible).
+One of the primary goals with this tool is to be able to develop many projects within a single VM. This might seem a bit counterintuitive given that vagrant is meant to make it easy to have one VM for each project. But what if you don't need that much isolation for every project?
 
-When autodetection isn't possible, you can of course specify what you need installed.
-
-All you need to get started is [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/).
+At [dev.auctionet.com](http://dev.auctionet.com/) we've discovered that using a tool like this we can develop all our projects within a single VM. This makes both switching between projects and starting new projects much simpler.
 
 ### Services
 
 This tool uses [docker](https://www.docker.com/) to run services like postgres or redis. It can run any docker image and you can find docker images on [docker hub](https://registry.hub.docker.com/) or even [make your own](https://docs.docker.com/reference/builder/).
 
-Some of these services have special support in the form of service dependency plugins that among other things adds environment variables you can use to configure projects. As far as possible these variables use standard names like REDIS\_URL.
+Some of these services have special support though service plugins that adds environment variables you can use to configure projects. As far as possible these variables use standard names like REDIS\_URL.
 
 ### Setting up your devbox repo
+
+Get [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/), then follow the instructions below.
 
 Set up your devbox repo.
 
