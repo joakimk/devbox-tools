@@ -12,15 +12,15 @@
 - VM
   - [x] VM hostname "devbox"
   - [x] Local username instead of "vagrant" (though not in the example Vagrantfile, OSX specific, etc.)
-- Plugins
-  - [ ] Plugins for all things our projects depend upon
-  - [x] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
 - Caching
   - [x] Local caching
 - Configuration
   - [x] Project configuration
   - [x] Global configuration fallback (use for default values)
   - [ ] Autodetection for various dependencies
+- Plugins
+  - [x] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
+  - [ ] Plugins for all things our projects depend upon
 - Services
   - [ ] Generic service support (run any docker image, but no envs)
 
