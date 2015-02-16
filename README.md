@@ -1,6 +1,6 @@
 # WIP: This is readme driven development in progress. They tool may not yet do what the readme says.
 
-**Status**: Working on it. Still missing a few features before I can use it myself.
+**Status**: Still missing a few features before I can use it myself.
 
 **High level roadmap: What we need to use this at work**
 - [x] Environment scoping
@@ -17,14 +17,17 @@
   - [x] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
 - Caching
   - [x] Local caching
-  - [ ] Project specific gem and database caching
-  - [ ] Remote caching
 - Configuration
   - [x] Project configuration
   - [x] Global configuration fallback (use for default values)
   - [ ] Autodetection for various dependencies
 - Services
   - [ ] Generic service support (run any docker image, but no envs)
+
+**High level roadmap: What we need to replace our current internal tools**
+- Caching
+  - [ ] Project specific gem and database caching
+  - [ ] Remote caching
 
 **High level roadmap: 1.0: public release**
 - [ ] Full plugin support.
