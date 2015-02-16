@@ -1,7 +1,6 @@
 class TestEnvironmentVariables < MTest::Unit::TestCase
   def test_setting_envs_from_used_dependencies
     envs_at_login = {
-      "FOO" => "set-at-login",
       "BAR" => "set-at-login",
     }
 
@@ -12,7 +11,6 @@ class TestEnvironmentVariables < MTest::Unit::TestCase
     envs.write_to(output)
 
     assert_include output.lines, 'export BAR="set-by-dependency"'
-    assert_include output.lines, 'export FOO="set-at-login"'
   end
 
   def test_cleaning_out_unused_envs_set_by_dependencies
@@ -25,36 +23,27 @@ class TestEnvironmentVariables < MTest::Unit::TestCase
     output = TestOutput.new
     envs.write_to(output)
 
+    assert output.lines.join.include?("export ENV_FROM_USED_DEPENDENCY")
+    assert !output.lines.join.include?("export ENV_FROM_UNUSED_DEPENDENCY")
     assert_include output.lines, 'unset ENV_FROM_UNUSED_DEPENDENCY'
     assert_include output.lines, 'export ENV_FROM_USED_DEPENDENCY="set-by-dependency"'
   end
 
-  def test_not_clearing_out_unknown_envs
-    ENV["UNKNOWN_ENV"] = "set"
+  def test_ignoring_unknown_envs
+    envs_at_login = {
+      "FOO" => "set-at-login",
+      "BAR" => "set-at-login",
+    }
 
-    used_dependency = UsedDependency.new
-    unused_dependency = UnusedDependency.new
-    envs = EnvironmentVariables.new([ used_dependency, unused_dependency ], {})
-
-    output = TestOutput.new
-    envs.write_to(output)
-
-    assert_not_include output.lines, 'unset UNKNOWN_ENV'
-  end
-
-  def test_does_not_clear_read_only_envs
-    ENV["ENV_FROM_UNUSED_DEPENDENCY"] = "set-after-login"
-    ENV["_"] = "set-after-login"
-
-    used_dependency = UsedDependency.new
-    unused_dependency = UnusedDependency.new
-    envs = EnvironmentVariables.new([ used_dependency, unused_dependency ], {})
+    dependency = UsedDependency.new
+    envs = EnvironmentVariables.new([ dependency ], envs_at_login)
 
     output = TestOutput.new
     envs.write_to(output)
 
-    assert_include output.lines, 'unset ENV_FROM_UNUSED_DEPENDENCY'
-    assert_not_include output.lines, 'unset _'
+    assert_include output.lines, 'export BAR="set-by-dependency"'
+    assert output.lines.join.include?("BAR")
+    assert !output.lines.join.include?("FOO")
   end
 
   def test_does_not_modify_the_original_hash
@@ -69,22 +58,6 @@ class TestEnvironmentVariables < MTest::Unit::TestCase
     envs.write_to(output)
 
     assert_equal envs_at_login["BAR"], "set-at-login"
-  end
-
-  def test_does_not_set_read_only_envs
-    envs_at_login = {
-      "FOO" => "set-at-login",
-      "_" => "set-at-login",
-    }
-
-    dependency = UsedDependency.new
-    envs = EnvironmentVariables.new([ dependency ], envs_at_login)
-
-    output = TestOutput.new
-    envs.write_to(output)
-
-    assert_not_include output.lines, 'export _="set-at-login"'
-    assert_include output.lines, 'export FOO="set-at-login"'
   end
 
   def test_keeps_changes_to_path_that_we_did_not_make
