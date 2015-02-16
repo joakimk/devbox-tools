@@ -20,8 +20,8 @@
   - [ ] Project specific gem and database caching
   - [ ] Remote caching
 - Configuration
-  - [ ] Project configuration
-  - [ ] Global configuration fallback (use for default values)
+  - [x] Project configuration
+  - [x] Global configuration fallback (use for default values)
   - [ ] Autodetection for various dependencies
 - Services
   - [ ] Generic service support (run any docker image, but no envs)
@@ -37,8 +37,11 @@
 
 **Screenshot: installing dependencies and restoring from cache**
 
-![](https://s3.amazonaws.com/f.cl.ly/items/3Z193D3v0J302x051d42/Screen%20Shot%202015-02-11%20at%2022.09.54.png)
+![](https://s3.amazonaws.com/f.cl.ly/items/2T3c0y270p2E1i2r0u0j/Screen%20Shot%202015-02-16%20at%2022.11.02.png)
 
+**Screenshot: configuration**
+
+![](https://s3.amazonaws.com/f.cl.ly/items/210D391o3w0S0z2A2a3W/Screen%20Shot%202015-02-16%20at%2022.14.31.png)
 
 ## Actual readme below...
 
