@@ -40,39 +40,39 @@ class TestSoftwareDependencyManagement < MTest::Unit::TestCase
   def test_two_projects_using_the_same_dependency_only_installs_once
     shell "echo '1.2.3' > /tmp/test_project/.some_file_with_a_version"
     output = shell "cd /tmp/test_project && dev"
-    assert_include output, "installing"
+    assert_include output, "installing test_software_dependency..."
 
     shell "echo '1.2.3' > /tmp/other/test_project/.some_file_with_a_version"
     output = shell "cd /tmp/other/test_project && dev"
-    assert_not_include output, "installing"
+    assert_not_include output, "installing test_software_dependency..."
   end
 
   def test_two_versions_of_the_same_software_can_be_installed
     shell "echo '1.2.1' > /tmp/test_project/.some_file_with_a_version"
     output = shell "cd /tmp/test_project && dev"
-    assert_include output, "installing"
+    assert_include output, "installing test_software_dependency..."
 
     shell "echo '1.2.5' > /tmp/other/test_project/.some_file_with_a_version"
     output = shell "cd /tmp/other/test_project && dev"
-    assert_include output, "installing"
+    assert_include output, "installing test_software_dependency..."
   end
 
   def test_reinstalling_will_use_cached_version
     shell "echo '1.2.3' > /tmp/test_project/.some_file_with_a_version"
 
     output = shell "cd /tmp/test_project && dev"
-    assert_include output, "installing"
+    assert_include output, "installing test_software_dependency..."
     assert_include output, "building cache"
 
     system("rm -rf #{Devbox.software_dependencies_root}")
 
     output = shell "cd /tmp/test_project && dev"
     assert_include output, "restoring cache"
-    assert_not_include output, "installing"
+    assert_not_include output, "installing test_software_dependency..."
 
     # do nothing when already installed
     output = shell "cd /tmp/test_project && dev"
     assert_not_include output, "cache"
-    assert_not_include output, "installing"
+    assert_not_include output, "installing test_software_dependency..."
   end
 end
