@@ -52,11 +52,11 @@ devbox-tools is a toolset for installing and updating development dependencies w
 
 The idea is that you log in to the VM, enter a project, and type "dev" to install everything the project needs. The dependencies and their versions can often be autodetected but can also be configured and versioned within each project.
 
-No chef of puppet needed. The project defines it's environment instead of the other way around.
+No chef of puppet needed. The project defines its environment instead of the other way around.
 
 Besides the automation, one of the goals with this tool is to be able to develop many projects within a single VM. This might seem a bit counterintuitive given that vagrant is meant to make it easy to have one VM for each project. But what if you don't need that much isolation for every project?
 
-At [dev.auctionet.com](http://dev.auctionet.com/) we've discovered that using a tool like this we can develop all our projects within a single VM. This makes both switching between projects and starting new projects much simpler.
+At [auctionet](http://dev.auctionet.com/) we've discovered that using a tool like this we can develop all our projects within a single VM. This makes both switching between projects and starting new projects much simpler.
 
 ### Services
 
