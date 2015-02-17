@@ -66,7 +66,7 @@ Some of these services have special support though service plugins that adds env
 
 ### This is a tool for development environments
 
-Many ideas around automating development environments is about making them look as much as production as possible. This tool was developed for apps where that integration can safely be done in CI or where it isn't as important, like when using services like Heroku or CircleCI.
+Many ideas around automating development environments is about making them look as much as production as possible. This tool was developed for apps where that integration can safely be done in CI or where it isn't as important, like when deploying to Heroku.
 
 ### Setting up your devbox repo
 
@@ -203,10 +203,10 @@ Change things, run tests, and send a pull request.
 
 But before you do, consider making the change into a plugin. Most of devbox-tools is implemented using it's own plugin system. See the above plugin section.
 
-    ./test up
-    ./test test
-    ./test ssh # optional, to debug or run tests quicker with 'dev test'
-    ./test destroy
+    ./testvm up
+    ./testvm test
+    ./testvm ssh # optional, to debug or run tests quicker with 'dev test'
+    ./testvm destroy
 
 ### What is mruby and...
 
