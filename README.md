@@ -22,7 +22,7 @@
   - [x] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
   - [ ] Plugins for all things our projects depend upon
 - Services
-  - [ ] Generic service support (run any docker image, but no envs)
+  - [ ] Generic service support **Partially done**
 
 **High level roadmap: What we need to replace our current internal tools**
 - Caching
