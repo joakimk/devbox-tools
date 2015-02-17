@@ -105,9 +105,9 @@ Example for a ruby project.
     cd /path/to/project
 
     dev
-    >> Checking dependency ruby: 2.2.0 installed (autodetected).
-    >> Checking dependency bundler: 1.7.12 installed (devbox-tools default).
-    >> Checking dependency postgres: postgres:9.2 (configured in project).
+    >> Checking ruby: 2.2.0 installed (autodetected).
+    >> Checking bundler: 1.7.12 installed (devbox-tools default).
+    >> Checking postgres: postgres:9.2 (configured in project).
     >> Starting services.... done.
     >> Development environment ready.
 
@@ -164,14 +164,14 @@ Setting OFFLINE=true will make devbox-tools attempt to not use an internet conne
     # and you're on a train with a bad connection, so you opt for using OFFLINE=true...
 
     OFFLINE=true dev
-    >> Checking dependency ruby: 2.2.0 unavailable (autodetected).
+    >> Checking ruby: 2.2.0 unavailable (autodetected).
     >> Development environment could not be setup.
 
     # You revert to an older ruby version in your repo (e.g. in Gemfile or .rvmrc)...
 
     OFFLINE=true dev
-    >> Checking dependency ruby: 2.1.0 installed (autodetected).
-    >> Checking dependency postgres: postgres:9.2 (configured in project).
+    >> Checking ruby: 2.1.0 installed (autodetected).
+    >> Checking postgres: postgres:9.2 (configured in project).
     >> Starting services.... done.
     >> Development environment ready.
 
