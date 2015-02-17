@@ -23,7 +23,7 @@ class ServiceDependency < Dependency
   def start(logger)
     return if running?
 
-    logger.detail "Starting #{name}"
+    logger.detail "Starting #{display_name}"
     remove_previous_container
     docker "run --detach --name #{docker_name} #{docker_image}"
   end
@@ -31,7 +31,7 @@ class ServiceDependency < Dependency
   def stop(logger)
     return unless running?
 
-    logger.detail "Stopping #{name}"
+    logger.detail "Stopping #{display_name}"
     docker "stop #{docker_name}"
   end
 
@@ -83,6 +83,6 @@ end
 
 config = Config.load
 config.fetch(:services, []).each do |name, options|
-  dependency = ServiceDependency.new(name, options)
+  dependency = ServiceDependency.new(name.to_s, options)
   DependencyRegistry.register(dependency)
 end

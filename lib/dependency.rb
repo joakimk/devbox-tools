@@ -3,6 +3,10 @@ class Dependency
     raise "implement name"
   end
 
+  def display_name
+    name.gsub("_", " ")
+  end
+
   def environment_variables(previous_envs)
     previous_envs
   end

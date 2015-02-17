@@ -23,7 +23,7 @@ class BootCommand < Command
     prepare_directories
 
     dependencies.each do |dependency|
-      log "Checking #{dependency.name}" do
+      log "Checking #{dependency.display_name}" do
         install_dependency(dependency)
         dependency.status
       end

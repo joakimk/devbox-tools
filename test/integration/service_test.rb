@@ -15,36 +15,36 @@ class TestService < MTest::Unit::TestCase
 
   def test_can_be_started_and_stopped
     output = shell "cd #{project_path} && dev"
-    assert_include output, "Starting test_redis"
+    assert_include output, "Starting test redis"
 
     output = shell "cd #{project_path} && dev stop"
-    assert_include output, "Stopping test_redis"
+    assert_include output, "Stopping test redis"
   end
 
   def test_does_not_start_when_already_running
     output = shell "cd #{project_path} && dev"
-    assert_include output, "Starting test_redis"
+    assert_include output, "Starting test redis"
 
     sleep 0.5
 
     output = shell "cd #{project_path} && dev"
-    assert_not_include output, "Starting test_redis"
+    assert_not_include output, "Starting test redis"
 
     output = shell "cd #{project_path} && dev stop"
-    assert_include output, "Stopping test_redis"
+    assert_include output, "Stopping test redis"
   end
 
   def test_does_not_stop_when_already_stopped
     output = shell "cd #{project_path} && dev"
-    assert_include output, "Starting test_redis"
+    assert_include output, "Starting test redis"
 
     output = shell "cd #{project_path} && dev stop"
-    assert_include output, "Stopping test_redis"
+    assert_include output, "Stopping test redis"
 
     sleep 0.5
 
     output = shell "cd #{project_path} && dev stop"
-    assert_not_include output, "Stopping test_redis"
+    assert_not_include output, "Stopping test redis"
   end
 
   #def test_can_communicate_with_the_service

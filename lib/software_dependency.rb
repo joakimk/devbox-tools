@@ -29,7 +29,7 @@ class SoftwareDependency < Dependency
     end
 
     unless installed?
-      logger.detail("installing #{name}...")
+      logger.detail("installing #{display_name}...")
       build_and_install
     end
   end
