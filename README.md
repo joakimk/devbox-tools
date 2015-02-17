@@ -48,9 +48,11 @@
 
 ## Actual readme below...
 
-devbox-tools is a pluggable toolset for [Vagrant](https://www.vagrantup.com/) VMs which installs and updates dependencies on a per-project basis in an automated way and with as little configuration as possible.
+devbox-tools is a toolset for [Vagrant](https://www.vagrantup.com/) VMs which installs and updates dependencies on a per-project basis with as little configuration as possible.
 
-In the ideal case, you simply enter a project and type "dev". Everything needed is autodetected and installed.
+In the ideal case, you simply enter a project and type "dev" and everything needed is autodetected and installed.
+
+No chef of puppet needed. The project defines it's environment instead of the other way around.
 
 One of the primary goals with this tool is to be able to develop many projects within a single VM. This might seem a bit counterintuitive given that vagrant is meant to make it easy to have one VM for each project. But what if you don't need that much isolation for every project?
 
