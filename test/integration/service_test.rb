@@ -34,6 +34,19 @@ class TestService < MTest::Unit::TestCase
     assert_include output, "Stopping test_redis"
   end
 
+  def test_does_not_stop_when_already_stopped
+    output = shell "cd #{project_path} && dev"
+    assert_include output, "Starting test_redis"
+
+    output = shell "cd #{project_path} && dev stop"
+    assert_include output, "Stopping test_redis"
+
+    sleep 0.5
+
+    output = shell "cd #{project_path} && dev stop"
+    assert_not_include output, "Stopping test_redis"
+  end
+
   #def test_can_communicate_with_the_service
   # use envs, e.g. TEST_REDIS_PORT
 

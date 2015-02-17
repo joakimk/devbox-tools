@@ -29,6 +29,8 @@ class ServiceDependency < Dependency
   end
 
   def stop(logger)
+    return unless running?
+
     logger.detail "Stopping #{name}"
     docker "stop #{docker_name}"
   end
