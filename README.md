@@ -64,6 +64,10 @@ This tool uses [docker](https://www.docker.com/) to run services like postgres o
 
 Some of these services have special support though service plugins that adds environment variables you can use to configure projects. As far as possible these variables use standard names like REDIS\_URL.
 
+### This is a tool for development environments
+
+Many ideas around automating development environments is about making them look as much as production as possible. This tool was developed for apps where that integration can safely be done in CI or where it isn't as important, like when using services like Heroku or CircleCI.
+
 ### Setting up your devbox repo
 
 Get [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/), then follow the instructions below.
