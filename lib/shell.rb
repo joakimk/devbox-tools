@@ -1,5 +1,7 @@
 class Shell
-  def self.run(command)
+  def self.run(command, options = {})
+    may_fail = options.fetch(:may_fail, false)
+
     command_file_path = "/tmp/command-#{Digest::MD5.hexdigest(command)}.sh"
 
     # get around escaping issues
@@ -18,7 +20,13 @@ class Shell
       "sh #{command_file_path}" :
       "sh #{command_file_path} 2>&1 > /dev/null"
 
-    system(command) || raise("Failed to command: #{command}")
+    success = system(command)
+
+    if !success && !may_fail
+      raise("Failed to command: #{command}")
+    end
+
     system("rm #{command_file_path}") || exit(1)
+    success
   end
 end

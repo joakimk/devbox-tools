@@ -38,10 +38,6 @@ class SoftwareDependency < Dependency
     Shell.run("rm -rf #{install_prefix}")
   end
 
-  def start
-    # no-op
-  end
-
   def environment_variables(envs)
     envs["PATH"] = "#{install_prefix}/bin:#{envs["PATH"]}"
     envs

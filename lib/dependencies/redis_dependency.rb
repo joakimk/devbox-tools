@@ -16,7 +16,7 @@ class RedisDependency < Dependency
     false # todo
   end
 
-  def start
+  def start(logger)
     # todo
   end
 

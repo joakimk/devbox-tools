@@ -12,12 +12,11 @@ class Dependency
   end
 
   def config
-    config_path = File.join(Devbox.project_root, "devbox.yml")
+    config = Config.load
 
-    if File.exists?(config_path)
-      config_data = YAML.load_file(config_path).symbolize_keys
-      custom = config_data.fetch(:dependencies).fetch(name.to_sym, {})
-      default_config.merge(custom)
+    if config[:dependencies]
+      dependency_config = config.fetch(:dependencies).fetch(name.to_sym, {})
+      default_config.merge(dependency_config)
     else
       default_config
     end
@@ -53,7 +52,11 @@ class Dependency
     "done"
   end
 
-  def start
+  def start(logger)
+    # do nothing by default
+  end
+
+  def stop(logger)
     # do nothing by default
   end
 

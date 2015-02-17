@@ -3,11 +3,23 @@
 class BootCommand < Command
   def options
     {
-      nil => "Get the project ready to go."
+      nil => "Get the project ready to go.",
+      "stop" => "Stop services.",
     }
   end
 
-  def run(_option, _parameters)
+  def run(option, _parameters)
+    case option
+    when nil
+      boot
+    when "stop"
+      stop
+    end
+  end
+
+  private
+
+  def boot
     prepare_directories
 
     dependencies.each do |dependency|
@@ -18,14 +30,23 @@ class BootCommand < Command
     end
 
     log "Starting services" do
-      dependencies.each(&:start)
+      dependencies.each do |dependency|
+        dependency.start(logger)
+      end
       nil
     end
 
     log "Development environment ready"
   end
 
-  private
+  def stop
+    log "Stopping services" do
+      dependencies.each do |dependency|
+        dependency.stop(logger)
+      end
+      nil
+    end
+  end
 
   def prepare_directories
     prepare_directory(Devbox.data_root)

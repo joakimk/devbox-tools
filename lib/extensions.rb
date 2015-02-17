@@ -28,3 +28,9 @@ class Hash
     }
   end
 end
+
+module Kernel
+  def sleep(seconds)
+    system("sleep #{seconds}")
+  end
+end
