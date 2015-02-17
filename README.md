@@ -2,6 +2,14 @@
 
 **Status**: Still missing a few features before I can use it myself.
 
+**Screenshot: checking installed dependencies and starting a docker service**
+
+![](https://s3.amazonaws.com/f.cl.ly/items/0r2v2V23231x2R0s0v3v/Image%202015-02-17%20at%2011.30.01%20pm.png)
+
+**Screenshot: configuration**
+
+![](https://s3.amazonaws.com/f.cl.ly/items/210D391o3w0S0z2A2a3W/Screen%20Shot%202015-02-16%20at%2022.14.31.png)
+
 **High level roadmap: What we need to use this at work**
 - [x] Environment scoping
 - [x] Installing software dependencies
@@ -37,14 +45,6 @@
 - [ ] Service plugins for redis and postgres.
 - [ ] Most things should work out of the box for a classic rails app.
 - More things.
-
-**Screenshot: checking installed dependencies and starting a docker service**
-
-![](https://s3.amazonaws.com/f.cl.ly/items/0r2v2V23231x2R0s0v3v/Image%202015-02-17%20at%2011.30.01%20pm.png)
-
-**Screenshot: configuration**
-
-![](https://s3.amazonaws.com/f.cl.ly/items/210D391o3w0S0z2A2a3W/Screen%20Shot%202015-02-16%20at%2022.14.31.png)
 
 ## Actual readme below...
 
