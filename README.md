@@ -38,9 +38,9 @@
 - [ ] Most things should work out of the box for a classic rails app.
 - More things.
 
-**Screenshot: installing dependencies and restoring from cache**
+**Screenshot: checking installed dependencies and starting a docker service**
 
-![](https://s3.amazonaws.com/f.cl.ly/items/2T3c0y270p2E1i2r0u0j/Screen%20Shot%202015-02-16%20at%2022.11.02.png)
+![](https://s3.amazonaws.com/f.cl.ly/items/0r2v2V23231x2R0s0v3v/Image%202015-02-17%20at%2011.30.01%20pm.png)
 
 **Screenshot: configuration**
 
