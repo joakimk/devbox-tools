@@ -31,6 +31,8 @@
   - [ ] Plugins for all things our projects depend upon
 - Services
   - [ ] Generic service support **Partially done**
+- OS
+  - [ ] Rebase on ubuntu 14.04 so we don't need to change the default base os for a long time
 
 **High level roadmap: What we need to replace our current internal tools**
 - Caching
