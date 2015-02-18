@@ -2,9 +2,9 @@
 
 **Status**: Still missing a few features before I can use it myself.
 
-**Screenshot: checking installed dependencies and starting a docker service**
+**Screenshot: communicating with a docker service**
 
-![](https://s3.amazonaws.com/f.cl.ly/items/0r2v2V23231x2R0s0v3v/Image%202015-02-17%20at%2011.30.01%20pm.png)
+![](https://pbs.twimg.com/media/B-Jo06oIgAAkkZE.png)
 
 **Screenshot: configuration**
 
