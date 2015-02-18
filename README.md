@@ -40,13 +40,23 @@
   - [ ] Remote caching
 
 **High level roadmap: 1.0: public release**
-- [ ] Full plugin support.
-  - [x] Flatter directory structure plugins/python/python\_dependency.rb instead of plugins/python/dependencies/python\_dependency.rb.
-- [ ] More consitent and very stable APIs. Follow semver from 1.0.
-- [ ] "dev update" should probably require version instead of getting latest master.
-- [ ] Service plugins for redis and postgres.
-- [ ] Most things should work out of the box for a classic rails app.
-- More things.
+
+Overall goal: Support most ruby and elixir apps with as little configuration as possible.
+
+- CLI
+  - [ ] Prefix tools commands. "dev tools:update", etc.
+  - [ ] "dev update" should probably require version instead of getting latest master.
+- Services
+  - [ ] Service plugins for redis and postgres.
+- Configuration
+  - [ ] Be able to have config on more levels (devbox root, home?)
+  - [ ] Be able to disable defaults
+- More things
+  - [ ] Full plugin support.
+    - [x] Flatter directory structure plugins/python/python\_dependency.rb instead of plugins/python/dependencies/python\_dependency.rb.
+  - [ ] More consitent and very stable APIs. Follow semver from 1.0.
+  - [ ] Most things should work out of the box for a classic rails app.
+  - [ ] TODO: this list is far from complete
 
 ## Actual readme below...
 
