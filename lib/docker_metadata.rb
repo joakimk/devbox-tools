@@ -1,0 +1,34 @@
+class DockerMetadata
+  def initialize(name, image_name)
+    @name, @image_name = name, image_name
+  end
+
+  def internal_port
+    data["Config"]["ExposedPorts"].keys.first.split("/").first
+  end
+
+  def external_port
+    str = exec_command("sudo docker port #{name}")
+    str.include?("tcp") ? str.split(":").last.chomp : nil
+  end
+
+  def volumes
+    raise 'todo: implement'
+    #p data["Config"]["ExposedPorts"].keys
+  end
+
+  private
+
+  attr_reader :name, :image_name
+
+  def data
+    @data ||= begin
+      json = exec_command("sudo docker inspect #{image_name}")
+      data = JSON.parse(json)
+
+      # They wrap the data in an array, probably so that you can query for more than one thing
+      # at a time.
+      data.first
+    end
+  end
+end

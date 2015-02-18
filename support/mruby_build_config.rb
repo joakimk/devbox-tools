@@ -33,6 +33,9 @@ MRuby::Build.new do |conf|
   # Add YAML
   conf.gem :github => "AndrewBelt/mruby-yaml", :checksum_hash => "33887291adb31977ced2be7f56bf15f74816df7a"
 
+  # Add JSON
+  conf.gem :github => "iij/mruby-iijson", :checksum_hash => "e5c0c4594d2d289f74cfd6038b54f701f8e38bba"
+
   # Adds default gems, seems like a good idea.
   conf.gembox 'default'
 end

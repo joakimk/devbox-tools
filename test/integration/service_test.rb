@@ -47,8 +47,14 @@ class TestService < MTest::Unit::TestCase
     assert_not_include output, "Stopping test redis"
   end
 
-  #def test_can_communicate_with_the_service
-  # use envs, e.g. TEST_REDIS_PORT
+  def test_can_communicate_with_the_service
+    shell "cd #{project_path} && dev"
+
+    shell %{cd #{project_path} && echo "SET X 42" | nc localhost $TEST_REDIS_PORT}
+    result = shell %{cd #{project_path} && echo "GET X" | nc localhost $TEST_REDIS_PORT}
+
+    assert_equal "$2\r\n42\r\n", result
+  end
 
   #def test_can_persist_data_between_service_restarts
 

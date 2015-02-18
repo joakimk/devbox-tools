@@ -1,3 +1,5 @@
+require "docker_metadata"
+
 class ServiceDependency < Dependency
   def initialize(name, options)
     @name, @options = name, options
@@ -25,7 +27,7 @@ class ServiceDependency < Dependency
 
     logger.detail "Starting #{display_name}"
     remove_previous_container
-    docker "run --detach --name #{docker_name} #{docker_image}"
+    docker "run --detach --name #{docker_name} --publish #{docker_metadata.internal_port} #{docker_image}"
   end
 
   def stop(logger)
@@ -42,6 +44,15 @@ class ServiceDependency < Dependency
   end
 
   private
+
+  def environment_variables(envs)
+    envs["#{name.upcase}_PORT"] = docker_metadata.external_port
+    envs
+  end
+
+  def docker_metadata
+    DockerMetadata.new(docker_name, docker_image)
+  end
 
   # If any of the options changes, we want to register that under "docker_name"
   # instead of the previous options.
