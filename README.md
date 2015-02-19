@@ -26,9 +26,11 @@ When logged in:
 
 ### Services
 
-This tool uses [docker](https://www.docker.com/) to run services like postgres or redis. It can run any docker image and you can find docker images on [docker hub](https://registry.hub.docker.com/) or even [make your own](https://docs.docker.com/reference/builder/).
+This tool uses [docker](https://www.docker.com/) to run services like postgres or redis. It can run almost any docker image and you can find docker images on [docker hub](https://registry.hub.docker.com/) or even [make your own](https://docs.docker.com/reference/builder/).
 
-Some of these services have special support though service plugins that adds environment variables you can use to configure projects. As far as possible these variables use standard names like REDIS\_URL.
+All services set a port environment variable that you can use to configure projects. If you have a service named "redis" you will also have an environment variable named "REDIS_PORT".
+
+Some of these services have specific plugins that adds even more environment variables (e.g. REDIS_URL, ..).
 
 ### Made specifically for development environments
 
