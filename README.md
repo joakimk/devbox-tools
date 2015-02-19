@@ -176,7 +176,7 @@ So in practice this means that devbox-tools may change envs like GEM\_PATH but w
 
 #### Optimizations
 
-devbox-tools will cache some information, like ports for docker services, for later use. It does this mostly so that changing envs when navigating the filesystem remains so fast that you don't notice it (below ~200ms).
+devbox-tools will cache some information, like ports for docker services, for later use. It does this mostly so that changing envs when navigating the filesystem remains fast enough to not be noticeable (below ~200ms).
 
 Normally this should not be a problem, but if something behaves a bit odd, then try "dev stop" and "dev" (and if you like: fix the bug or report it).
 
