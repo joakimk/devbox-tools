@@ -36,17 +36,17 @@ While you don't get an environment that is an exact replica of production, you d
 
 It's recommended to combine this with a CI and/or staging environment that is more production-like to get the best experience and catch integration issues before they end up in production.
 
-For users of heroku this tool should work perfectly since the tool uses the same conventions where possible.
+For users of heroku this tool this tool should feel familiar as it uses similar conventions.
 
 ### Many projects in the same VM
 
 One of the main goals with this tool is to be able to develop many projects within the same VM. This might seem a bit counterintuitive given that vagrant is meant to make it easy to have one VM for each project. But what if you don't need that much isolation for every project?
 
-We've found this very useful at [auctionet](http://dev.auctionet.com/). We reduced about 5 VMs down to one. Switching between projects is now much more conventient.
+We've found this feature very useful at [auctionet](http://dev.auctionet.com/). We reduced about 5 VMs down to one. Switching between projects is now much more conventient.
 
-### Semver
+### Reliability
 
-Having a stable development environment is just as important as having one with all the latest tools. This tool follows [semver](http://semver.org/) so you can know if a release breaks any of the APIs or merely just adds new features.
+Having a stable development environment is just as important as having one with all the latest tools. This tool's versioning follows [semver](http://semver.org/) and is [well tested](test/integration/software_dependency_managment_test.rb).
 
 ### Plugins
 
