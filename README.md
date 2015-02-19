@@ -66,12 +66,6 @@ The idea is that you log in to the VM, enter a project, and type "dev" to instal
 
 No chef of puppet needed. The project defines its environment instead of the other way around.
 
-### Many projects in the same VM
-
-One of the main goals with this tool is to be able to develop many projects within the same VM. This might seem a bit counterintuitive given that vagrant is meant to make it easy to have one VM for each project. But what if you don't need that much isolation for every project?
-
-We've found this very useful at [auctionet](http://dev.auctionet.com/). We reduced about 5 VMs down to one. Switching between projects is now much more conventient.
-
 ### Services
 
 This tool uses [docker](https://www.docker.com/) to run services like postgres or redis. It can run any docker image and you can find docker images on [docker hub](https://registry.hub.docker.com/) or even [make your own](https://docs.docker.com/reference/builder/).
@@ -85,6 +79,12 @@ While you don't get an environment that is an exact replica of production, you d
 It's recommended to combine this with a CI and/or staging environment that is more production-like to get the best experience and catch integration issues before they end up in production.
 
 For users of heroku this tool should work perfectly since the tool uses the same conventions where possible.
+
+### Many projects in the same VM
+
+One of the main goals with this tool is to be able to develop many projects within the same VM. This might seem a bit counterintuitive given that vagrant is meant to make it easy to have one VM for each project. But what if you don't need that much isolation for every project?
+
+We've found this very useful at [auctionet](http://dev.auctionet.com/). We reduced about 5 VMs down to one. Switching between projects is now much more conventient.
 
 ### Setting up your devbox repo
 
