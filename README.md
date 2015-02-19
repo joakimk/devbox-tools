@@ -76,11 +76,13 @@ This tool uses [docker](https://www.docker.com/) to run services like postgres o
 
 Some of these services have special support though service plugins that adds environment variables you can use to configure projects. As far as possible these variables use standard names like REDIS\_URL.
 
-### This is a tool for development environments
+### Made specifically for development environments
 
-devbox-tools prioritizes easy setup for development environments over exactly replicating production environments. While both are worthy goals, they sometimes do not mix. I'd recommend combining this with a CI and/or staging environment that is more production like to get the best experience.
+While you don't get an environment that is an exact replica of production, you do get an environment that is both easy to set up and the same for every developer. You also get an environment where changing software and service versions is just a single configuration change that can be applied right away using "dev" and committed to your project.
 
-For users of heroku this tool should work perfectly. It uses the same environment variable names when possible, supports the same Procfile format and so on.
+It's recommended to combine this with a CI and/or staging environment that is more production-like to get the best experience and catch integration issues before they end up in production.
+
+For users of heroku this tool should work perfectly since the tool uses the same conventions where possible.
 
 ### Setting up your devbox repo
 
