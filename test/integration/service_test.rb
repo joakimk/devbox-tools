@@ -56,7 +56,18 @@ class TestService < MTest::Unit::TestCase
     assert_equal "$2\r\n42\r\n", result
   end
 
-  #def test_can_persist_data_between_service_restarts
+  def test_can_persist_data_between_service_restarts
+    shell "cd #{project_path} && dev"
+
+    shell %{cd #{project_path} && echo "SET X 42" | nc localhost $TEST_REDIS_PORT}
+
+    # Restart
+    shell "cd #{project_path} && dev stop && dev"
+
+    result = shell %{cd #{project_path} && echo "GET X" | nc localhost $TEST_REDIS_PORT}
+
+    assert_equal "$2\r\n42\r\n", result
+  end
 
   def teardown
     shell "cd #{project_path} && dev stop"

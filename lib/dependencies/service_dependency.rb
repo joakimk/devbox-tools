@@ -28,7 +28,8 @@ class ServiceDependency < Dependency
 
     logger.detail "Starting #{display_name}"
     remove_previous_container
-    docker "run --detach --name #{docker_name} --publish #{docker_metadata.internal_port} #{docker_image}"
+    volume_mounts = docker_metadata.volumes.map { |path| "-v #{data_root}/#{path}:#{path}" }
+    docker "run --detach --name #{docker_name} --publish #{docker_metadata.internal_port} #{volume_mounts.join(" ")} #{docker_image}"
     devbox_metadata.set("external_port", docker_metadata.external_port)
   end
 
@@ -93,6 +94,10 @@ class ServiceDependency < Dependency
 
   def docker_name
     [ Devbox.local_project_identifier, name ].join("-")
+  end
+
+  def data_root
+    File.join(Devbox.project_data_root, "services", name)
   end
 
   attr_reader :options

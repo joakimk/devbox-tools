@@ -13,8 +13,7 @@ class DockerMetadata
   end
 
   def volumes
-    raise 'todo: implement'
-    #p data["Config"]["ExposedPorts"].keys
+    data["Config"]["Volumes"].keys
   end
 
   private

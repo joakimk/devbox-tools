@@ -216,7 +216,7 @@ The mruby build configuration (and the "mrbgems" we build into it) is listed in 
   - [x] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
   - [ ] Plugins for all things our projects depend upon
 - Services
-  - [ ] Generic service support **Partially done**
+  - [x] Generic service support
 - OS
   - [ ] Rebase on ubuntu 14.04 so we don't need to change the default base os for a long time
 
