@@ -1,64 +1,6 @@
-# WIP: This is readme driven development in progress. They tool may not yet do what the readme says.
-
 **Status**: Still missing a few features before I can use it myself.
 
-**Screenshot: communicating with a docker service**
-
-![](https://pbs.twimg.com/media/B-Jo06oIgAAkkZE.png)
-
-**Screenshot: configuration**
-
-![](https://s3.amazonaws.com/f.cl.ly/items/210D391o3w0S0z2A2a3W/Screen%20Shot%202015-02-16%20at%2022.14.31.png)
-
-**High level roadmap: What we need to use this at work**
-- [x] Environment scoping
-- [x] Installing software dependencies
-- Plugin support
-  - [x] Very basic plugin support, be able to load /devbox/plugins
-- Shell
-  - [x] zsh support
-- VM
-  - [x] VM hostname "devbox"
-  - [x] Local username instead of "vagrant" (though not in the example Vagrantfile, OSX specific, etc.)
-- Caching
-  - [x] Local caching
-- Configuration
-  - [x] Project configuration
-  - [x] Global configuration fallback (use for default values)
-  - [ ] Autodetection for various dependencies
-- Plugins
-  - [x] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
-  - [ ] Plugins for all things our projects depend upon
-- Services
-  - [ ] Generic service support **Partially done**
-- OS
-  - [ ] Rebase on ubuntu 14.04 so we don't need to change the default base os for a long time
-
-**High level roadmap: What we need to replace our current internal tools**
-- Caching
-  - [ ] Project specific gem and database caching
-  - [ ] Remote caching
-
-**High level roadmap: 1.0: public release**
-
-Overall goal: Support most ruby and elixir apps with as little configuration as possible.
-
-- CLI
-  - [ ] Prefix tools commands. "dev tools:update", etc.
-  - [ ] "dev update" should probably require version instead of getting latest master.
-- Services
-  - [ ] Service plugins for redis and postgres.
-- Configuration
-  - [ ] Be able to have config on more levels (devbox root, home?)
-  - [ ] Be able to disable defaults
-- More things
-  - [ ] Full plugin support.
-    - [x] Flatter directory structure plugins/python/python\_dependency.rb instead of plugins/python/dependencies/python\_dependency.rb.
-  - [ ] More consitent and very stable APIs. Follow semver from 1.0.
-  - [ ] Most things should work out of the box for a classic rails app.
-  - [ ] TODO: this list is far from complete
-
-## Actual readme below...
+# WIP: This is readme driven development in progress. They tool may not yet do what the readme says.
 
 devbox-tools is a toolset for installing and updating development dependencies within [Vagrant](https://www.vagrantup.com/) VMs with as little configuration as possible.
 
@@ -247,6 +189,64 @@ But before you do, consider making the change into a plugin. Most of devbox-tool
 * It's fun to try out new things.
 
 The mruby build configuration (and the "mrbgems" we build into it) is listed in [support/mruby\_build\_config.rb](support/mruby_build_config.rb) and the version is set by [support/install\_dependencies](support/install_dependencies).
+
+### Status
+
+**Screenshot: communicating with a docker service**
+
+![](https://pbs.twimg.com/media/B-Jo06oIgAAkkZE.png)
+
+**Screenshot: configuration**
+
+![](https://s3.amazonaws.com/f.cl.ly/items/210D391o3w0S0z2A2a3W/Screen%20Shot%202015-02-16%20at%2022.14.31.png)
+
+**High level roadmap: What we need to use this at work**
+- [x] Environment scoping
+- [x] Installing software dependencies
+- Plugin support
+  - [x] Very basic plugin support, be able to load /devbox/plugins
+- Shell
+  - [x] zsh support
+- VM
+  - [x] VM hostname "devbox"
+  - [x] Local username instead of "vagrant" (though not in the example Vagrantfile, OSX specific, etc.)
+- Caching
+  - [x] Local caching
+- Configuration
+  - [x] Project configuration
+  - [x] Global configuration fallback (use for default values)
+  - [ ] Autodetection for various dependencies
+- Plugins
+  - [x] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
+  - [ ] Plugins for all things our projects depend upon
+- Services
+  - [ ] Generic service support **Partially done**
+- OS
+  - [ ] Rebase on ubuntu 14.04 so we don't need to change the default base os for a long time
+
+**High level roadmap: What we need to replace our current internal tools**
+- Caching
+  - [ ] Project specific gem and database caching
+  - [ ] Remote caching
+
+**High level roadmap: 1.0: public release**
+
+Overall goal: Support most ruby and elixir apps with as little configuration as possible.
+
+- CLI
+  - [ ] Prefix tools commands. "dev tools:update", etc.
+  - [ ] "dev update" should probably require version instead of getting latest master.
+- Services
+  - [ ] Service plugins for redis and postgres.
+- Configuration
+  - [ ] Be able to have config on more levels (devbox root, home?)
+  - [ ] Be able to disable defaults
+- More things
+  - [ ] Full plugin support.
+    - [x] Flatter directory structure plugins/python/python\_dependency.rb instead of plugins/python/dependencies/python\_dependency.rb.
+  - [ ] More consitent and very stable APIs. Follow semver from 1.0.
+  - [ ] Most things should work out of the box for a classic rails app.
+  - [ ] TODO: this list is far from complete
 
 ### Credits and license
 
