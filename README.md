@@ -66,9 +66,11 @@ The idea is that you log in to the VM, enter a project, and type "dev" to instal
 
 No chef of puppet needed. The project defines its environment instead of the other way around.
 
-Besides the automation, one of the goals with this tool is to be able to develop many projects within a single VM. This might seem a bit counterintuitive given that vagrant is meant to make it easy to have one VM for each project. But what if you don't need that much isolation for every project?
+### Many projects in the same VM
 
-At [auctionet](http://dev.auctionet.com/) we've discovered that using a tool like this we can develop all our projects within a single VM. This makes both switching between projects and starting new projects much simpler.
+One of the main goals with this tool is to be able to develop many projects within the same VM. This might seem a bit counterintuitive given that vagrant is meant to make it easy to have one VM for each project. But what if you don't need that much isolation for every project?
+
+We've found this very useful at [auctionet](http://dev.auctionet.com/). We reduced about 5 VMs down to one. Switching between projects is now much more conventient.
 
 ### Services
 
