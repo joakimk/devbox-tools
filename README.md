@@ -8,6 +8,22 @@ The idea is that you log in to the VM, enter a project, and type "dev" to instal
 
 No chef of puppet needed. The project defines its environment instead of the other way around.
 
+### Get started
+
+Set up your devbox repo:
+
+    mkdir devbox && cd devbox && git clone https://github.com/joakimk/devbox-tools.git && devbox-tools/bootstrap
+
+Then customize `Vagrantfile` and run (requires [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)).
+
+    vagrant up
+    vagrant ssh
+
+When logged in:
+
+    cd path/to/your/project
+    dev
+
 ### Services
 
 This tool uses [docker](https://www.docker.com/) to run services like postgres or redis. It can run any docker image and you can find docker images on [docker hub](https://registry.hub.docker.com/) or even [make your own](https://docs.docker.com/reference/builder/).
@@ -32,19 +48,9 @@ We've found this very useful at [auctionet](http://dev.auctionet.com/). We reduc
 
 Having a stable development environment is just as important as having one with all the latest tools. This tool follows [semver](http://semver.org/) so you can know if a release breaks any of the APIs or merely just adds new features.
 
-### Setting up your devbox repo
+### Plugins
 
-Get [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/), then follow the instructions below.
-
-Set up your devbox repo.
-
-    mkdir devbox && cd devbox && git clone https://github.com/joakimk/devbox-tools.git && devbox-tools/bootstrap
-
-Then customize `Vagrantfile` and run:
-
-    vagrant up
-
-When inside the VM, add the plugins you need.
+Example:
 
     dev plugins:list
     dev plugins:add https://github.com/joakimk/devbox-tools-ruby.git
