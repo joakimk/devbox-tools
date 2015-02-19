@@ -10,6 +10,7 @@ class ServiceDependency < Dependency
   def install(logger)
     logger.detail "Pulling docker image..."
     docker "pull #{docker_image}"
+    devbox_metadata.set("installed", true)
   end
 
   def status
@@ -19,7 +20,7 @@ class ServiceDependency < Dependency
   end
 
   def installed?
-    docker("images #{docker_image_name} | grep #{docker_image_version}", may_fail: true)
+    devbox_metadata.get("installed")
   end
 
   def start(logger)
@@ -28,6 +29,7 @@ class ServiceDependency < Dependency
     logger.detail "Starting #{display_name}"
     remove_previous_container
     docker "run --detach --name #{docker_name} --publish #{docker_metadata.internal_port} #{docker_image}"
+    devbox_metadata.set("external_port", docker_metadata.external_port)
   end
 
   def stop(logger)
@@ -46,8 +48,12 @@ class ServiceDependency < Dependency
   private
 
   def environment_variables(envs)
-    envs["#{name.upcase}_PORT"] = docker_metadata.external_port
+    envs["#{name.upcase}_PORT"] = devbox_metadata.get("external_port")
     envs
+  end
+
+  def devbox_metadata
+    Metadata.new(name)
   end
 
   def docker_metadata

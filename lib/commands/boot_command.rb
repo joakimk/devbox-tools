@@ -51,6 +51,7 @@ class BootCommand < Command
   def prepare_directories
     prepare_directory(Devbox.data_root)
     prepare_directory(Devbox.project_data_root)
+    prepare_directory(Devbox.metadata_path)
   end
 
   def install_dependency(dependency)
