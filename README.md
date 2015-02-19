@@ -1,4 +1,4 @@
-**Status**: Still missing a few features before I can use it myself.
+**Status**: Trying to use it for regular dev. Still missing some core features.
 
 # WIP: This is readme driven development in progress. They tool may not yet do what the readme says.
 
@@ -211,19 +211,21 @@ The mruby build configuration (and the "mrbgems" we build into it) is listed in 
 - Configuration
   - [x] Project configuration
   - [x] Global configuration fallback (use for default values)
-  - [ ] Autodetection for various dependencies
 - Plugins
   - [x] System dependencies (like regular ones but will be available in all projects, like a custom build of vim)
-  - [ ] Plugins for all things our projects depend upon
 - Services
   - [x] Generic service support
-- OS
-  - [ ] Rebase on ubuntu 14.04 so we don't need to change the default base os for a long time
 
 **High level roadmap: What we need to replace our current internal tools**
 - Caching
   - [ ] Project specific gem and database caching
   - [ ] Remote caching
+- Configuration
+  - [ ] Autodetection for various dependencies
+- Plugins
+  - [ ] Plugins for all things our projects depend upon
+- OS
+  - [ ] Rebase on ubuntu 14.04 so we don't need to change the default base os for a long time
 
 **High level roadmap: 1.0: public release**
 
