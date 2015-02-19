@@ -62,27 +62,7 @@ Plugins are added as git submodules in `plugins/`. You can add your own local pl
 
 ### Running the VM on other computers
 
-    git clone git@github.com:YOUR_ORG/devbox.git && cd devbox && vagrant up
-
-### Daily workflow
-
-Example for a ruby project.
-
-    vagrant up
-    vagrant ssh
-
-    # Inside the VM
-    cd /path/to/project
-
-    dev
-    >> Checking ruby: 2.2.0 installed (autodetected).
-    >> Checking bundler: 1.7.12 installed (devbox-tools default).
-    >> Checking postgres: postgres:9.2 (configured in project).
-    >> Starting services.... done.
-    >> Development environment ready.
-
-    rake spec
-    ...
+    git clone git@github.com:YOUR_ORG/devbox.git && cd devbox && vagrant up && vagrant ssh
 
 ### Less frequently used commands
 
