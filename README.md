@@ -74,7 +74,7 @@ Some of these services have special support though service plugins that adds env
 
 ### Made specifically for development environments
 
-While you don't get an environment that is an exact replica of production, you do get an environment that is both easy to set up and the same for every developer. You also get an environment where changing software and service versions is just a single configuration change that can be applied right away using "dev" and committed to your project.
+While you don't get an environment that is an exact replica of production, you do get an environment that is both easy to set up and the same for every developer. You get an environment where changing software and service versions is just a single configuration change that can be applied right away using "dev" and committed to your project.
 
 It's recommended to combine this with a CI and/or staging environment that is more production-like to get the best experience and catch integration issues before they end up in production.
 
