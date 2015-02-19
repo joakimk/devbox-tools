@@ -36,9 +36,9 @@ Some of these services have specific plugins that adds even more environment var
 
 Plugins are the way you extend devbox-tools. They let you add support for new dependencies (ex: mongodb, java, erlang, ...) by specifying how they are installed, how they affect the environment variables, how to start or stop them and so on.
 
-You can have local plugins that only you see or publish plugins for others to use.
+You can have local plugins that only you see, or publish plugins for others to use.
 
-More on plugins further down in this readme.
+You can find out more on plugins further down in this readme.
 
 ### Made specifically for development environments
 
