@@ -44,9 +44,9 @@ You can find out more on plugins further down in this readme.
 
 While you don't get an environment that is an exact replica of production, you do get an environment that is both easy to set up and the same for every developer. You also get an environment where changing software and service versions is just a single configuration change that can be applied right away using "dev" and committed to your project.
 
-It's recommended to combine this with a CI and/or staging environment that is more production-like to get the best experience and catch integration issues before they end up in production.
+It's recommended to combine this with a CI and/or staging environment that is more production-like to catch integration issues before they end up in production.
 
-For users of heroku this tool this tool should feel familiar as it uses similar conventions.
+For users of heroku this tool this tool should feel familiar as it uses many of the same conventions.
 
 ### Many projects in the same VM
 
