@@ -32,6 +32,14 @@ Every service adds an environment variable for the network port which you can us
 
 Some of these services have specific plugins that adds even more environment variables (e.g. REDIS_URL, ..).
 
+### Plugins
+
+Plugins are the main way you extend devbox-tools. They let you add support for new dependencies (ex: mongodb, java, erlang, ...) by specifying how they are installed, how they affect the environment variables, how to start or stop them and so on.
+
+You can have local plugins that only you see or publish plugins for others to use.
+
+More on plugins further down in this readme.
+
 ### Made specifically for development environments
 
 While you don't get an environment that is an exact replica of production, you do get an environment that is both easy to set up and the same for every developer. You also get an environment where changing software and service versions is just a single configuration change that can be applied right away using "dev" and committed to your project.
