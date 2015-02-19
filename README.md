@@ -78,7 +78,9 @@ Some of these services have special support though service plugins that adds env
 
 ### This is a tool for development environments
 
-Many ideas around automating development environments is about making them look as much as production as possible. This tool was developed for apps where that integration can safely be done in CI or where it isn't as important, like when deploying to Heroku.
+devbox-tools prioritizes easy setup for development environments over exactly replicating production environments. While both are worthy goals, they sometimes do not mix. I'd recommend combining this with a CI and/or staging environment that is more production like to get the best experience.
+
+For users of heroku this tool should work perfectly. It uses the same environment variable names when possible, supports the same Procfile format and so on.
 
 ### Setting up your devbox repo
 
