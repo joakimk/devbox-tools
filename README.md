@@ -14,7 +14,7 @@ Set up your devbox repo:
 
     mkdir devbox && cd devbox && git clone https://github.com/joakimk/devbox-tools.git && devbox-tools/bootstrap
 
-Then customize `Vagrantfile` and run (requires [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)).
+Then customize `Vagrantfile` and run: (this step requires [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)).
 
     vagrant up
     vagrant ssh
