@@ -86,6 +86,10 @@ One of the main goals with this tool is to be able to develop many projects with
 
 We've found this very useful at [auctionet](http://dev.auctionet.com/). We reduced about 5 VMs down to one. Switching between projects is now much more conventient.
 
+### Semver
+
+Having a stable development environment is just as important as having one with all the latest tools. This tool follows [semver](http://semver.org/) so you can know if a release breaks any of the APIs or merely just adds new features.
+
 ### Setting up your devbox repo
 
 Get [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/), then follow the instructions below.
