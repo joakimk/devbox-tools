@@ -68,9 +68,6 @@ class TestCase < MTest::Unit::TestCase
 
 end
 
-class TestCase < MTest::Unit::TestCase
-end
-
 # Load tests
 test_files = ARGV.select { |f| f.end_with?("_test.rb") }
 test_files.each do |path|
