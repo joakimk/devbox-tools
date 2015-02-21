@@ -39,8 +39,11 @@ class Devbox
 
   # An identifier of the project locally that is as unique as possible without
   # having to place a generated identifier within the project directory.
+  #
+  # Ideally it be only the project_name, but you might have the multiple
+  # projects with the same name in different places.
   def self.local_project_identifier(root = project_root)
-    Digest::MD5.hexdigest(root)
+    [ project_name(root), Digest::MD5.hexdigest(root) ].join("-")
   end
 
   def self.global_project_identifier
@@ -48,8 +51,8 @@ class Devbox
     GenerateGlobalProjectIdentifier.call(origin_url)
   end
 
-  def self.project_name
-    File.basename(project_root)
+  def self.project_name(root = project_root)
+    File.basename(root)
   end
 
   def self.project_root
