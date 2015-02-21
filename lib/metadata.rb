@@ -19,6 +19,11 @@ class Metadata
     File.exists?(path) && File.read(path).chomp
   end
 
+  def del(name)
+    path = build_path(name)
+    File.exists?(path) && Shell.run("rm #{path}")
+  end
+
   private
 
   def build_path(name)
