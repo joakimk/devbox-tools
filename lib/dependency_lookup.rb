@@ -25,7 +25,7 @@ class DependencyLookup
   def raise_if_missing(dependency, name)
     return dependency if dependency
 
-    raise "project dependencies depend on \"#{name}\" but there is no such dependency loaded"
+    raise "One or more project dependencies depend on \"#{name}\" but there is no such dependency used by this project.\n\nThis can be because there is no config to use it, that the version can not be detected or that a plugin for the dependency is not installed.\n\nAll available dependencies: #{@list.map(&:name).join(', ')}.\nAll dependencies used by this project: #{dependencies_used_by_project.map(&:name).join(', ')}"
   end
 
   def names_of_dependencies_of_other_dependencies
