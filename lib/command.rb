@@ -16,6 +16,6 @@ class Command
   end
 
   def logger
-    Logger.new
+    Devbox.logger
   end
 end

@@ -25,10 +25,7 @@ plugin_directories << "#{Devbox.root}/plugins"
 plugin_directories << "#{Devbox.tools_root}/lib"
 
 PluginFileFinder.new(plugin_directories).plugin_files.each do |plugin_path|
-  if Devbox.debug?
-    puts "Loading #{plugin_path}"
-  end
-
+  Devbox.logger.debug __FILE__, "Loading #{plugin_path}"
   require plugin_path
 end
 

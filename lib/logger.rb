@@ -24,6 +24,12 @@ class Logger
     puts "   " + text
   end
 
+  def debug(file, message)
+    return unless Devbox.debug?
+    local_path = file.gsub(Devbox.tools_root + "/", "")
+    puts "DEBUG: [#{local_path}] #{message}"
+  end
+
   private
 
   def start_tags

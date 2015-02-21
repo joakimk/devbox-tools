@@ -15,6 +15,7 @@ class DependencyRegistry
   end
 
   def self.register(dependency)
+    Devbox.logger.debug __FILE__, "Adding dependency: #{dependency.name}"
     list.push(dependency)
   end
 

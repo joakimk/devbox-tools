@@ -7,6 +7,10 @@ class Devbox
     ENV["DEVBOX_ENV"] || raise("Missing DEVBOX_ENV")
   end
 
+  def self.logger
+    Logger.new
+  end
+
   def self.cache(dependency)
     FileCache.new(dependency, local_cache_path)
   end
