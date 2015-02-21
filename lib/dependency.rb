@@ -118,6 +118,12 @@ class Dependency
     nil
   end
 
+  # default convention for providing checksum by config
+  # the algorithm used may differ between dependencies (ex: sha1, sha256, md5)
+  def checksum
+    config.fetch(:checksum, nil)
+  end
+
 
   ### Private
 
