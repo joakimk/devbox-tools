@@ -52,15 +52,20 @@ class TestCase < MTest::Unit::TestCase
   # Generates:
   # def test_converts_foo_to_bar; end
   def self.test(name, &block)
-    define_method("test_#{name.split.join('_')}", &block)
+    define_method(test_method_name(name), &block)
   end
 
   # Mark a test as pending
   def self.xtest(name)
-    define_method("test_#{name.split.join('_')}") do
+    define_method(test_method_name(name)) do
       puts "[PENDING] #{self.to_s.match(/#<(.+?):/)[1]}: #{name}"
     end
   end
+
+  def self.test_method_name(name)
+    "test_#{name.gsub(/\W/, "_")}"
+  end
+
 end
 
 class TestCase < MTest::Unit::TestCase
