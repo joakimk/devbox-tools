@@ -45,36 +45,6 @@ class SoftwareDependency < Dependency
 
   private
 
-  # TODO: extract and unit test
-  def version_source
-    if version == configured_version
-      default_version = default_config.fetch(:version, nil)
-
-      if configured_version.to_s == default_version.to_s
-        "default"
-      else
-        "configured"
-      end
-    elsif version == autodetected_version
-      "autodetected"
-    else
-      "unknown version source"
-    end
-  end
-
-  def version
-    configured_version || autodetected_version
-  end
-
-  def configured_version
-    config.fetch(:version, nil)
-  end
-
-  # implement in subclass if autodetection is possible
-  def autodetected_version
-    nil
-  end
-
   def build_and_install
     build_step do
       build_and_install_command

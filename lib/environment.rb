@@ -14,6 +14,7 @@ require "extensions"
 require "environment_variables"
 require "config"
 require "metadata"
+require "version_chooser"
 
 plugin_directories = []
 plugin_directories << "#{Devbox.tools_root}/test/plugins" if Devbox.environment == "test"

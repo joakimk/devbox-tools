@@ -1,4 +1,6 @@
 class Dependency
+  ## Naming
+
   def name
     raise "implement name"
   end
@@ -7,13 +9,29 @@ class Dependency
     name.gsub("_", " ")
   end
 
-  def environment_variables(previous_envs)
-    previous_envs
+  ### Installation
+
+  def installed?
+    true
   end
 
   def used_by_current_project?
     version
   end
+
+  def status
+    "done"
+  end
+
+
+  ### Environment
+
+  def environment_variables(previous_envs)
+    previous_envs
+  end
+
+
+  ### Config
 
   def config
     config = Config.load
@@ -28,13 +46,23 @@ class Dependency
 
   def default_config
     {
-      version: default_version
+      version: nil
     }
   end
 
-  def default_version
-    nil
+
+  ### Service
+
+  def start(logger)
+    # do nothing by default
   end
+
+  def stop(logger)
+    # do nothing by default
+  end
+
+
+  ### Caching
 
   def cacheable?
     cacheable_path && cache_key
@@ -48,23 +76,35 @@ class Dependency
     nil
   end
 
-  def installed?
-    true
-  end
 
-  def status
-    "done"
-  end
-
-  def start(logger)
-    # do nothing by default
-  end
-
-  def stop(logger)
-    # do nothing by default
-  end
+  ## Version
 
   def version
-    "unversioned"
+    version_chooser.version
+  end
+
+  def version_source
+    version_chooser.version_source
+  end
+
+  def configured_version
+    config.fetch(:version, nil)
+  end
+
+  # implement in subclass if autodetection is possible
+  def autodetected_version
+    nil
+  end
+
+  # implement in subclass if there is good default
+  def default_version
+    nil
+  end
+
+
+  ### Private
+
+  def version_chooser
+    VersionChooser.new(autodetected_version, configured_version, default_version)
   end
 end
