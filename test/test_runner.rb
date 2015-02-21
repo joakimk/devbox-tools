@@ -47,7 +47,7 @@ class MTest::Unit::TestCase
   # Adds a test syntax that is more reading, writing and editing friendly :)
   #
   # Typing:
-  # test "converts foo to bar" do; ...; end
+  # test "converts foo to bar" do; end
   #
   # Generates:
   # def test_converts_foo_to_bar; end
