@@ -54,6 +54,16 @@ class TestCase < MTest::Unit::TestCase
   def self.test(name, &block)
     define_method("test_#{name.split.join('_')}", &block)
   end
+
+  # Mark a test as pending
+  def self.xtest(name)
+    define_method("test_#{name.split.join('_')}") do
+      puts "[PENDING] #{self.to_s.match(/#<(.+?):/)[1]}: #{name}"
+    end
+  end
+end
+
+class TestCase < MTest::Unit::TestCase
 end
 
 # Load tests

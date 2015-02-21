@@ -1,3 +1,5 @@
+require "dependency_lookup"
+
 class DependencyRegistry
   # Registers dependencies when inheriting from Dependency.
   #
@@ -20,7 +22,7 @@ class DependencyRegistry
   end
 
   def self.dependencies_used_by_the_current_project
-    list.select(&:used_by_current_project?)
+    DependencyLookup.new(list).used_by_current_project
   end
 
   def self.list

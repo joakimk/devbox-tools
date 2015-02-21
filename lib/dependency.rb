@@ -126,10 +126,17 @@ class Dependency
 
   ### Dependency
 
+  # A dependency might depend on other dependencies. This
+  # is a list of names.
+  def dependencies
+    []
+  end
+
   # Some classes might want to opt-out of auto registration.
   def self.autoregister?
     true
   end
+
 
   ### Private
 
