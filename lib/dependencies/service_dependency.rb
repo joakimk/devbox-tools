@@ -100,6 +100,11 @@ class ServiceDependency < Dependency
     File.join(Devbox.project_data_root, "services", name)
   end
 
+  # Don't auto register since this class has custom instatiation. See below.
+  def self.autoregister?
+    false
+  end
+
   attr_reader :options
 end
 

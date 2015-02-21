@@ -4,6 +4,9 @@ $LOAD_PATH << "#{Devbox.tools_root}/lib"
 require "generate_global_project_identifier"
 require "command_dispatcher"
 require "dependency_registry"
+require "dependency"
+require "software_dependency"
+require "system_software_dependency"
 require "finder"
 require "plugin_file_finder"
 require "logger"
@@ -28,3 +31,5 @@ PluginFileFinder.new(plugin_directories).plugin_files.each do |plugin_path|
 
   require plugin_path
 end
+
+DependencyRegistry.load

@@ -86,4 +86,9 @@ class SoftwareDependency < Dependency
   def project_root
     Devbox.project_root
   end
+
+  # Don't auto register an abstract class
+  def self.autoregister?
+    self != SoftwareDependency
+  end
 end

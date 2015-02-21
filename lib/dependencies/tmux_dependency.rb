@@ -31,5 +31,3 @@ class TmuxDependency < SystemSoftwareDependency
     config.fetch(:sha1sum, "815264268e63c6c85fe8784e06a840883fcfc6a2")
   end
 end
-
-DependencyRegistry.register(TmuxDependency.new)

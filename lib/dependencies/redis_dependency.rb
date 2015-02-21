@@ -49,5 +49,3 @@ class RedisDependency < Dependency
     #   nil
   end
 end
-
-DependencyRegistry.register(RedisDependency.new)

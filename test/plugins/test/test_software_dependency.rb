@@ -42,5 +42,3 @@ class TestSoftwareDependency < SoftwareDependency
     end
   end
 end
-
-DependencyRegistry.register(TestSoftwareDependency.new)

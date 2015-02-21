@@ -84,5 +84,3 @@ You can set the checksum you find on https://www.ruby-lang.org/en/downloads/ usi
     "2.2.0" # TODO: actually detect version
   end
 end
-
-DependencyRegistry.register(RubyDependency.new)

@@ -12,5 +12,3 @@ class TestDependency
     Devbox.project_root.end_with?("project1")
   end
 end
-
-DependencyRegistry.register(TestDependency.new)

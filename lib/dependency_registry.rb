@@ -1,8 +1,19 @@
-require "dependency"
-require "software_dependency"
-require "system_software_dependency"
-
 class DependencyRegistry
+  # Registers dependencies when inheriting from Dependency.
+  #
+  # We load them later when they are finished loading, otherwise
+  # the classes don't have time to define "autoregister?"
+  def self.register_class(dependency_class)
+    @classes ||= []
+    @classes.push(dependency_class)
+  end
+
+  def self.load
+    @classes.each do |dependency_class|
+      register(dependency_class.new) if dependency_class.autoregister?
+    end
+  end
+
   def self.register(dependency)
     list.push(dependency)
   end

@@ -2,7 +2,7 @@ class Dependency
   ## Naming
 
   def name
-    raise "implement name"
+    raise "implement name in #{self}"
   end
 
   def display_name
@@ -124,10 +124,20 @@ class Dependency
     config.fetch(:checksum, nil)
   end
 
+  ### Dependency
+
+  # Some classes might want to opt-out of auto registration.
+  def self.autoregister?
+    true
+  end
 
   ### Private
 
   def version_chooser
     VersionChooser.new(autodetected_version, configured_version, default_version)
+  end
+
+  def self.inherited(dependency)
+    DependencyRegistry.register_class(dependency)
   end
 end

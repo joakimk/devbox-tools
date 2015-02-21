@@ -31,5 +31,3 @@ class VimDependency < SystemSoftwareDependency
     config.fetch(:md5sum, "5b9510a17074e2b37d8bb38ae09edbf2")
   end
 end
-
-DependencyRegistry.register(VimDependency.new)
