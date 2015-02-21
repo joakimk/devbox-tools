@@ -25,7 +25,7 @@ class RunCommand
 
   def list_commands
     puts "Available commands:"
-    commands.flat_map(&:options).each do |option|
+    commands.flat_map(&:options).sort_by { |option| option.first.to_s }.each do |option|
       puts menu_option(option)
     end
   end
