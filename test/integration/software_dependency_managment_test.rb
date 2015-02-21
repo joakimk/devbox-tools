@@ -1,4 +1,4 @@
-class TestSoftwareDependencyManagement < MTest::Unit::TestCase
+class SoftwareDependencyManagementTest < MTest::Unit::TestCase
   def setup
     shell! "mkdir /tmp/test_project"
     shell! "mkdir -p /tmp/other/test_project"

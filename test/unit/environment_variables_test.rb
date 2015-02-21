@@ -1,4 +1,4 @@
-class TestEnvironmentVariables < MTest::Unit::TestCase
+class EnvironmentVariablesTest < MTest::Unit::TestCase
   def test_setting_envs_from_used_dependencies
     envs_at_login = {
       "BAR" => "set-at-login",

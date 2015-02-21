@@ -1,4 +1,4 @@
-class TestGenerateGlobalProjectIdentifier < MTest::Unit::TestCase
+class GenerateGlobalProjectIdentifierTest < MTest::Unit::TestCase
   def test_generates_identifier_based_on_a_git_url
     assert_equal \
       GenerateGlobalProjectIdentifier.call("https://github.com/joakimk/devbox-tools.git"),

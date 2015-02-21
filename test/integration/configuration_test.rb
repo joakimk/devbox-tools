@@ -1,4 +1,4 @@
-class TestConfiguration < MTest::Unit::TestCase
+class ConfigurationTest < MTest::Unit::TestCase
   def test_reading_default_configuration_for_a_dependency
     Dir.chdir("/tmp")
     dependency = DependencyRegistry.list.find { |dep| dep.name == "test_software_dependency" }

@@ -1,4 +1,4 @@
-class TestGit < MTest::Unit::TestCase
+class GitTest < MTest::Unit::TestCase
   def setup
     @repo_with_origin_path = unpack_repo(fixture_path("git_repo_with_origin"))
     @repo_without_origin_path = unpack_repo(fixture_path("git_repo_without_origin"))
