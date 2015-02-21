@@ -79,7 +79,7 @@ class EnvironmentVariablesTest < TestCase
   end
 
   test "does not make duplicate paths" do
-    ENV["PATH"] = "/foo/bin:/foo/bin"
+    ENV["PATH"] = "/foo/bin:/foo/bin:#{ENV["PATH"]}"
 
     dependency = UsedDependency.new
     envs = EnvironmentVariables.new([ dependency ], {})
