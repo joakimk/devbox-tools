@@ -43,6 +43,17 @@ end
 
 class MTest::Unit::TestCase
   include TestHelpers
+
+  # Adds a test syntax that is more reading, writing and editing friendly :)
+  #
+  # Typing:
+  # test "converts foo to bar" do; ...; end
+  #
+  # Generates:
+  # def test_converts_foo_to_bar; end
+  def self.test(name, &block)
+    define_method("test_#{name.split.join('_')}", &block)
+  end
 end
 
 # Load tests

@@ -1,5 +1,5 @@
 class GenerateGlobalProjectIdentifierTest < MTest::Unit::TestCase
-  def test_generates_identifier_based_on_a_git_url
+  test "generates identifier based on a git url" do
     assert_equal \
       GenerateGlobalProjectIdentifier.call("https://github.com/joakimk/devbox-tools.git"),
       GenerateGlobalProjectIdentifier.call("https://github.com/joakimk/devbox-tools.git")
@@ -13,20 +13,20 @@ class GenerateGlobalProjectIdentifierTest < MTest::Unit::TestCase
       "https://github.com/joakimk/devbox-tools.git"
   end
 
-  def test_generates_the_same_identifier_for_different_url_types
+  test "generates the same identifier for different url types" do
     # not all types but those used by github and gitorious, more can be added if needed
     assert_equal \
       GenerateGlobalProjectIdentifier.call("https://github.com/joakimk/devbox-tools.git"),
       GenerateGlobalProjectIdentifier.call("git@github.com:joakimk/devbox-tools.git")
   end
 
-  def test_does_not_generate_the_same_identifier_when_the_host_differs
+  test "does not generate the same identifier when the host differs" do
     assert_not_equal \
       GenerateGlobalProjectIdentifier.call("https://github.com/joakimk/devbox-tools.git"),
       GenerateGlobalProjectIdentifier.call("git@gitorious.org:joakimk/devbox-tools.git")
   end
 
-  def test_returns_nil_when_given_nil
+  test "returns nil when given nil" do
     assert_nil GenerateGlobalProjectIdentifier.call(nil)
   end
 end

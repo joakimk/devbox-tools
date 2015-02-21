@@ -8,7 +8,7 @@ class SoftwareDependencyManagementTest < MTest::Unit::TestCase
     shell! "rm -rf /tmp/test_project && rm -rf /tmp/other/test_project && rm -rf #{Devbox.software_dependencies_root} && rm -rf #{Devbox.local_cache_path}"
   end
 
-  def test_installing
+  test "installing" do
     shell "echo '1.2.3' > /tmp/test_project/.some_file_with_a_version"
     assert_include \
       shell("cd /tmp/test_project && test_command"),
@@ -19,14 +19,14 @@ class SoftwareDependencyManagementTest < MTest::Unit::TestCase
     assert_equal "test-command-output 1.2.3\n", output
   end
 
-  def test_not_installing_when_not_used_by_project
+  test "not installing when not used by project" do
     shell "cd /tmp/test_project && dev"
 
     output = shell("cd /tmp/test_project && test_command")
     assert_include output, "command not found"
   end
 
-  def test_two_projects_with_the_same_name_in_different_places_does_not_collide
+  test "two projects with the same name in different places does not collide" do
     shell "echo '1.2.3' > /tmp/test_project/.some_file_with_a_version"
     output = shell "cd /tmp/test_project && dev"
     assert_include output, "test software dependency"
@@ -37,7 +37,7 @@ class SoftwareDependencyManagementTest < MTest::Unit::TestCase
     assert_not_include output, "test software dependency"
   end
 
-  def test_two_projects_using_the_same_dependency_only_installs_once
+  test "two projects using the same dependency only installs once" do
     shell "echo '1.2.3' > /tmp/test_project/.some_file_with_a_version"
     output = shell "cd /tmp/test_project && dev"
     assert_include output, "installing test software dependency..."
@@ -47,7 +47,7 @@ class SoftwareDependencyManagementTest < MTest::Unit::TestCase
     assert_not_include output, "installing test software dependency..."
   end
 
-  def test_two_versions_of_the_same_software_can_be_installed
+  test "two versions of the same software can be installed" do
     shell "echo '1.2.1' > /tmp/test_project/.some_file_with_a_version"
     output = shell "cd /tmp/test_project && dev"
     assert_include output, "installing test software dependency..."
@@ -57,7 +57,7 @@ class SoftwareDependencyManagementTest < MTest::Unit::TestCase
     assert_include output, "installing test software dependency..."
   end
 
-  def test_reinstalling_will_use_cached_version
+  test "reinstalling will use cached version" do
     shell "echo '1.2.3' > /tmp/test_project/.some_file_with_a_version"
 
     output = shell "cd /tmp/test_project && dev"
@@ -76,7 +76,7 @@ class SoftwareDependencyManagementTest < MTest::Unit::TestCase
     assert_not_include output, "installing test software dependency..."
   end
 
-  def test_installing_configured_version
+  test "installing configured version" do
     output = shell "cd #{fixture_path("project_configured_as_2_0")} && dev"
     assert_include output, "installing test software dependency..."
     assert_include output, "2.0 installed (configured)"

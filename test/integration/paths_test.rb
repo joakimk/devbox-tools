@@ -1,5 +1,5 @@
 class PathsTest < MTest::Unit::TestCase
-  def test_devbox_path
+  test "devbox path" do
     assert_include shell("echo $PATH"), "#{Devbox.tools_root}/bin"
   end
 end

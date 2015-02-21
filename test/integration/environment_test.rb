@@ -1,5 +1,5 @@
 class EnvironmentTest < MTest::Unit::TestCase
-  def test_dependency_setup_when_entering_project
+  test "dependency setup when entering project" do
     shell "mkdir -p /tmp/project1 /tmp/project2"
     dependency_path = "#{Devbox.software_dependencies_root}/test/bin"
 
@@ -19,7 +19,9 @@ class EnvironmentTest < MTest::Unit::TestCase
     envs = shell("cd /tmp/project1 && cd /tmp/project2 && echo $PATH").split(":")
     assert_not_include envs, dependency_path
     assert_include envs, "#{Devbox.tools_root}/bin"
-  ensure
+  end
+
+  def teardown
     shell "rm -rf /tmp/project1 && rm -rf /tmp/project2"
   end
 end

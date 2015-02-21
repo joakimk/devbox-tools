@@ -1,5 +1,5 @@
 class PluginFileFinderTest < MTest::Unit::TestCase
-  def test_prefers_local_devbox_plugins_to_devbox_tools_defaults
+  test "prefers local devbox plugins to devbox tools defaults" do
     base_path = fixture_path("plugin_finder_overrides")
 
     source_paths = [
@@ -14,7 +14,7 @@ class PluginFileFinderTest < MTest::Unit::TestCase
       ], loader.plugin_files
   end
 
-  def test_ignores_non_plugin_files
+  test "ignores non plugin files" do
     base_path = fixture_path("plugin_finder_non_plugin_files")
 
     source_paths = [
@@ -25,7 +25,7 @@ class PluginFileFinderTest < MTest::Unit::TestCase
     assert_equal [], loader.plugin_files
   end
 
-  def test_finds_all_types_of_plugin_files
+  test "finds all types of plugin files" do
     base_path = fixture_path("plugin_finder_all_types")
 
     source_paths = [

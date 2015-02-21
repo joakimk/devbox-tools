@@ -13,7 +13,7 @@ class ServiceTest < MTest::Unit::TestCase
     fixture_path("project_using_redis")
   end
 
-  def test_can_be_started_and_stopped
+  test "can be started and stopped" do
     output = shell "cd #{project_path} && dev"
     assert_include output, "Starting test redis"
 
@@ -21,7 +21,7 @@ class ServiceTest < MTest::Unit::TestCase
     assert_include output, "Stopping test redis"
   end
 
-  def test_does_not_start_when_already_running
+  test "does not start when already running" do
     output = shell "cd #{project_path} && dev"
     assert_include output, "Starting test redis"
 
@@ -34,7 +34,7 @@ class ServiceTest < MTest::Unit::TestCase
     assert_include output, "Stopping test redis"
   end
 
-  def test_does_not_stop_when_already_stopped
+  test "does not stop when already stopped" do
     output = shell "cd #{project_path} && dev"
     assert_include output, "Starting test redis"
 
@@ -47,7 +47,7 @@ class ServiceTest < MTest::Unit::TestCase
     assert_not_include output, "Stopping test redis"
   end
 
-  def test_can_communicate_with_the_service
+  test "can communicate with the service" do
     shell "cd #{project_path} && dev"
 
     shell %{cd #{project_path} && echo "SET X 42" | nc localhost $TEST_REDIS_PORT}
@@ -56,7 +56,7 @@ class ServiceTest < MTest::Unit::TestCase
     assert_equal "$2\r\n42\r\n", result
   end
 
-  def test_can_persist_data_between_service_restarts
+  test "can persist data between service restarts" do
     shell "cd #{project_path} && dev"
 
     shell %{cd #{project_path} && echo "SET X 42" | nc localhost $TEST_REDIS_PORT}

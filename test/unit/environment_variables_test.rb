@@ -1,5 +1,5 @@
 class EnvironmentVariablesTest < MTest::Unit::TestCase
-  def test_setting_envs_from_used_dependencies
+  test "setting envs from used dependencies" do
     envs_at_login = {
       "BAR" => "set-at-login",
     }
@@ -13,7 +13,7 @@ class EnvironmentVariablesTest < MTest::Unit::TestCase
     assert_include output.lines, 'export BAR="set-by-dependency"'
   end
 
-  def test_cleaning_out_unused_envs_set_by_dependencies
+  test "cleaning out unused envs set by dependencies" do
     ENV["ENV_FROM_UNUSED_DEPENDENCY"] = "set-by-dependency"
 
     used_dependency = UsedDependency.new
@@ -29,7 +29,7 @@ class EnvironmentVariablesTest < MTest::Unit::TestCase
     assert_include output.lines, 'export ENV_FROM_USED_DEPENDENCY="set-by-dependency"'
   end
 
-  def test_ignoring_unknown_envs
+  test "ignoring unknown envs" do
     envs_at_login = {
       "FOO" => "set-at-login",
       "BAR" => "set-at-login",
@@ -46,7 +46,7 @@ class EnvironmentVariablesTest < MTest::Unit::TestCase
     assert !output.lines.join.include?("FOO")
   end
 
-  def test_does_not_modify_the_original_hash
+  test "does not modify the original hash" do
     envs_at_login = {
       "BAR" => "set-at-login",
     }
@@ -60,7 +60,7 @@ class EnvironmentVariablesTest < MTest::Unit::TestCase
     assert_equal envs_at_login["BAR"], "set-at-login"
   end
 
-  def test_keeps_changes_to_path_that_we_did_not_make
+  test "keeps changes to path that we did not make" do
     # set by user after login, and what remains of previous paths
     ENV["PATH"] = "/bin:/usr/bin:/custom/bin:#{Devbox.software_dependencies_root}/unused/bin"
 

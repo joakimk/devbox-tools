@@ -10,17 +10,17 @@ class GitTest < MTest::Unit::TestCase
     shell!("rm -rf #{@repo_without_origin_path}")
   end
 
-  def test_returns_the_origin_url
+  test "returns the origin url" do
     git_url = Git.origin_url(@repo_with_origin_path)
     assert_equal "git@github.com:joakimk/devbox-tools-fake-repo.git", git_url
   end
 
-  def test_returns_nil_when_there_is_no_origin_url
+  test "returns nil when there is no origin url" do
     git_url = Git.origin_url(@repo_without_origin_path)
     assert_nil git_url
   end
 
-  def test_returns_nil_when_there_is_no_git_repo
+  test "returns nil when there is no git repo" do
     assert_false File.exists?("/tmp/.git")
 
     git_url = Git.origin_url("/tmp")
