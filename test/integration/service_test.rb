@@ -1,4 +1,4 @@
-class ServiceTest < MTest::Unit::TestCase
+class ServiceTest < TestCase
   def setup
     redis_image_exists = system("sudo docker images redis | grep 2.8 > /dev/null")
 

@@ -1,4 +1,4 @@
-class DevboxTest < MTest::Unit::TestCase
+class DevboxTest < TestCase
   test "local project identifier is unique by full path" do
     assert_equal \
       Devbox.local_project_identifier("/somewhere/project_name"),

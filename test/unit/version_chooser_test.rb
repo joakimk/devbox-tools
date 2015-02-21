@@ -1,4 +1,4 @@
-class VersionChooserTest < MTest::Unit::TestCase
+class VersionChooserTest < TestCase
   test "chooses an auto detected version over the default" do
     chooser = VersionChooser.new("1.2.3", nil, "1.1.0")
     assert_equal "1.2.3", chooser.version

@@ -1,4 +1,4 @@
-class PluginFileFinderTest < MTest::Unit::TestCase
+class PluginFileFinderTest < TestCase
   test "prefers local devbox plugins to devbox tools defaults" do
     base_path = fixture_path("plugin_finder_overrides")
 

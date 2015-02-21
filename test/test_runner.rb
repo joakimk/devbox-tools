@@ -41,7 +41,7 @@ module TestHelpers
   end
 end
 
-class MTest::Unit::TestCase
+class TestCase < MTest::Unit::TestCase
   include TestHelpers
 
   # Adds a test syntax that is more reading, writing and editing friendly :)

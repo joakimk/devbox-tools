@@ -1,4 +1,4 @@
-class EnvironmentVariablesTest < MTest::Unit::TestCase
+class EnvironmentVariablesTest < TestCase
   test "setting envs from used dependencies" do
     envs_at_login = {
       "BAR" => "set-at-login",

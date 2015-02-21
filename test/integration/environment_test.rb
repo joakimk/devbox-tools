@@ -1,4 +1,4 @@
-class EnvironmentTest < MTest::Unit::TestCase
+class EnvironmentTest < TestCase
   test "dependency setup when entering project" do
     shell "mkdir -p /tmp/project1 /tmp/project2"
     dependency_path = "#{Devbox.software_dependencies_root}/test/bin"
