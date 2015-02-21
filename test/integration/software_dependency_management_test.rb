@@ -81,4 +81,13 @@ class SoftwareDependencyManagementTest < MTest::Unit::TestCase
     assert_include output, "installing test software dependency..."
     assert_include output, "2.0 installed (configured)"
   end
+
+  test "does only install a default version if the specific dependency can detect that it's applicable" do
+    output = shell "cd #{fixture_path("project_using_nothing")} && dev"
+    assert_not_include output, "installing test software dependency..."
+
+    output = shell "cd #{fixture_path("project_that_can_use_test_software_dependency_default")} && dev"
+    assert_include output, "installing test software dependency..."
+    assert_include output, "1.0 installed (default)"
+  end
 end

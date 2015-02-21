@@ -7,6 +7,10 @@ class TestSoftwareDependency < SoftwareDependency
     super.merge({ something: "default", other: "more" })
   end
 
+  def used_by_current_project?
+    super || File.exists?("config/initializers/test_software_dependency.rb")
+  end
+
   private
 
   def build_and_install
@@ -25,12 +29,7 @@ class TestSoftwareDependency < SoftwareDependency
   end
 
   def default_version
-    # We don't want test_software_dependency to install by default in most tests
-    if Devbox.project_name == "project_configured_as_default"
-      "1.0"
-    else
-      super
-    end
+    "1.0"
   end
 
   def autodetected_version

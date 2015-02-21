@@ -15,8 +15,25 @@ class Dependency
     true
   end
 
+  # We only install autodetected or configured dependencies by default.
+  #
+  # A subclass can choose to add additional detection that would allow
+  # a default version to be installed.
+  #
+  # For example: in a typical rails project it's very common to need a
+  # version of node to compile assets, though the exact version is not
+  # that important. The node dependency can autodetect that the project is
+  # a rails project that needs asset compliation and choose to
+  # return true here so that the default node version is installed.
+  #
+  # The same could go for all types databases, etc.
+  #
+  # If you wish to have your dependency installed by default in
+  # all projects, inherit from SystemSoftwareDependency which
+  # is just a regular SoftwareDependency that always returns true
+  # when asked if it's used in the current project.
   def used_by_current_project?
-    version
+    version && version_source != VersionChooser::DEFAULT
   end
 
   def status
