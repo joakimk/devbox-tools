@@ -1,4 +1,4 @@
-class TestDependency
+class TestDependency < Dependency
   def name
     "test"
   end
