@@ -72,7 +72,7 @@ Plugins are added as git submodules in `plugins/`. You can add your own local pl
 
 ### Running the VM on other computers
 
-    git clone git@github.com:YOUR_ORG/devbox.git && cd devbox && vagrant up && vagrant ssh
+    git clone git@github.com:YOUR_ORG/devbox.git && cd devbox && git submodule update --init && vagrant up && vagrant ssh
 
 ### Less frequently used commands
 
