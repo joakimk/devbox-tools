@@ -31,6 +31,7 @@ class EnvironmentVariablesUpdate
     current_paths = ENV["PATH"].to_s.split(":")
     current_paths.
       reject { |path| path.include?(Devbox.software_dependencies_root) }.
+      uniq.
       join(":")
   end
 

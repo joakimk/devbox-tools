@@ -78,6 +78,18 @@ class EnvironmentVariablesTest < TestCase
     assert_include output.lines, %{export PATH="#{Devbox.software_dependencies_root}/used/bin:/bin:/usr/bin:/custom/bin"}
   end
 
+  test "does not make duplicate paths" do
+    ENV["PATH"] = "/foo/bin:/foo/bin"
+
+    dependency = UsedDependency.new
+    envs = EnvironmentVariables.new([ dependency ], {})
+    output = TestOutput.new
+    envs.write_to(output)
+
+    assert_include output.lines.join, "/foo/bin"
+    assert_not_include output.lines.join, "/foo/bin:/foo/bin"
+  end
+
   class TestOutput
     def puts(line)
       lines.push(line)
