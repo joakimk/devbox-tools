@@ -128,6 +128,19 @@ class Dependency
     config.fetch(:checksum, nil)
   end
 
+  ### Metadata
+
+  # Scoped to the dependency and project
+  #
+  # Some metadata could be shared, but better to be safe by default.
+  #
+  # An example of something that should not be shared is saved information
+  # on service ports.
+  def metadata
+    Metadata.new("#{name}-#{Devbox.local_project_identifier}")
+  end
+
+
   ### Dependency
 
   # A dependency might depend on other dependencies. This
