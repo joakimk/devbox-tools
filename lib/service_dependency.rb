@@ -1,22 +1,15 @@
 require "docker_metadata"
 
 class ServiceDependency < Dependency
-  def initialize(name, options)
-    @name, @options = name, options
+  # Don't auto register since this class is abstract.
+  def self.autoregister?
+    self != ServiceDependency
   end
-
-  attr_reader :name
 
   def install(logger)
     logger.detail "Pulling docker image..."
     docker "pull #{docker_image}"
     devbox_metadata.set("installed", true)
-  end
-
-  def status
-    # A generic ServiceDependency is always configured. Plugins for
-    # specific services can do autodetection or use defaults.
-    "#{docker_image_version} installed (configured)"
   end
 
   def installed?
@@ -40,13 +33,11 @@ class ServiceDependency < Dependency
     docker "stop #{docker_name}"
   end
 
-  def used_by_current_project?
-    # All ServiceDependency are used by the current project because they are only
-    # instantiated if they are configured to be used within the current project.
-    true
-  end
-
   private
+
+  def display_version
+    docker_image_version
+  end
 
   def environment_variables(envs)
     envs["#{name.upcase}_PORT"] = devbox_metadata.get("external_port")
@@ -89,7 +80,7 @@ class ServiceDependency < Dependency
   end
 
   def docker_image
-    options.fetch(:image)
+    version
   end
 
   def docker_name
@@ -99,17 +90,4 @@ class ServiceDependency < Dependency
   def data_root
     File.join(Devbox.project_data_root, "services", name)
   end
-
-  # Don't auto register since this class has custom instatiation. See below.
-  def self.autoregister?
-    false
-  end
-
-  attr_reader :options
-end
-
-config = Config.load
-config.fetch(:services, []).each do |name, options|
-  dependency = ServiceDependency.new(name.to_s, options)
-  DependencyRegistry.register(dependency)
 end

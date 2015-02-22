@@ -10,7 +10,7 @@ class ServiceTest < TestCase
   end
 
   def project_path
-    fixture_path("project_using_redis")
+    @project_path ||= fixture_path("project_using_redis")
   end
 
   test "can be started and stopped" do
@@ -65,6 +65,17 @@ class ServiceTest < TestCase
     shell "cd #{project_path} && dev stop && dev"
 
     result = shell %{cd #{project_path} && echo "GET X" | nc localhost $TEST_REDIS_PORT}
+
+    assert_equal "$2\r\n42\r\n", result
+  end
+
+  test "starts services automatically when there is a service plugin that matches the project" do
+    @project_path = fixture_path("project_using_test_service")
+
+    shell "cd #{project_path} && dev"
+
+    shell %{cd #{project_path} && echo "SET X 42" | nc localhost $TEST_SERVICE_PORT}
+    result = shell %{cd #{project_path} && echo "GET X" | nc localhost $TEST_SERVICE_PORT}
 
     assert_equal "$2\r\n42\r\n", result
   end

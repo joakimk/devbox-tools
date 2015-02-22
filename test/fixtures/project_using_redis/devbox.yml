@@ -1,3 +1,4 @@
-services:
+dependencies:
   test_redis:
-    image: "redis:2.8"
+    version: "redis:2.8"
+    service: true

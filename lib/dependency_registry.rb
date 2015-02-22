@@ -1,5 +1,6 @@
 require "dependency_lookup"
 
+# TODO: make most the methods instance methods to get private scoping, etc.
 class DependencyRegistry
   # Registers dependencies when inheriting from Dependency.
   #
@@ -11,9 +12,8 @@ class DependencyRegistry
   end
 
   def self.load
-    @classes.each do |dependency_class|
-      register(dependency_class.new) if dependency_class.autoregister?
-    end
+    load_regular_dependencies
+    load_generic_services
   end
 
   def self.register(dependency)
@@ -27,5 +27,28 @@ class DependencyRegistry
 
   def self.list
     @list ||= []
+  end
+
+  private
+
+  def self.load_regular_dependencies
+    @classes.each do |dependency_class|
+      register(dependency_class.new) if dependency_class.autoregister?
+    end
+  end
+
+  def self.load_generic_services
+    config = Config.load
+    config.fetch(:dependencies, []).each do |name, options|
+      next unless options[:service]
+      next if registered?(name)
+
+      dependency = GenericServiceDependency.new(name.to_s)
+      DependencyRegistry.register(dependency)
+    end
+  end
+
+  def self.registered?(name)
+    list.map(&:name).include?(name.to_s)
   end
 end

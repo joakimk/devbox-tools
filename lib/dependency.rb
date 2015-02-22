@@ -37,7 +37,7 @@ class Dependency
   end
 
   def status
-    "done"
+    installed? ? "#{display_version} installed (#{version_source})" : "not installed"
   end
 
 
@@ -116,6 +116,10 @@ class Dependency
   # implement in subclass if there is good default
   def default_version
     nil
+  end
+
+  def display_version
+    version
   end
 
   # default convention for providing checksum by config

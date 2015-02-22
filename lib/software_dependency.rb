@@ -1,10 +1,6 @@
 require "build"
 
 class SoftwareDependency < Dependency
-  def status
-    installed? ? "#{version} installed (#{version_source})" : "not installed"
-  end
-
   def cacheable_path
     install_prefix
   end
