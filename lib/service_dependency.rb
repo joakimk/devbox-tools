@@ -9,11 +9,11 @@ class ServiceDependency < Dependency
   def install(logger)
     logger.detail "Pulling docker image..."
     docker "pull #{docker_image}"
-    metadata.set("installed", true)
+    shared_metadata.set("installed", true)
   end
 
   def installed?
-    metadata.get("installed")
+    shared_metadata.get("installed")
   end
 
   def start(logger)
@@ -23,7 +23,7 @@ class ServiceDependency < Dependency
     remove_previous_container
     volume_mounts = docker_metadata.volumes.map { |path| "-v #{data_root}/#{path}:#{path}" }
     docker "run --detach --name #{docker_name} --publish #{docker_metadata.internal_port} #{volume_mounts.join(" ")} #{docker_image}"
-    metadata.set("external_port", docker_metadata.external_port)
+    project_metadata.set("external_port", docker_metadata.external_port)
   end
 
   def stop(logger)
@@ -40,7 +40,7 @@ class ServiceDependency < Dependency
   end
 
   def environment_variables(envs)
-    envs["#{name.upcase}_PORT"] = metadata.get("external_port")
+    envs["#{name.upcase}_PORT"] = project_metadata.get("external_port")
     envs
   end
 

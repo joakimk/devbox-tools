@@ -12,16 +12,16 @@ class BundlerDependency < SoftwareDependency
   end
 
   def remove
-    Shell.run("gem uninstall bundler --all --executables --force") && metadata.del("installed_version")
+    Shell.run("gem uninstall bundler --all --executables --force") && project_metadata.del("installed_version")
   end
 
   def build_and_install
     Shell.run "gem install bundler -v #{version}"
-    metadata.set("installed_version", version)
+    project_metadata.set("installed_version", version)
   end
 
   def installed?
-    metadata.get("installed_version") == version
+    project_metadata.get("installed_version") == version
   end
 
   # Not cachable

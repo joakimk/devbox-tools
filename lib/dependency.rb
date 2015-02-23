@@ -136,8 +136,13 @@ class Dependency
   #
   # An example of something that should not be shared is saved information
   # on service ports.
-  def metadata
+  def project_metadata
     Metadata.new("#{name}-#{Devbox.local_project_identifier}")
+  end
+
+  # For the things you know can be shared, you can use this store
+  def shared_metadata
+    Metadata.new(name)
   end
 
 
