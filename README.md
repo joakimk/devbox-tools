@@ -75,7 +75,7 @@ Stopping services
 
 #### Environment
 
-devbox-tools will change envs when navigating between directories in order to do it's job. It does it's best not to clear away anything you may have set, but may still do so, so keep that in mind. PATH is handled extra carefully, so it should still work like you expect it to.
+devbox-tools will change envs when navigating between directories in order to do it's job. It does it's best not to clear away anything you may have set, but may still do, so keep that in mind. PATH is handled extra carefully, so it should still work like you expect it to.
 
 Any environment variables the dependencies do not need to set are not touched by devbox-tools.
 
@@ -153,6 +153,9 @@ The mruby build configuration (and the "mrbgems" we build into it) is listed in 
   - [ ] Plugins for all things our projects depend upon
 - OS
   - [ ] Rebase on ubuntu 14.04 so we don't need to change the default base os for a long time
+- VM
+  - [ ] Import all refinements from the internal auctionet devbox Vagrantfile (it's easier to try things out in a real environment first and import it here later)
+  - Rename support/Vagrantfile to support/Vagrantfile.template (or .erb? and use templating where needed)
 
 **High level roadmap: 1.0: public release**
 
