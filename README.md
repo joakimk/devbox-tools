@@ -143,7 +143,6 @@ The mruby build configuration (and the "mrbgems" we build into it) is listed in 
   - [x] Generic service support
 
 **High level roadmap: What we need to replace our current internal tools (and beta version)**
-- [ ] Remove offline support for now (seems to add lots of complexity and have little value)
 - Caching
   - [ ] Project specific gem and database caching (and docs)
   - [ ] Remote caching (and docs)
@@ -156,12 +155,15 @@ The mruby build configuration (and the "mrbgems" we build into it) is listed in 
 - VM
   - [ ] Import all refinements from the internal auctionet devbox Vagrantfile (it's easier to try things out in a real environment first and import it here later)
   - Rename support/Vagrantfile to support/Vagrantfile.template (or .erb? and use templating where needed)
+- Cleanup
+  - [ ] Remove offline support for now (seems to add lots of complexity and have little value)
 
 **High level roadmap: 1.0: public release**
 
 Overall goal: Support most ruby and elixir apps with as little configuration as possible.
 
 - Docs
+  - [ ] How configuration works. Conventions around version and checksum. How to use free form options.
   - [ ] Plugin development
 - CLI
   - [ ] Prefix tools commands. "dev tools:update", etc.
