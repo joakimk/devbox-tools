@@ -48,7 +48,7 @@ This tool does not create an environment that is an exact replica of production.
 
 Combine this with a CI and/or staging environment that is more production-like if you like to catch the more tricky integration issues before they end up in production.
 
-For users of heroku this tool this tool should feel familiar as it uses many of the same conventions.
+For users of heroku this tool should feel familiar as it uses many of the same conventions.
 
 ### Many projects in the same VM
 
