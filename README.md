@@ -26,7 +26,9 @@ When logged in:
 
 ### Services
 
-This tool uses [docker](https://www.docker.com/) to run services like postgres or redis. It can run almost any docker image and you can find docker images on [docker hub](https://registry.hub.docker.com/) or even [make your own](https://docs.docker.com/reference/builder/).
+This tool uses [docker](https://www.docker.com/) to run services like postgres or redis. It can run many of the docker images you can find on [docker hub](https://registry.hub.docker.com/) and you can also [make your own](https://docs.docker.com/reference/builder/).
+
+To be supported a docker image needs to export one network port [like this](https://github.com/docker-library/postgres/blob/8f80834e934b7deaccabb7bf81876190d72800f8/9.4/Dockerfile#L49) and optionally declare one or more [volumes](https://github.com/docker-library/postgres/blob/8f80834e934b7deaccabb7bf81876190d72800f8/9.4/Dockerfile#L43) that will be persisted when the docker container is not running. It also needs to run a [process](https://github.com/docker-library/postgres/blob/8f80834e934b7deaccabb7bf81876190d72800f8/9.4/Dockerfile#L50) by default. Luckly, this is what most docker images containing services like postgres, mongodb, mysql, redis, memcached, etc. already do.
 
 Every service adds an environment variable for the network port which you can use to configure projects. If you have a service named "redis" then you will have an environment variable named "REDIS_PORT".
 
@@ -42,9 +44,9 @@ You can find out more on plugins further down in this readme.
 
 ### Made specifically for development environments
 
-While you don't get an environment that is an exact replica of production, you do get an environment that is both easy to set up and the same for every developer. You also get an environment where changing software and service versions is just a single configuration change that can be applied right away using "dev" and committed to your project.
+This tool does not create an environment that is an exact replica of production. What you get is an environment that is both easy to set up and the same for every developer. You also get an environment where changing software and service versions is just a single configuration change that can be applied right away using "dev" and committed to your project.
 
-It's recommended to combine this with a CI and/or staging environment that is more production-like to catch integration issues before they end up in production.
+Combine this with a CI and/or staging environment that is more production-like if you like to catch the more tricky integration issues before they end up in production.
 
 For users of heroku this tool this tool should feel familiar as it uses many of the same conventions.
 
@@ -52,23 +54,11 @@ For users of heroku this tool this tool should feel familiar as it uses many of 
 
 One of the main goals with this tool is to be able to develop many projects within the same VM. This might seem a bit counterintuitive given that vagrant is meant to make it easy to have one VM for each project. But what if you don't need that much isolation for every project?
 
-We've found this feature very useful at [auctionet](http://dev.auctionet.com/). We reduced about 5 VMs down to one. Switching between projects is now much more conventient.
+We've found being able to run multiple projects in one VM very useful at [auctionet](http://dev.auctionet.com/). This allowed us to reduce about 5 VMs down to one while still having good enough isolation between projects. Switching between projects is now much more conventient.
 
 ### Reliability
 
 Having a stable development environment is just as important as having all the latest tools. This tool is versioned using [semver](http://semver.org/) and is [well tested](test/integration/software_dependency_management_test.rb).
-
-### Plugins
-
-Example:
-
-    dev plugins:list
-    dev plugins:add https://github.com/joakimk/devbox-tools-ruby.git
-    dev plugins:add https://github.com/joakimk/devbox-tools-postgres.git
-    dev plugins:add https://github.com/joakimk/devbox-tools-redis.git
-    dev plugins:add https://github.com/joakimk/devbox-tools-procfile.git
-
-Plugins are added as git submodules in `plugins/`. You can add your own local plugins there as well.
 
 ### Running the VM on other computers
 
@@ -80,33 +70,6 @@ Stopping services
 
     cd /path/to/project
     dev stop
-
-Listing running services:
-
-    cd /path/to/project
-    dev ps
-
-Caching to make installs quicker:
-
-    cd /path/to/project
-    dev cache
-    >> Checking cache for ruby... none
-    >> Checking cache for bundler... 60 mb on disk
-    >> Checking cache for postgres... 1500 mb on disk
-    >> Do you want to cache postgres? (it's 1500mb) y/n: n
-    >> Caching bundler... done.
-    >> Caching complete.
-
-Restoring caches:
-
-    cd /path/to/project
-    dev restore
-    >> Checking cache for ruby... none
-    >> Checking cache for bundler... 45mb compressed
-    >> Checking cache for postgres... 1000mb compressed
-    >> Do you want to download cache for postgres? (it's 1000mb) y/n: n
-    >> Restoring bundler... done.
-    >> Restoring complete.
 
 ### Gotchas to be aware of...
 
@@ -124,46 +87,9 @@ devbox-tools will cache some information, like ports for docker services, for la
 
 Normally this should not be a problem, but if something behaves a bit odd, then try "dev stop" and "dev" (and if you like: fix the bug or report it).
 
-### Offline and/or slow connection support
-
-Setting OFFLINE=true will make devbox-tools attempt to not use an internet connection by trying to use local files and exiting early if that isn't possible.
-
-    # The ruby version has been updated in the project, but you don't have it locally
-    # and you're on a train with a bad connection, so you opt for using OFFLINE=true...
-
-    OFFLINE=true dev
-    >> Checking ruby: 2.2.0 unavailable (autodetected).
-    >> Development environment could not be setup.
-
-    # You revert to an older ruby version in your repo (e.g. in Gemfile or .rvmrc)...
-
-    OFFLINE=true dev
-    >> Checking ruby: 2.1.0 installed (autodetected).
-    >> Checking postgres: postgres:9.2 (configured in project).
-    >> Starting services.... done.
-    >> Development environment ready.
-
-    # You're ready to go
-
 ### Developing plugins
 
-Plugins are structured like this:
-
-    plugins/devbox-tools-foo/
-      commands/
-        foo_command.rb
-      caches/
-        foo_cache.rb
-      dependencies/
-        foo_dependency.rb
-
-Command files are expected to contain... TODO
-
-Creating a plugin:
-
-    dev plugin:create plugins/devbox-tools-foo
-    # add things to the plugin and run dev commands
-    # publish somewhere and send me a link
+See todo list below :)
 
 ### Developing devbox-tools
 
@@ -216,10 +142,11 @@ The mruby build configuration (and the "mrbgems" we build into it) is listed in 
 - Services
   - [x] Generic service support
 
-**High level roadmap: What we need to replace our current internal tools**
+**High level roadmap: What we need to replace our current internal tools (and beta version)**
+- [ ] Remove offline support for now (seems to add lots of complexity and have little value)
 - Caching
-  - [ ] Project specific gem and database caching
-  - [ ] Remote caching
+  - [ ] Project specific gem and database caching (and docs)
+  - [ ] Remote caching (and docs)
 - Configuration
   - [ ] Autodetection for various dependencies
 - Plugins
@@ -231,6 +158,8 @@ The mruby build configuration (and the "mrbgems" we build into it) is listed in 
 
 Overall goal: Support most ruby and elixir apps with as little configuration as possible.
 
+- Docs
+  - [ ] Plugin development
 - CLI
   - [ ] Prefix tools commands. "dev tools:update", etc.
   - [ ] "dev update" should probably require version instead of getting latest master.
