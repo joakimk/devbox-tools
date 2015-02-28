@@ -151,7 +151,7 @@ The mruby build configuration (and the "mrbgems" we build into it) is listed in 
 - Plugins
   - [ ] Plugins for all things our projects depend upon
 - OS
-  - [ ] Rebase on ubuntu 14.04 so we don't need to change the default base os for a long time
+  - [x] Rebase on ubuntu 14.04 so we don't need to change the default base os for a long time
 - VM
   - [ ] Import all refinements from the internal auctionet devbox Vagrantfile (it's easier to try things out in a real environment first and import it here later)
   - Rename support/Vagrantfile to support/Vagrantfile.template (or .erb? and use templating where needed)
