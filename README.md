@@ -58,7 +58,7 @@ We've found being able to run multiple projects in one VM very useful at [auctio
 
 ### Reliability
 
-Having a stable development environment is just as important as having all the latest tools. This tool is versioned using [semver](http://semver.org/) and is [well tested](test/integration/software_dependency_management_test.rb).
+Having a stable development environment is just as important as having all the latest tools. This tool is versioned using [semver](http://semver.org/) and is [well tested](test/).
 
 ### Running the VM on other computers
 
