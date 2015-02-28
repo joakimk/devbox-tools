@@ -52,7 +52,7 @@ For users of heroku this tool should feel familiar as it uses many of the same c
 
 ### Many projects in the same VM
 
-One of the main goals with this tool is to be able to develop many projects within the same VM. This might seem a bit counterintuitive given that vagrant is meant to make it easy to have one VM for each project. But what if you don't need that much isolation for every project?
+One of the main goals with this tool is to be able to develop many projects within the same VM. This might seem a bit odd given that vagrant is meant to make it easy to have one VM for each project. But what if you don't need that much isolation for every project?
 
 We've found being able to run multiple projects in one VM very useful at [auctionet](http://dev.auctionet.com/). This allowed us to reduce about 5 VMs down to one while still having good enough isolation between projects. Switching between projects is now much more conventient.
 
