@@ -4,7 +4,7 @@
 [ -d devbox-tools ] || { echo "Expected devbox-tools to be available in the current directory"; exit 1; }
 
 set -e
-cp devbox-tools/support/Vagrantfile .
+cp devbox-tools/support/Vagrantfile.example Vagrantfile
 cp devbox-tools/support/README.md .
 
 echo "devbox-tools" >> .gitignore # >> to be nice and not overwrite any previous file
