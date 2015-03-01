@@ -7,6 +7,7 @@ class ServiceDependency < Dependency
   end
 
   def install(logger)
+    super
     logger.detail "Pulling docker image..."
     docker "pull #{docker_image}"
     shared_metadata.set("installed", true)

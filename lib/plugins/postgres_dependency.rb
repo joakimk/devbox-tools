@@ -9,6 +9,13 @@ class PostgresDependency < ServiceDependency
 
   private
 
+  def required_packages
+    # For compiling postgres clients
+    # Probably not exactly the same version as the server, but that does
+    # not seem to make much of a difference.
+    %w{ libpq-dev }
+  end
+
   def default_version
     "postgres:9.3"
   end
