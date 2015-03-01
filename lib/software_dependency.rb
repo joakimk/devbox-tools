@@ -19,7 +19,7 @@ class SoftwareDependency < Dependency
     # Could be that ubuntu is good enough for most people, just like heroku's
     # standard platform works just fine for most people. Then we don't need
     # to put a lot of extra work into this.
-    if required_packages.any? && !Devbox.offline?
+    if required_packages.any?
       logger.detail("installing required system packages...")
       Shell.run "sudo apt-get install #{required_packages.join(' ')} -y"
     end

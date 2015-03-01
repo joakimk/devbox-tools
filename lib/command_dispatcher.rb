@@ -17,7 +17,7 @@ class CommandDispatcher
 
     puts
     # TODO: Color class
-    puts "Some error occurred, try again with \e[1;33mDEBUG=t\e[0m for more info. You can also try offline mode by setting \e[1;33mOFFLINE=t\e[0m."
+    puts "Some error occurred, try again with \e[1;33mDEBUG=t\e[0m for more info."
     exit 1
   end
 

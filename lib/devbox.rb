@@ -63,10 +63,6 @@ class Devbox
     Dir.pwd
   end
 
-  def self.offline?
-    ENV["OFFLINE"]
-  end
-
   def self.debug?
     ENV["DEBUG"]
   end

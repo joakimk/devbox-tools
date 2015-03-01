@@ -156,7 +156,7 @@ The mruby build configuration (and the "mrbgems" we build into it) is listed in 
   - [ ] Import all refinements from the internal auctionet devbox Vagrantfile (it's easier to try things out in a real environment first and import it here later)
   - Rename support/Vagrantfile to support/Vagrantfile.template (or .erb? and use templating where needed)
 - Cleanup
-  - [ ] Remove offline support for now (seems to add lots of complexity and have little value)
+  - [x] Remove offline support for now (seems to add lots of complexity and have little value)
 
 **High level roadmap: 1.0: public release**
 
