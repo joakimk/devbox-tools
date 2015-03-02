@@ -11,7 +11,7 @@ class PhantomjsDependency < SoftwareDependency
 
   def build_and_install_command
     %{
-      wget http://phantomjs.googlecode.com/files/#{archive_name}
+      wget #{url}
       echo "#{checksum}  #{archive_name}" | sha1sum -c -
       tar xfj #{archive_name}
       mv phantomjs-#{version}-linux-x86_64 #{install_prefix}
@@ -20,5 +20,9 @@ class PhantomjsDependency < SoftwareDependency
 
   def archive_name
     "phantomjs-#{version}-linux-x86_64.tar.bz2"
+  end
+
+  def url
+    "https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-#{version}-linux-x86_64.tar.bz2"
   end
 end
