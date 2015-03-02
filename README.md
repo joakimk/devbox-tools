@@ -157,6 +157,7 @@ The mruby build configuration (and the "mrbgems" we build into it) is listed in 
     - Rename support/Vagrantfile to support/Vagrantfile.template (or .erb? and use templating where needed)
 - Cleanup
   - [x] Remove offline support for now (seems to add lots of complexity and have little value)
+  - [ ] See if replacing mruby with regular ruby is practical. Would simplify a few things.
   - [ ] Make all tests pass again
 
 **High level roadmap: 1.0: public release**
