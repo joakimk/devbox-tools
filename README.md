@@ -104,6 +104,8 @@ But before you do, consider making the change into a plugin. Most of devbox-tool
 
 ### What is mruby and...
 
+**Note: There is a ruby22 branch where I'm changing over to the regular ruby version**
+
 [mruby](http://www.mruby.org/) is a lightweight implementation of the Ruby language and it's the runtime for devbox-tools. devbox-tools uses [mruby](http://www.mruby.org/) because:
 
 * It compiles to a stand alone binary. This avoids environment collisions with other ruby installs.
