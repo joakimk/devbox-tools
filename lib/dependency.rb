@@ -31,7 +31,7 @@ class Dependency
     # to put a lot of extra work into this.
     if required_packages.any?
       logger.detail("installing required system packages...")
-      Shell.run "sudo apt-get install #{required_packages.join(' ')} -y"
+      ShellRunner.run "sudo apt-get install #{required_packages.join(' ')} -y"
     end
   end
 

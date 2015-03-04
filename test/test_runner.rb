@@ -9,7 +9,7 @@ end
 module TestHelpers
   # Run command in the devbox env and return the output
   def shell(command)
-    exec_command(devbox_command(command))
+    `#{devbox_command(command)}`
   end
 
   # Run command in the devbox env and raise if it fails
@@ -18,7 +18,7 @@ module TestHelpers
   end
 
   def zsh_shell(command)
-    exec_command(devbox_command(command, "zsh"))
+    `#{devbox_command(command, "zsh")}`
   end
 
   def fixture_path(name)

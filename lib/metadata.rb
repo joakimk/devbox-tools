@@ -21,7 +21,7 @@ class Metadata
 
   def del(name)
     path = build_path(name)
-    File.exists?(path) && Shell.run("rm #{path}")
+    File.exists?(path) && ShellRunner.run("rm #{path}")
   end
 
   private

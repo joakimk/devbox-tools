@@ -1,5 +1,5 @@
 class UpdateCommand < Command
-  include Logger::Loggable
+  include ConsoleLogger::Loggable
 
   def options
     {
@@ -9,12 +9,12 @@ class UpdateCommand < Command
 
   def run(_option, _parameters)
     log "Updating devbox-tools" do
-      Shell.run("cd #{Devbox.tools_root} && git pull")
+      ShellRunner.run("cd #{Devbox.tools_root} && git pull")
       nil
     end
 
     log "Updating devbox-tools dependencies" do
-      Shell.run("cd #{Devbox.tools_root} && sudo support/install_dependencies")
+      ShellRunner.run("cd #{Devbox.tools_root} && sudo support/install_dependencies")
       nil
     end
   end

@@ -1,3 +1,5 @@
+require "json"
+
 class DockerMetadata
   def initialize(name, image_name)
     @name, @image_name = name, image_name
@@ -8,7 +10,7 @@ class DockerMetadata
   end
 
   def external_port
-    str = exec_command("sudo docker port #{name}")
+    str = `sudo docker port #{name}`
     str.include?("tcp") ? str.split(":").last.chomp : nil
   end
 
@@ -22,7 +24,7 @@ class DockerMetadata
 
   def data
     @data ||= begin
-      json = exec_command("sudo docker inspect #{image_name}")
+      json = `sudo docker inspect #{image_name}`
       data = JSON.parse(json)
 
       # They wrap the data in an array, probably so that you can query for more than one thing

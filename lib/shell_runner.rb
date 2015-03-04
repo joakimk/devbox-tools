@@ -1,4 +1,6 @@
-class Shell
+require "digest"
+
+class ShellRunner
   def self.run(command, options = {})
     may_fail = options.fetch(:may_fail, false)
 

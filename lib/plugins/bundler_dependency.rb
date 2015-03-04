@@ -12,11 +12,11 @@ class BundlerDependency < SoftwareDependency
   end
 
   def remove
-    Shell.run("gem uninstall bundler --all --executables --force") && project_metadata.del("installed_version")
+    ShellRunner.run("gem uninstall bundler --all --executables --force") && project_metadata.del("installed_version")
   end
 
   def build_and_install
-    Shell.run "gem install bundler -v #{version}"
+    ShellRunner.run "gem install bundler -v #{version}"
     project_metadata.set("installed_version", version)
   end
 

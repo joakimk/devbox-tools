@@ -9,14 +9,14 @@ class HerokuDependency < SystemSoftwareDependency
   end
 
   def remove
-    Shell.run("sudo apt-get remove heroku-toolbelt -y")
+    ShellRunner.run("sudo apt-get remove heroku-toolbelt -y")
   end
-
-  private
 
   def installed?
     File.exists?(version_metadata_path)
   end
+
+  private
 
   def build_and_install_command
     %{
@@ -42,11 +42,11 @@ class HerokuDependency < SystemSoftwareDependency
   end
 
   def install_time
-    timestamp = exec_command("stat -c \"%Y\" $f #{version_metadata_path}").to_i
+    timestamp = `stat -c "%Y" $f #{version_metadata_path}`.to_i
     format_time Time.at(timestamp)
   end
 
-  # no strftime in mruby
+  # TODO: use strftime now that we don't use mruby anymore
   def format_time(time)
     year, month, day = time.year, time.month, time.day
     month = "0" + month.to_s if month < 10

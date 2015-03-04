@@ -7,14 +7,10 @@ class Finder
 
   def self.files(relative_path, root = "/")
     directory = File.join(root, relative_path)
-    found = Dir.entries(directory).
+    return [] unless File.directory?(directory)
+
+    Dir.entries(directory).
       reject { |name| name == "." || name == ".." }.
       map { |name| "#{directory}/#{name}" }
-  rescue Exception => ex
-    if ex.message == directory
-      []
-    else
-      raise
-    end
   end
 end

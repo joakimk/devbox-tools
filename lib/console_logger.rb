@@ -1,7 +1,7 @@
-class Logger
+class ConsoleLogger
   module Loggable
     def log(message, &block)
-      Logger.new.log(message, &block)
+      ConsoleLogger.new.log(message, &block)
     end
   end
 

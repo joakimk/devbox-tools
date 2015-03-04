@@ -13,7 +13,7 @@ class Build
       (#{command}) 2>&1
     }
 
-    Shell.run(build_command)
+    ShellRunner.run(build_command)
   ensure
     system("rm -rf #{path}")
   end

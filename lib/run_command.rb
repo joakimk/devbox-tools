@@ -25,7 +25,9 @@ class RunCommand
 
   def list_commands
     puts "Available commands:"
-    commands.flat_map(&:options).sort_by { |option| option.first.to_s }.each do |option|
+    require "pp"
+    all_options = commands.each_with_object({}) { |command, h| h.merge!(command.options) }
+    all_options.to_a.sort_by { |name, _| name.to_s }.each do |option|
       puts menu_option(option)
     end
   end
@@ -34,11 +36,7 @@ class RunCommand
     name, description = option
 
     option = "- #{name}"
-
-    # String#ljust is not available in mruby.
-    0.upto(20).map { |i|
-      option[i] || " "
-    }.join + "# #{description}"
+    option.ljust(20) + "# #{description}"
   end
 
   attr_reader :name, :commands, :parameters

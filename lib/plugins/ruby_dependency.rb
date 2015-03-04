@@ -5,11 +5,29 @@ class RubyDependency < SoftwareDependency
     "ruby"
   end
 
-  private
-
   def used_by_current_project?
     super || ruby_project?
   end
+
+  def environment_variables(envs)
+    envs = super(envs)
+    envs["GEM_HOME"] = "#{Devbox.project_data_root}/gems"
+    envs["GEM_PATH"] = envs["GEM_HOME"]
+    envs["PATH"] = "#{envs["GEM_HOME"]}/bin:#{envs["PATH"]}"
+
+    # We only know the gem_directory if the ruby version is installed, so the first cd into
+    # a directory won't have GEM_PATH, but after you run "dev" to install ruby,
+    # it will be added.
+    gem_directory = Finder.files("lib/ruby/gems", install_prefix)[0]
+
+    if gem_directory
+      envs["GEM_PATH"] += ":#{gem_directory}"
+    end
+
+    envs
+  end
+
+  private
 
   def ruby_project?
     File.exists?("Gemfile")
@@ -32,24 +50,6 @@ class RubyDependency < SoftwareDependency
     }
   end
 
-  def environment_variables(envs)
-    envs = super(envs)
-    envs["GEM_HOME"] = "#{Devbox.project_data_root}/gems"
-    envs["GEM_PATH"] = envs["GEM_HOME"]
-    envs["PATH"] = "#{envs["GEM_HOME"]}/bin:#{envs["PATH"]}"
-
-    # We only know the gem_directory if the ruby version is installed, so the first cd into
-    # a directory won't have GEM_PATH, but after you run "dev" to install ruby,
-    # it will be added.
-    gem_directory = Finder.files("lib/ruby/gems", install_prefix)[0]
-
-    if gem_directory
-      envs["GEM_PATH"] += ":#{gem_directory}"
-    end
-
-    envs
-  end
-
   def url
     major_version = version[0, 3]
     "http://cache.ruby-lang.org/pub/ruby/#{major_version}/#{archive_name}"
@@ -61,7 +61,7 @@ class RubyDependency < SoftwareDependency
     if manual_checksum
       "#{manual_checksum}  #{archive_name}"
     else
-      content = exec_command("curl -s https://raw.githubusercontent.com/postmodern/ruby-versions/master/ruby/checksums.md5 | grep #{archive_name}").chomp
+      content = `curl -s https://raw.githubusercontent.com/postmodern/ruby-versions/master/ruby/checksums.md5 | grep #{archive_name}`.chomp
 
       unless content.include?(archive_name)
         raise <<-STR

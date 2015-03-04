@@ -1,3 +1,5 @@
+require "yaml"
+
 class Config
   def self.load
     config_path = File.join(Devbox.project_root, "devbox.yml")

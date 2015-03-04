@@ -84,7 +84,7 @@ class BootCommand < Command
   def prepare_directory(path)
     return if File.exists?(path)
     user = ENV["USER"]
-    Shell.run "sudo mkdir -p #{path} && sudo chown #{user} -R #{path}"
+    ShellRunner.run "sudo mkdir -p #{path} && sudo chown #{user} -R #{path}"
   end
 
   def dependencies

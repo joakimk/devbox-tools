@@ -9,11 +9,11 @@ class FileCache
   end
 
   def restore
-    Shell.run("mkdir -p #{cacheable_parent_directory_path} && cd #{cacheable_parent_directory_path} && tar xfz #{archive_path}")
+    ShellRunner.run("mkdir -p #{cacheable_parent_directory_path} && cd #{cacheable_parent_directory_path} && tar xfz #{archive_path}")
   end
 
   def build
-    Shell.run("mkdir -p #{archive_directory_path} && cd #{cacheable_parent_directory_path} && tar cfz #{archive_path} #{cacheable_directory_name}")
+    ShellRunner.run("mkdir -p #{archive_directory_path} && cd #{cacheable_parent_directory_path} && tar cfz #{archive_path} #{cacheable_directory_name}")
   end
 
   private

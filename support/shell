@@ -55,7 +55,7 @@ function __update_environment()
 
 function __cli()
 {
-  devbox-tools-ruby $DEVBOX_TOOLS_ROOT/lib/cli.rb $@
+  /usr/bin/ruby2.2 $DEVBOX_TOOLS_ROOT/lib/cli.rb $@
 }
 
 # Set up environment for new shells (ex: a new split in tmux)

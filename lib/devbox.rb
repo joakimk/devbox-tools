@@ -8,7 +8,7 @@ class Devbox
   end
 
   def self.logger
-    Logger.new
+    ConsoleLogger.new
   end
 
   def self.cache(dependency)

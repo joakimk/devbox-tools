@@ -34,15 +34,15 @@ class ServiceDependency < Dependency
     docker "stop #{docker_name}"
   end
 
+  def environment_variables(envs)
+    envs["#{name.upcase}_PORT"] = project_metadata.get("external_port")
+    envs
+  end
+
   private
 
   def display_version
     docker_image_version
-  end
-
-  def environment_variables(envs)
-    envs["#{name.upcase}_PORT"] = project_metadata.get("external_port")
-    envs
   end
 
   def docker_metadata
@@ -65,7 +65,7 @@ class ServiceDependency < Dependency
   end
 
   def docker(command, options = {})
-    Shell.run("sudo docker #{command}", options)
+    ShellRunner.run("sudo docker #{command}", options)
   end
 
   def docker_image_name

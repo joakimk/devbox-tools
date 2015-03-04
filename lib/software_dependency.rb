@@ -15,12 +15,16 @@ class SoftwareDependency < Dependency
   end
 
   def remove
-    Shell.run("rm -rf #{install_prefix}")
+    ShellRunner.run("rm -rf #{install_prefix}")
   end
 
   def environment_variables(envs)
     envs["PATH"] = "#{install_prefix}/bin:#{envs["PATH"]}"
     envs
+  end
+
+  def installed?
+    File.exists?(install_prefix)
   end
 
   private
@@ -45,10 +49,6 @@ class SoftwareDependency < Dependency
 
   def build_and_install_command
     raise "implement me, or override build_and_install for completly custom installs"
-  end
-
-  def installed?
-    File.exists?(install_prefix)
   end
 
   def install_prefix
