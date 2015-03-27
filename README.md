@@ -42,14 +42,6 @@ You can make a local plugin, use plugins other people have made or publish your 
 
 You can find out more on plugins further down in this readme.
 
-### Made specifically for development environments
-
-This tool does not create an environment that is an exact replica of production. What you get is an environment that is both easy to set up and the same for every developer. You also get an environment where changing software and service versions is just a single configuration change that can be applied right away using "dev" and committed to your project.
-
-Combine this with a CI and/or staging environment that is more production-like if you like to catch the more tricky integration issues before they end up in production.
-
-For users of heroku this tool should feel familiar as it uses many of the same conventions.
-
 ### Many projects in the same VM
 
 One of the main goals with this tool is to be able to develop many projects within the same VM. This might seem a bit odd given that vagrant is meant to make it easy to have one VM for each project. But what if you don't need that much isolation for every project?
