@@ -1,4 +1,4 @@
-**Status**: Trying it out for regular dev work. Still missing some core features. Preparing for beta release (unstable APIs but mostly feature complete).
+**Status**: Not working on this project. Might build separate tools instead, like <https://github.com/joakimk/docker_services>.
 
 # WIP: This is readme driven development in progress. They tool may not yet do what the readme says.
 
